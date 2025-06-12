@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{app()->getLocale()}}" dir="{{app()->getLocale()=="ar"?"rtl":"ltr"}}">
-
+    @dd(settings()->logo)
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,6 +49,7 @@
                         </div>
 
                         <div class="input-box">
+                               
                             @isset($route)
                                 <form class="row g-4" method="POST" action="{{ route($route) }}">
                             @else
