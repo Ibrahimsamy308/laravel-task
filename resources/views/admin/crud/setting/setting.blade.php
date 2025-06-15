@@ -60,13 +60,13 @@
 
                                                 <!-- Normal title input -->
                                                 <div class="mb-4 row align-items-center"> <label
-                                                        class="form-label-title col-sm-3 mb-0">{{ __('general.appointment1') }}
+                                                        class="form-label-title col-sm-3 mb-0">{{ __('general.appointment') }}
                                                         - @lang('general.' . $locale)<span class="text-danger"> * </span></label>
                                                     <div class="col-sm-9"> <input type="text"
-                                                            name="{{ $locale . '[appointment1]' }}"
-                                                            placeholder="{{ __('general.appointment1') }}"
-                                                            class="form-control @error('appointment1') invalid @enderror @error($locale . '.appointment1') is-invalid @enderror"
-                                                            value="{{ old($locale . '.appointment1', $setting->translate($locale)->appointment1) }}">
+                                                            name="{{ $locale . '[appointment]' }}"
+                                                            placeholder="{{ __('general.appointment') }}"
+                                                            class="form-control @error('appointment') invalid @enderror @error($locale . '.appointment') is-invalid @enderror"
+                                                            value="{{ old($locale . '.appointment', $setting->translate($locale)->appointment) }}">
                                                     </div>
                                                 </div>
 
@@ -83,15 +83,15 @@
                                                 </div>
 
 
-                                                                                                <!-- Normal title input -->
-                                                                                                <div class="mb-4 row align-items-center"> <label
-                                                                                                    class="form-label-title col-sm-3 mb-0">{{ __('general.address') }}
-                                                                                                    <span class="text-danger"> * </span></label>
-                                                                                                <div class="col-sm-9"> <input type="text" name="address"
-                                                                                                        placeholder="{{ __('general.address') }}"
-                                                                                                        class="form-control @error('address') is-invalid @enderror"
-                                                                                                        value="{{ old('address', $setting->address) }}"> </div>
-                                                                                            </div>
+                                                <!-- Normal title input -->
+                                                <div class="mb-4 row align-items-center"> <label
+                                                    class="form-label-title col-sm-3 mb-0">{{ __('general.address') }}
+                                                    <span class="text-danger"> * </span></label>
+                                                <div class="col-sm-9"> <input type="text" name="address"
+                                                        placeholder="{{ __('general.address') }}"
+                                                        class="form-control @error('address') is-invalid @enderror"
+                                                        value="{{ old('address', $setting->address) }}"> </div>
+                                            </div>
                                             
 
                                                 <!-- Normal title input -->
@@ -108,56 +108,66 @@
                                         @endforeach
                                     </div>
 
+                                <div class="row">
+                                        <!-- Normal title input -->
+                                        <div class="col-md-12">
+                                            <div class="mb-4">
+                                                <label class="form-label-title mb-0">
+                                                    {{ __('general.map') }} <span class="text-danger"> * </span>
+                                                </label>
+                                                <textarea rows="10" class="form-control @error('map') is-invalid @enderror" name="map">{!! old('map', $setting->map) !!}</textarea>
+                                            </div>
+                                        </div>
 
-
-                                        <div class="col-md-6"> @include('admin.components.image', [
+                                        <div class="col-md-6">
+                                            @include('admin.components.image', [
                                             'label' => __('general.logo'),
                                             'value' => old('logo', $setting->logo),
                                             'name' => 'logo',
                                             'id' => 'kt_image_1',
                                             'accept' => 'image/*',
                                             'required' => true,
-                                        ]) </div>
+                                            ]) 
+                                        </div>
 
 
-                                        <div class="col-md-6"> @include('admin.components.image', [
+                                        <div class="col-md-6">
+                                            @include('admin.components.image', [
                                             'label' => __('general.white_logo'),
                                             'value' => old('white_logo', $setting->white_logo),
                                             'name' => 'white_logo',
                                             'id' => 'kt_image_2',
                                             'accept' => 'image/*',
                                             'required' => true,
-                                        ]) </div>
+                                            ]) 
+                                        </div>
 
 
-                                        <div class="col-md-6"> @include('admin.components.image', [
-                                            'label' => __('general.tab'),
-                                            'value' => old('tab', $setting->tab),
-                                            'name' => 'tab',
-                                            'id' => 'kt_image_3',
-                                            'accept' => 'image/*',
-                                            'required' => true,
-                                        ]) </div>
+                                        <div class="col-md-6"> 
+                                            @include('admin.components.image', [
+                                                'label' => __('general.tab'),
+                                                'value' => old('tab', $setting->tab),
+                                                'name' => 'tab',
+                                                'id' => 'kt_image_3',
+                                                'accept' => 'image/*',
+                                                'required' => true,
+                                            ]) 
+                                        </div>
 
 
-                                        <div class="col-md-6"> @include('admin.components.image', [
+                                        <div class="col-md-6"> 
+                                            @include('admin.components.image', [
                                             'label' => __('general.loginImage'),
                                             'value' => old('image', $setting->image),
                                             'name' => 'image',
                                             'id' => 'kt_image_4',
                                             'accept' => 'image/*',
                                             'required' => true,
-                                        ]) </div>
-    
-
-                                    <!-- Normal title input -->
-                                    <div class="mb-4 row"> <label
-                                            class="form-label-title mb-0">{{ __('general.map') }} <span
-                                                class="text-danger"> * </span></label>
-                                        <div class="col-12">
-                                            <textarea rows="10" class=" @error('map') is-invalid @enderror" name="{{ 'map' }}"> {!! old('map', $setting->map) !!} </textarea>
+                                            ]) 
                                         </div>
                                     </div>
+    
+
                                 </div>
                                 <div class="card-submit-button">
                                     <button class="btn btn-animation ms-auto" type="submit">{{__('general.submit')}}</button>
