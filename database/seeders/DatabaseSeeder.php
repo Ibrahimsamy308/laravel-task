@@ -32,17 +32,17 @@ class DatabaseSeeder extends Seeder
             PermissionTableSeeder::class,
             CreateAdminUserSeeder::class,
             CategorySeeder::class,
-            BrandsSeeder::class,
-            StoresSeeder::class,
-            SizesSeeder::class,
-            ColorsSeeder::class,
+            // BrandsSeeder::class,
+            // StoresSeeder::class,
+            // SizesSeeder::class,
+            // ColorsSeeder::class,
             SubcategoriesSeeder::class,
-            ProductOffersSeeder::class,
+            // ProductOffersSeeder::class,
             ProductSeeder::class,
-            ProductVariationsSeeder::class,
-            BannersSeeder::class,
+            // ProductVariationsSeeder::class,
+            // BannersSeeder::class,
             SlidersSeeder::class,
-            ItemRequestSeeder::class,
+            // ItemRequestSeeder::class,
 
             
             NewslettersSeeder::class,
@@ -50,8 +50,8 @@ class DatabaseSeeder extends Seeder
             PagesSeeder::class,
             SettingSeeder::class,
             UsersSeeder::class,
-            FaqsSeeder::class,
-            OffersSeeder::class,
+            // FaqsSeeder::class,
+            // OffersSeeder::class,
         ]);
         
     }
