@@ -64,7 +64,20 @@ class Admin extends Authenticatable
 
  
 
-    public function tasks(){
-        return $this->hasMany(Task::class,'employee_id');
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
+
+    public function students()
+    {
+        return $this->hasManyThrough(
+            User::class,        //student
+            Course::class,      //course
+            'admin_id',    // في جدول courses
+            'id',               // المفتاح الأساسي في users
+            'id',               // admin id
+            'id'                // course id
+        )->distinct();
     }
 }

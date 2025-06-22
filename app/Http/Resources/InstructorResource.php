@@ -30,6 +30,8 @@ class InstructorResource extends JsonResource
             "twitter" => $this->twitter,
             "linkedin" => $this->linkedin,
             "whatsapp" => $this->whatsapp, 
+            'courses_count' => $this->courses()->count(),
+            'students_count' => $this->students()->count()
         ];
     }
 }
