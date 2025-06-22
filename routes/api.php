@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController as ControllersAboutController;
 use App\Http\Controllers\API\ChooseUsController;
 use App\Http\Controllers\API\AboutController;
 use App\Http\Controllers\API\AddressController;
+use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\BannerController;
 use App\Http\Controllers\API\BrandController;
 use App\Http\Controllers\API\CategoryController;
@@ -98,7 +99,8 @@ Route::group(['middleware' => ['apiLocalization','cors']], function () {
     Route::get('/subcategory/{id}', [SubcategoryController::class, 'show']);
     Route::get('/subcategoryProducts', [SubcategoryController::class, 'subcategoryProducts']);
 
-
+    Route::get('/instructors', [AdminController::class, 'index']);
+    Route::get('/instructor/{id}', [AdminController::class, 'show']);
 
     Route::get('/customers', [UserController::class, 'index']);
     Route::get('/customer/{id}', [UserController::class, 'show']);

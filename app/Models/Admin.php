@@ -25,7 +25,17 @@ class Admin extends Authenticatable
         'name',
         'email',
         'password',
-        'dark'
+        'phone',
+        'type',
+        'active',
+        'bio',
+        'specialization',
+        'experience',
+        'facebook',
+        'instagram',
+        'twitter',
+        'linkedin',
+        'whatsapp',
     ];
 
     /**
@@ -51,6 +61,8 @@ class Admin extends Authenticatable
     {
         return  $this->file?asset($this->file->url): settings()->logo;
     }
+
+ 
 
     public function tasks(){
         return $this->hasMany(Task::class,'employee_id');

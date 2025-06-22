@@ -6,6 +6,8 @@ use App\Models\Admin;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Faker\Factory as Faker;
+
 
 class CreateAdminUserSeeder extends Seeder
 {
@@ -17,13 +19,16 @@ class CreateAdminUserSeeder extends Seeder
     public function run()
     {
         // Create Super Admin
-        $user = Admin::create([
+        $user = Admin::updateOrCreate(
+            [
+                'email' => 'admin@gmail.com',
+                'phone' => '01126785910', 
+            ],
+            [
             'name' => 'Super Admin',
-            'email' => 'admin@gmail.com',
-            'phone' => '01126785910',
             'password' => bcrypt('123456789'),
             'type' => 'admin',
-        ]);
+            ]);
 
         $role1 = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'admin']);
       
@@ -35,5 +40,33 @@ class CreateAdminUserSeeder extends Seeder
        
 
         $user->assignRole([$role1->id]);
+
+        $faker = Faker::create();
+        $instructorRole = Role::firstOrCreate(['name' => 'instructor', 'guard_name' => 'admin']);
+        
+        for ($i = 1; $i <= 15; $i++) {
+            $instructor = Admin::updateOrCreate(
+            [
+                'email' => "instructor$i@gmail.com",
+                'phone' => '010' . rand(10000000, 99999999),
+            ],
+            [
+                'name' => $faker->name,
+                'password' => bcrypt('123456789'),
+                'type' => 'instructor',
+                'active' => true,
+                'bio' => $faker->paragraph,
+                'specialization' => $faker->jobTitle,
+                'experience' =>  rand(1, 15),
+                'facebook' => 'https://facebook.com/instructor' . $i,
+                'instagram' => 'https://instagram.com/instructor' . $i,
+                'twitter' => 'https://twitter.com/instructor' . $i,
+                'linkedin' => 'https://linkedin.com/in/instructor' . $i,
+                'whatsapp' => 'https://wa.me/2010' . rand(10000000, 99999999),
+            ]);
+            $instructor->file()->create(["url"=>'https://i.pravatar.cc/300?img=' . rand(1, 70)]);
+        
+            $instructor->assignRole([$instructorRole->id]);
+        }
     }
 }
