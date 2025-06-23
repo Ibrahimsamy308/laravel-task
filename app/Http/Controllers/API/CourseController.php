@@ -17,11 +17,32 @@ class CourseController extends Controller
         $this->course = $course;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $data['courses'] = CourseResource::collection($this->course->latest()->get());
-            return successResponse($data);
+
+            $validator = Validator::make($request->all(), [
+                'per_page' => 'integer|min:1|max:100',
+            ]);
+    
+            if ($validator->fails()) {
+                $errors = $validator->errors()->toArray();
+                $errors['message'] = 'Validation Error';
+                return response()->json(['errors' => $errors], 420);
+            }
+    
+            $perPage = $request->input('per_page', 10);
+            $courses = $this->course->latest()->paginate($perPage);
+            $data = CourseResource::collection($courses);
+            $pagination = [
+                'current_page' => $courses->currentPage(),
+                'per_page' => $courses->perPage(),
+                'last_page' => $data->lastPage(),
+                'total_items' => $courses->total(),
+            ];
+            return response()->json(['pagination' => $pagination, 'data' => $data], 200);
+
+
         } catch (Exception $e) {
 
             return failedResponse($e->getMessage());
