@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::rename('course_user', 'usercourses');
-        Schema::rename('user_exam', 'userexams');
+        Schema::rename('course_user', 'userCourses');
+        Schema::rename('user_exam', 'userExams');
 
     }
 };
