@@ -28,9 +28,9 @@ class Course extends Model implements TranslatableContract
         return $this->belongsTo(Admin::class, 'admin_id');
     }
     
-    public function users()
+    public function students()
     {
-        return $this->belongsToMany(User::class,);
+        return $this->belongsToMany(User::class,'usercourses');
     }
 
 
