@@ -33,6 +33,8 @@ class CourseResource extends JsonResource
             "language" => $this->language,
             "updated_at" => $this->updated_at? $this->updated_at->translatedFormat('j F Y'): null,
             'students_count' => $this->students()->count(),
+            'lessons_count' => $this->lessons()->count(),
+            'exam_count' => $this->exams()->count(),
 
         ];
     }

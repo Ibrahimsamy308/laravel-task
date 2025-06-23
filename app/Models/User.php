@@ -87,11 +87,11 @@ class User extends Authenticatable
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class,);
+        return $this->belongsToMany(Course::class,'userCourses');
     }
     public function exams()
     {
-        return $this->belongsToMany(Exam::class,);
+        return $this->belongsToMany(Exam::class,'userExams');
     }
 
     public function videos()

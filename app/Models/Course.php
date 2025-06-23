@@ -34,5 +34,17 @@ class Course extends Model implements TranslatableContract
     }
 
 
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class,);
+    }
+
+    public function exams()
+    {
+        return $this->hasMany(Exam::class,);
+    }
+    
+
+
     
 }

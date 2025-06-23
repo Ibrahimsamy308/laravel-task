@@ -18,6 +18,10 @@ class Exam extends Model implements TranslatableContract
     public $translatedAttributes = ['title','description'];
     protected $guarded = [];
     public $timestamps = true;
+    
+    protected $casts = [
+        'questions' => 'array',
+    ];
 
     public function getImageAttribute(){
         return  $this->file?asset($this->file->url): settings()->logo;

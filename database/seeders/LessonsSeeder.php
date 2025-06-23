@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\Lesson;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
+use App\Models\Course;
 
 class LessonsSeeder extends Seeder
 {
@@ -13,56 +15,29 @@ class LessonsSeeder extends Seeder
      */
     public function run(): void
     {
-        $title_en = [
-            'Fresh Flowers',
-            'Artificial Flowers',
-            'Flower Bouquets',
-            'Wedding Flowers',
-            'Birthday Flowers',
-            'Anniversary Flowers',
-            'Valentine\'s Day Flowers',
-            'Indoor Plants',
-            'Outdoor Plants',
-            'Floral Accessories'
-        ];
-        
-        $title_fr = [
-            'Fleurs fraîches',
-            'Fleurs artificielles',
-            'Bouquets de fleurs',
-            'Fleurs de mariage',
-            'Fleurs d\'anniversaire',
-            'Fleurs de célébration',
-            'Fleurs de la Saint-Valentin',
-            'Plantes d\'intérieur',
-            'Plantes d\'extérieur',
-            'Accessoires floraux'
-        ];
-        
-        $title_ar = [
-            'زهور طبيعية',
-            'زهور صناعية',
-            'باقات زهور',
-            'زهور الزفاف',
-            'زهور أعياد الميلاد',
-            'زهور المناسبات',
-            'زهور عيد الحب',
-            'نباتات داخلية',
-            'نباتات خارجية',
-            'إكسسوارات زهور'
-        ];
+        $faker = Faker::create();
+        $courses = Course::all();
                     
-        for ($i = 0; $i < count($title_ar); $i++) {
-           
-            $lesson = Lesson::create([
-                'ar' => [
-                    'title' => $title_ar[$i],
-                ],
-                'en' => [
-                    'title' => $title_en[$i],
-                ]
-            ]);
-            // $lesson->file()->create(["url"=>$images[$i]]);
+        foreach ($courses as $course) {
+            $lessonsCount = rand(3, 7); 
+
+            for ($i = 1; $i <= $lessonsCount; $i++) {
+                Lesson::create([
+                    'ar' => [
+                        'title' => 'درس ' . $faker->word,
+                        'description' => $faker->paragraph,
+                    ],
+                    'en' => [
+                        'title' => 'Lesson ' . $faker->word,
+                        'description' => $faker->paragraph,
+                    ],
+                    'course_id' => $course->id,
+                    'video_url' => 'https://www.youtube.com/watch?v=' . $faker->bothify('???###'),
+                    'duration' => rand(5, 30), 
+                    'lessonOrder' => $i,
+                    'is_free' => $i == 1 ? true : (bool)rand(0, 1),
+                ]);
+            }
         }
     }
 }
