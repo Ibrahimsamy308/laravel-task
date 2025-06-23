@@ -18,6 +18,7 @@ use App\Http\Controllers\API\ConfigController;
 use App\Http\Controllers\API\OfferController;
 use App\Http\Controllers\API\NewsletterController;
 use App\Http\Controllers\API\ContactController;
+use App\Http\Controllers\API\CourseController;
 use App\Http\Controllers\API\PageController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\HomeController;
@@ -101,6 +102,9 @@ Route::group(['middleware' => ['apiLocalization','cors']], function () {
 
     Route::get('/instructors', [AdminController::class, 'index']);
     Route::get('/instructor/{id}', [AdminController::class, 'show']);
+
+    Route::get('/courses', [CourseController::class, 'index']);
+    Route::get('/course/{id}', [CourseController::class, 'show']);
 
     Route::get('/customers', [UserController::class, 'index']);
     Route::get('/customer/{id}', [UserController::class, 'show']);

@@ -15,7 +15,7 @@ class Course extends Model implements TranslatableContract
 {
     use HasFactory, Translatable, MorphFile;
     protected $table = 'courses';
-    public $translatedAttributes = ['title','description'];
+    public $translatedAttributes = ['title','description','curriculum'];
     protected $guarded = [];
     public $timestamps = true;
 
