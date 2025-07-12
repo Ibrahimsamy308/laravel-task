@@ -5,6 +5,7 @@ use App\Http\Controllers\API\ChooseUsController;
 use App\Http\Controllers\API\AboutController;
 use App\Http\Controllers\API\AddressController;
 use App\Http\Controllers\API\AdminController;
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\BannerController;
 use App\Http\Controllers\API\BrandController;
 use App\Http\Controllers\API\CategoryController;
@@ -32,7 +33,6 @@ use App\Http\Controllers\API\SizeController;
 use App\Http\Controllers\API\StoreController;
 use App\Http\Controllers\API\SubcategoryController;
 use App\Http\Controllers\API\SupportController;
-use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------

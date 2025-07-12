@@ -27,6 +27,8 @@ use App\Models\Video;
 use Illuminate\Support\Facades\File;
 use Jackiedo\Cart\Facades\Cart;
 use Spatie\Permission\Models\Role;
+use Illuminate\Http\JsonResponse;
+
 
 const Message_Mail = "app@gmail.com";
 
@@ -201,6 +203,17 @@ if (!function_exists('contact')) {
       Contact::where('type', $type)->first();
     }
 }
+
+    if (!function_exists('validationFailedResponse')) {
+        function validationFailedResponse($errors)
+        {
+            return new JsonResponse([
+                'status' => 420,
+                'message' => 'error',
+                'errors' => $errors
+            ], 420);
+        }
+    }
 
 // if (!function_exists('projects')) {
 

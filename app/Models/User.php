@@ -9,11 +9,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use App\Notifications\ResetPassword;
+use Laravel\Passport\HasApiTokens;
+
 
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable,MorphFile;
+    use HasFactory, Notifiable,MorphFile,HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -54,9 +56,9 @@ class User extends Authenticatable
     ];
 
     public function sendPasswordResetNotification($token)
-{
-    $this->notify(new ResetPassword($token));
-}
+    {
+        $this->notify(new ResetPassword($token));
+    }
 
 
     public function getImageAttribute(){
