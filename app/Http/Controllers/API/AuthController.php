@@ -145,7 +145,7 @@ class AuthController extends Controller
             'phone' => $request->phone,
             'password' => bcrypt($request->password),
             // 'otp_code' => $otp,
-            'is_verified' => false,
+            'is_verified' => true,
             'fcm_token' => $request->fcm_token,
             'app_lang' => $request->app_lang ?? 'en',
         ]);
