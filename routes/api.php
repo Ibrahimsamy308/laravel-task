@@ -20,6 +20,7 @@ use App\Http\Controllers\API\OfferController;
 use App\Http\Controllers\API\NewsletterController;
 use App\Http\Controllers\API\ContactController;
 use App\Http\Controllers\API\CourseController;
+use App\Http\Controllers\API\ExamController;
 use App\Http\Controllers\API\PageController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\HomeController;
@@ -85,8 +86,8 @@ Route::group(['middleware' => ['apiLocalization','cors']], function () {
     Route::get('/sizes', [SizeController::class, 'index']);
     Route::get('/size/{id}', [SizeController::class, 'show']);
 
-    Route::get('/colors', [ColorController::class, 'index']);
-    Route::get('/color/{id}', [ColorController::class, 'show']);
+    Route::get('/exams', [ExamController ::class, 'index']);
+    Route::get('/exam/{id}', [ExamController::class, 'show']);
 
 
     Route::get('/merchants', [StoreController::class, 'index']);
