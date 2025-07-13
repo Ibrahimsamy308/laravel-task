@@ -2,10 +2,11 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Exam;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CounterResource extends JsonResource
+class VideoResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,8 +18,12 @@ class CounterResource extends JsonResource
         return [
             "id" => $this->id,
             "title" => $this->title,
-            "count" => $this->count,
-            "lessons"=>LessonResource::collection($this->lessons),
+            "description" => $this->description,
+            "lesson_id" => $this->lesson_id,
+            "url" => $this->url,
+            "duration" => $this->duration,
+            "provider" => $this->provider,
+            "is_active" => $this->is_active,
         ];
     }
 }

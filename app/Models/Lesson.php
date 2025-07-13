@@ -30,5 +30,11 @@ class Lesson extends Model implements TranslatableContract
     }
 
 
+    public function videos()
+    {
+        return $this->hasMany(Video::class,);
+    }
+
+
     
 }
