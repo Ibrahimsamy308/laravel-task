@@ -98,7 +98,7 @@ class User extends Authenticatable
 
     public function videos()
     {
-        return $this->belongsToMany(Video::class,);
+        return $this->belongsToMany(Video::class,'userVideos');
     }
 
 }

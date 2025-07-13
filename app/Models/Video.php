@@ -13,7 +13,7 @@ class Video extends Model implements TranslatableContract
 
     protected $table = 'videos';
     protected $guarded = [];
-    public $translatedAttributes = ['title'];
+    public $translatedAttributes = ['title','description'];
     public $timestamps = true;
 
     public function file(): MorphOne
