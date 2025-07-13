@@ -35,6 +35,7 @@ class CourseResource extends JsonResource
             'students_count' => $this->students()->count(),
             'lessons_count' => $this->lessons()->count(),
             'exam_count' => $this->exams()->count(),
+            'lessons' => LessonResource::collection($this->lessons),
 
         ];
     }
