@@ -5,15 +5,13 @@ namespace App\Models;
 use App\Traits\MorphFile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
-use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 
 
-class Exam extends Model implements TranslatableContract
+class Exam extends Model 
 {
-    use HasFactory, Translatable, MorphFile;
+    use HasFactory, MorphFile;
     protected $table = 'exams';
     public $translatedAttributes = ['title','description'];
     protected $guarded = [];

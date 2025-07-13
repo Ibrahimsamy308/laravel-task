@@ -24,6 +24,7 @@ use App\Http\Controllers\API\ExamController;
 use App\Http\Controllers\API\PageController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\HomeController;
+use App\Http\Controllers\API\LessonController;
 use App\Http\Controllers\API\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\SettingController;
@@ -106,6 +107,9 @@ Route::group(['middleware' => ['apiLocalization','cors']], function () {
 
     Route::get('/courses', [CourseController::class, 'index']);
     Route::get('/course/{id}', [CourseController::class, 'show']);
+
+    Route::get('/lessons', [LessonController::class, 'index']);
+    Route::get('/lesson/{id}', [LessonController::class, 'show']);
 
     Route::get('/customers', [UserController::class, 'index']);
     Route::get('/customer/{id}', [UserController::class, 'show']);
