@@ -37,7 +37,7 @@ class ExamResource extends JsonResource
             "userExam" => $userExam ? [
                 "answers" => $userExam->answers,     
                 "score" => $userExam->score,
-                $userExam->created_at->translatedFormat('d M Y - h:i A')
+                "submitted_at"=>$userExam->created_at->translatedFormat('d M Y - h:i A')
 
             ] : null,
         ];
