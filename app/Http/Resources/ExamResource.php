@@ -31,6 +31,7 @@ class ExamResource extends JsonResource
             
         return [
             "id" => $this->id,
+            "title" => $this->lesson->title. ' - ' . __('general.exam'),
             "course_id" => $this->course_id,
             "lesson_id" => $this->lesson_id,
             "questions" => $this->questions,
