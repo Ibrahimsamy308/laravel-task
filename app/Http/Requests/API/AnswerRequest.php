@@ -32,7 +32,7 @@ class AnswerRequest extends FormRequest
         return [
             'exam_id' => 'required|exists:exams,id',
             'score'   => 'required|integer|min:0',
-            'answers' => 'required|string|json',
+            'answers' => 'required|json',
 
             
             'answers.*.answer'  => 'required|string|max:255', 

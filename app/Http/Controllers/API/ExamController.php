@@ -45,6 +45,7 @@ class ExamController extends Controller
     public function examSubmit(AnswerRequest $request)
     {
         try {
+            
             $submission = UserExam::create([
                 'exam_id' => $request->exam_id,
                 'user_id' => auth()->id(), 
