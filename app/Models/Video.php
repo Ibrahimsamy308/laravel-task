@@ -30,5 +30,7 @@ class Video extends Model implements TranslatableContract
     {
         return $this->belongsTo(Lesson::class,);
     }
+
+    
     
 }

@@ -58,9 +58,11 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         try {
-            $data = $request->except('image','profile_avatar_remove');
+            $data = $request->except('image','profile_avatar_remove','video','profile_video_remove');
             $category = $this->category->create($data);
-            $category->uploadFile();
+            // $category->uploadFile();
+            $category->uploadVideo();
+            
             return redirect()->route('categories.index')
                 ->with('success', trans('general.created_successfully'));
         } catch (Exception $e) {
@@ -101,9 +103,10 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         try {
-            $data = $request->except('image','profile_avatar_remove');
+            $data = $request->except('image','profile_avatar_remove','video');
             $category->update($data);
-            $category->updateFile();
+            // $category->updateFile();
+            $category->updateVideo();
             return redirect()->route('categories.index', compact('category'))
                 ->with('success', trans('general.update_successfully'));
         } catch (Exception $e) {
@@ -121,7 +124,8 @@ class CategoryController extends Controller
     {
         try {
             $category->delete();
-            $category->deleteFile();
+            // $category->deleteFile();
+            $category->deleteVideo();
             return redirect()->route('categories.index')
                 ->with('success', trans('general.deleted_successfully'));
         } catch (Exception $e) {
