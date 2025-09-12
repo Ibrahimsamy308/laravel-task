@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\AnswerRequest;
 use App\Http\Resources\ExamResource;
 use App\Models\Exam;
+use App\Models\UserExam;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -13,6 +15,7 @@ class ExamController extends Controller
     private $exam;
     public function __construct(Exam $exam)
     {
+        $this->middleware('auth:api', ['except' => ['index','show']]);
         $this->exam = $exam;
     }
 
@@ -35,6 +38,31 @@ class ExamController extends Controller
         } catch (Exception $e) {
 
             return failedResponse($e->getMessage());
+        }
+    }
+
+
+    public function examSubmit(AnswerRequest $request)
+    {
+        try {
+            $submission = UserExam::create([
+                'exam_id' => $request->exam_id,
+                'user_id' => auth()->id(), 
+                'score'   => $request->score,
+                'answers' => $request->answers, 
+            ]);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Exam submitted successfully',
+                'data' => $submission,
+            ], 201);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'status'  => false,
+                'message' => $e->getMessage(),
+            ], 500);
         }
     }
 }

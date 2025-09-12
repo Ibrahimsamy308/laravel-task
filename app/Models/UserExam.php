@@ -33,6 +33,14 @@ class UserExam extends Model
     }
 
 
+    public function setAnswersAttribute($value)
+    {
+        $this->attributes['answers'] = json_encode($value);
+    }
 
+    public function getAnswersAttribute($value)
+    {
+        return json_decode($value, true);
+    }
     
 }

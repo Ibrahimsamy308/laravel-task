@@ -89,7 +89,8 @@ Route::group(['middleware' => ['apiLocalization','cors']], function () {
 
     Route::get('/exams', [ExamController ::class, 'index']);
     Route::get('/exam/{id}', [ExamController::class, 'show']);
-
+    
+    Route::post('/exam-submissions', [ExamController ::class, 'examSubmit']);
 
     Route::get('/merchants', [StoreController::class, 'index']);
     Route::get('/merchant/{id}', [StoreController::class, 'show']);
