@@ -4,9 +4,11 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\AnswerRequest;
+use App\Http\Requests\API\WatchRequest;
 use App\Http\Resources\ExamResource;
 use App\Models\Exam;
 use App\Models\UserExam;
+use App\Models\UserVideo;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -57,6 +59,33 @@ class ExamController extends Controller
                 'status' => true,
                 'message' => 'Exam submitted successfully',
                 'data' => $submission,
+            ], 201);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'status'  => false,
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+
+
+
+    public function watchedVideos(WatchRequest $request)
+    {
+        try {
+            
+            $watched = UserVideo::create([
+                'video_id' => $request->video_id,
+                'user_id' => auth()->id(), 
+                'watched_at'   => now(),
+            ]);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'video watched successfully',
+                'data' => $watched,
             ], 201);
 
         } catch (\Exception $e) {
