@@ -149,6 +149,7 @@ class AuthController extends Controller
             'fcm_token' => $request->fcm_token,
             'app_lang' => $request->app_lang ?? 'en',
         ]);
+        $user->uploadFile();
     
         // $user->notify(new OtpNotification($otp));
     
