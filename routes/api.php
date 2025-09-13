@@ -109,7 +109,10 @@ Route::group(['middleware' => ['apiLocalization','cors']], function () {
 
     Route::get('/courses', [CourseController::class, 'index']);
     Route::get('/course/{id}', [CourseController::class, 'show']);
-
+    
+    Route::post('/enrollment', [CourseController::class, 'enrollmentCourse']);
+    Route::get('/check-enrollment', [CourseController::class, 'checkEnrollment']);
+    
     Route::get('/lessons', [LessonController::class, 'index']);
     Route::get('/lesson/{id}', [LessonController::class, 'show']);
 

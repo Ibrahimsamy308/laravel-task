@@ -7,6 +7,7 @@ use App\Http\Resources\CourseResource;
 use App\Models\Course;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class CourseController extends Controller
@@ -14,6 +15,7 @@ class CourseController extends Controller
     private $course;
     public function __construct(Course $course)
     {
+        $this->middleware('auth:api', ['except' => ['index','show']]);
         $this->course = $course;
     }
 
@@ -59,5 +61,51 @@ class CourseController extends Controller
             return failedResponse($e->getMessage());
         }
     }
+
+    public function enrollmentCourse(Request $request)
+    {
+        try {
+            $request->validate([
+                'course_id' => 'required|exists:courses,id',
+            ]);
+    
+            $user = Auth::guard('api')->user();
+            
+            // Check if already enrolled   
+            if ($user->courses()->where('course_id', $request->course_id)->exists()) {
+                return failedResponse('You are already enrolled in this course.');
+            }
+            
+            // enroll user in course
+            $user->courses()->attach($request->course_id);
+            
+            return successResponse('Enrolled successfully');
+        } catch (\Exception $e) {
+            return failedResponse($e->getMessage());
+        }
+    }
+    
+    public function checkEnrollment(Request $request)
+{
+    try {
+        $request->validate([
+            'course_id' => 'required|exists:courses,id',
+        ]);
+
+        $user = Auth::guard('api')->user();
+
+        $isRegistered = $user->courses()
+            ->where('course_id', $request->course_id)
+            ->exists();
+
+        return successResponse([
+            'is_registered' => $isRegistered,
+        ]);
+    } catch (Exception $e) {
+        return failedResponse($e->getMessage());
+    }
+}
+
+    
     
 }
