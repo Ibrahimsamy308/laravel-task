@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
 class CourseResource extends JsonResource
 {
@@ -14,6 +15,8 @@ class CourseResource extends JsonResource
      */
     public function toArray($request)
     {
+        $user = Auth::guard('api')->user();
+        
         return [
             "id" => $this->id,
             "image" => $this->image,
@@ -36,6 +39,10 @@ class CourseResource extends JsonResource
             'lessons_count' => $this->lessons()->count(),
             'exam_count' => $this->exams()->count(),
             'lessons' => LessonResource::collection($this->lessons),
+            
+            'is_registered' => $user 
+            ? $user->courses()->where('course_id', $this->id)->exists()
+            : false,
 
         ];
     }

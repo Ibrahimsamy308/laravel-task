@@ -86,25 +86,25 @@ class CourseController extends Controller
     }
     
     public function checkEnrollment(Request $request)
-{
-    try {
-        $request->validate([
-            'course_id' => 'required|exists:courses,id',
-        ]);
+    {
+        try {
+            $request->validate([
+                'course_id' => 'required|exists:courses,id',
+            ]);
 
-        $user = Auth::guard('api')->user();
+            $user = Auth::guard('api')->user();
 
-        $isRegistered = $user->courses()
-            ->where('course_id', $request->course_id)
-            ->exists();
+            $isRegistered = $user->courses()
+                ->where('course_id', $request->course_id)
+                ->exists();
 
-        return successResponse([
-            'is_registered' => $isRegistered,
-        ]);
-    } catch (Exception $e) {
-        return failedResponse($e->getMessage());
+            return successResponse([
+                'is_registered' => $isRegistered,
+            ]);
+        } catch (Exception $e) {
+            return failedResponse($e->getMessage());
+        }
     }
-}
 
     
     
