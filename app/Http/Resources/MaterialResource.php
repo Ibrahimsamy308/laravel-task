@@ -17,7 +17,8 @@ class MaterialResource extends JsonResource
         return [
             "id" => $this->id,
             "title" => $this->title,
-            "url" => '',
+            'materials' => $this->materials_urls,
+
         ];
     }
 }

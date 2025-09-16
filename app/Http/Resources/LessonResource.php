@@ -27,6 +27,7 @@ class LessonResource extends JsonResource
             "is_free" => $this->is_free,
             "exams" =>  ExamResource::collection($this->exams),
             "videos" =>  VideoResource::collection($this->videos),
+            "materials" =>  MaterialResource::collection($this->materials),
         ];
     }
 }

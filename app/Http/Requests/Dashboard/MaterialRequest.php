@@ -27,7 +27,7 @@ class MaterialRequest extends FormRequest
 
         $rules = [
             // 'image' =>  $image ,
-            'video' => $video,
+            // 'video' => $video,
         ];
         foreach (config('translatable.locales') as $locale) {
             $rules += [$locale . '.title' => ['required', 'string']];

@@ -53,16 +53,27 @@
                                         @endforeach
                                     </div>
 
-                                  
+                                        <div class="mb-4 row align-items-center"> <label
+                                                class="col-sm-3 col-form-label form-label-title">{{ __('general.lessons') }}</label>
+                                            <div class="col-sm-9"> <select class="js-example-basic-single w-100" name="lesson_id"
+                                                    id="lesson">
+                                                    <option value="">{{ __('general.select') }}</option>
+                                                    @foreach ($lessons as $lesson)
+                                                        <option value="{{ $lesson->id }}"
+                                                            {{ old('lesson_id') == $lesson->id ? 'selected' : '' }}>
+                                                            {{ $lesson->title }} </option>
+                                                    @endforeach
+                                                </select> </div>
+                                        </div>
 
                                         <div class="col-md-6">
-                                            @include('admin.components.video', [
-                                                'label' => __('general.video'),
-                                                'value' => old('video'),
-                                                'name' => 'video',
-                                                'id' => 'kt_video_1',
-                                                'accept' => 'video/*',
-                                                'required' => true,
+                                            @include('admin.components.materials', [
+                                                'label' => __('general.materials'),
+                                                'value' => old('materials'),
+                                                'name' => 'materials[]',
+                                                'id' => 'kt_materials_1',
+                                                'accept' => '.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.gif',
+                                                'required' => false,
                                             ])
                                         </div>
 

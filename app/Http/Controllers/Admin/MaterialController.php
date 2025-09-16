@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\Material;
 use Illuminate\Http\Request;
 use App\Models\File as ModelsFile;
+use App\Models\Lesson;
 use Exception;
 
 class MaterialController extends Controller
@@ -46,7 +47,8 @@ class MaterialController extends Controller
      */
     public function create()
     {
-        return view('admin.crud.materials.create');
+        $lessons=Lesson::latest()->get();
+        return view('admin.crud.materials.create',compact('lessons'));
     }
 
     /**
@@ -58,10 +60,11 @@ class MaterialController extends Controller
     public function store(MaterialRequest $request)
     {
         try {
-            $data = $request->except('image','profile_avatar_remove','video','profile_video_remove');
+            
+            $data = $request->except('image','profile_avatar_remove','video','profile_video_remove','materials');
             $material = $this->material->create($data);
             // $material->uploadFile();
-            $material->uploadVideo();
+            $material->uploadMaterials();
             
             return redirect()->route('materials.index')
                 ->with('success', trans('general.created_successfully'));
@@ -91,7 +94,8 @@ class MaterialController extends Controller
     public function edit(Material $material)
     {
         // dd($material);
-        return view('admin.crud.materials.edit', compact('material'));
+        $lessons=Lesson::latest()->get();
+        return view('admin.crud.materials.edit', compact('material','lessons'));
     }
     /**
      * Update the specified resource in storage.
@@ -103,10 +107,10 @@ class MaterialController extends Controller
     public function update(Request $request, Material $material)
     {
         try {
-            $data = $request->except('image','profile_avatar_remove','video');
+            $data = $request->except('image','profile_avatar_remove','video','materials');
             $material->update($data);
             // $material->updateFile();
-            $material->updateVideo();
+            $material->updateMaterials();
             return redirect()->route('materials.index', compact('material'))
                 ->with('success', trans('general.update_successfully'));
         } catch (Exception $e) {
