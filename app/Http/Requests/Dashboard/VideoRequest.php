@@ -21,12 +21,17 @@ class VideoRequest extends FormRequest
         //to add or remove input from request in validation class use $this->merge
         //  $this->merge(['user_id' => auth('api')->user()->id]);
 
+        $video = $this->isMethod('put') ? 'nullable|mimes:mp4,avi,mov,wmv|max:200000' : 'required|mimes:mp4,avi,mov,wmv|max:200000';
 
         $rules = [
-            'youtube_link' =>  'required' ,
+            'video' => $video,
+            'lesson_id' => 'required|integer|exists:lessons,id',
+            'duration'  => 'required|numeric|min:1',
+            'is_active' => 'required|boolean',
         ];
         foreach (config('translatable.locales') as $locale) {
             $rules += [$locale . '.title' => ['required', 'string']];
+            $rules += [$locale . '.description' => ['required']];
         }
         return  $rules;
     }

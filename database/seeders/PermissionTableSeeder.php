@@ -20,10 +20,6 @@ class PermissionTableSeeder extends Seeder
            'role-edit',
            'role-delete',
            
-           'product-list',
-           'product-create',
-           'product-edit',
-           'product-delete',
           
            'image-list',
            'image-create',
@@ -36,11 +32,6 @@ class PermissionTableSeeder extends Seeder
            'category-delete',
           
            'setting-edit',
-           
-           'orderproduct-list',
-           'orderproduct-create',
-           'orderproduct-edit',
-           'orderproduct-delete',
 
            'admin-list',
            'admin-create',
@@ -51,51 +42,33 @@ class PermissionTableSeeder extends Seeder
            'message-delete',
            'message-reply',
            
-           'order-list',
-           'order-reply',
-           
            'newsletter-list',
            'newsletter-delete',
            'newsletter-reply',
 
-
-           'subcategory-list',
-           'subcategory-create',
-           'subcategory-edit',
-           'subcategory-delete',
-
-           'slider-list',
-           'slider-create',
-           'slider-edit',
-           'slider-delete',
 
            'newsletter-list',
            'newsletter-delete',
 
            'message-list',
            'message-delete',
-           
-           'chooseUs-list',
-           'chooseUs-create',
-           'chooseUs-edit',
-           'chooseUs-delete',
-
-           'service-list',
-           'service-create',
-           'service-edit',
-           'service-delete',
-
-           'page-list',
-           'page-edit',
 
            'contact-list',
            'contact-create',
            'contact-edit',
            'contact-delete',
+
+           'video-list',
+           'video-create',
+           'video-edit',
+           'video-delete',
            
         ];
         
-     
+        Permission::where('guard_name', 'admin')
+        ->whereNotIn('name', $permissions)
+        ->delete();
+        
         foreach ($permissions as $permission) {
              Permission::updateOrCreate(['name' => $permission,'guard_name'=>'admin']);
         }

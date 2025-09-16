@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\VideoRequest;
+use App\Models\Lesson;
 use Exception;
 
 class VideoController extends Controller
@@ -43,7 +45,8 @@ class VideoController extends Controller
      */
     public function create()
     {
-        return view('admin.crud.videos.create');
+        $lessons=Lesson::latest()->get();
+        return view('admin.crud.videos.create',compact('lessons'));
     }
 
     /**
@@ -52,10 +55,12 @@ class VideoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(VideoRequest $request)
     {
         try {
-            $this->video->create($request->all());
+            $data=$request->except('image','profile_avatar_remove','video','profile_video_remove');
+            $video = $this->video->create($data);
+            $video->uploadVideo();
             return redirect()->route('videos.index')
                 ->with('success', trans('general.created_successfully'));
         } catch (Exception $e) {
