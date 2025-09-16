@@ -30,6 +30,7 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VaccancyController;
 use App\Http\Controllers\Admin\FeeController;
+use App\Http\Controllers\Admin\MaterialController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -100,13 +101,7 @@ Route::group(
             Route::resource('complains', ComplainController::class);
             Route::resource('fees', FeeController::class);
             Route::resource('vaccancies',VaccancyController::class);
-
-          Route::resource('orderproducts', OrderProductController::class);
-                Route::get('orderproduct/{id}', [OrderProductController::class,'create'])->name('orderproduct.create');
-
-                Route::resource('orders', OrderController::class);
-
-                Route::post('/order/status/{id}', [OrderController::class, 'updateStatus'])->name('order.update.status');
+            Route::resource('materials',MaterialController::class);
 
             
             Route::get('/finished/fees', [App\Http\Controllers\Admin\FeeController::class, 'index'])->name('fees.finished');

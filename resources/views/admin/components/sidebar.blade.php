@@ -119,6 +119,22 @@
 
                                 <li class="sidebar-list">
                                     <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-user-3-line"></i>
+                                        <span>{{__('general.materials')}}</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="{{route('materials.index')}}">{{__('general.list')}}</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('materials.create')}}">{{__('general.create')}}</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
                                         <i class="ri-list-check-2"></i>
                                         <span>{{__('general.partners')}}</span>
                                     </a>
