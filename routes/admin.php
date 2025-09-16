@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\RoleController;
@@ -88,6 +89,7 @@ Route::group(
             Route::resource('counters', CounterController::class);
             Route::resource('contacts', ContactController::class);
             Route::resource('videos', VideoController::class);
+            Route::resource('courses', CourseController::class);
             Route::resource('tests', ImageController::class);
             Route::resource('roles', RoleController::class);
             Route::resource('users', UserController::class);

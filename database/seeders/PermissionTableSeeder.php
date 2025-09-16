@@ -63,6 +63,16 @@ class PermissionTableSeeder extends Seeder
            'video-edit',
            'video-delete',
            
+           'lesson-list',
+           'lesson-create',
+           'lesson-edit',
+           'lesson-delete',
+           
+           'course-list',
+           'course-create',
+           'course-edit',
+           'course-delete',
+           
         ];
         
         Permission::where('guard_name', 'admin')
