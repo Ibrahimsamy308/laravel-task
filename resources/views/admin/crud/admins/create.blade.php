@@ -43,6 +43,15 @@
                                     </div>
 
 
+                                    <div class="mb-4 row align-items-center"> <label
+                                            class="form-label-title col-sm-3 mb-0">{{ __('general.phone') }} <span
+                                                class="text-danger"> * </span></label>
+                                        <div class="col-sm-9"> <input type="string" placeholder="{{ __('general.phone') }}"
+                                                class="form-control @error('phone') is-invalid @enderror"
+                                                value="{{ old('phone') }}" name="phone"> </div>
+                                    </div>
+
+
 
                                     <div class="mb-4 row align-items-center"> <label
                                             class="col-sm-3 col-form-label form-label-title">{{ __('general.select') }}</label>

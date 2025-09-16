@@ -13,12 +13,6 @@
                                 <div class="right-options">
                                     <ul>
                                         <li>
-                                            <a href="javascript:void(0)">import</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">Export</a>
-                                        </li>
-                                        <li>
                                             <a class="btn btn-solid"
                                                 href="{{ route('admins.create') }}">{{ __('general.create') }}</a>
                                         </li>
@@ -36,14 +30,8 @@
 
                                                 <th>{{ __('general.email') }}</th>
 
-                                                <th>{{ __('general.type') }}</th>
+                                                <th>{{ __('general.phone') }}</th>
 
-
-                                                <th>{{ __('general.dark') }}</th>
-
-                                                <th>{{ __('general.created_at') }}</th>
-
-                                                <th>{{ __('general.updated_at') }}</th>
                                                 <th>@lang('general.controls')</th>
 
                                             </tr>
@@ -60,17 +48,9 @@
                                                         </div>
                                                     </td>
                                                     <td>{{ $admin->name }}</td>
-
                                                     <td>{{ $admin->email }}</td>
+                                                    <td>{{ $admin->phone }}</td>
 
-                                                    <td>{{ $admin->type }}</td>
-
-
-                                                    <td>{{ $admin->dark ? __('general.yes') : __('general.no') }}</td>
-
-                                                    <td>{{ $admin->created_at }}</td>
-
-                                                    <td>{{ $admin->updated_at }}</td>
                                                                                                                                            <td>
                                                         @include('admin.components.controls', [
                                                             'route' => 'admins',
