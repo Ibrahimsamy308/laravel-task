@@ -13,12 +13,6 @@
                                 <div class="right-options">
                                     <ul>
                                         <li>
-                                            <a href="javascript:void(0)">import</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">Export</a>
-                                        </li>
-                                        <li>
                                             <a class="btn btn-solid" href="{{route('users.create')}}">{{__('general.create')}}</a>
                                         </li>
                                     </ul>
@@ -34,12 +28,6 @@
                                                 <th>{{__('general.name')}}</th>
 
                                                 <th>{{__('general.email')}}</th>
-
-                                                <th>{{__('general.email_verified_at')}}</th>
-
-                                                <th>{{__('general.created_at')}}</th>
-
-                                                <th>{{__('general.updated_at')}}</th>
                                                 <th>@lang('general.controls')</th>
                                             </tr>
                                         </thead>
@@ -55,15 +43,9 @@
                                                         </div>
                                                     </td>
 
-                                                    <td>{{ $user->name }}</td>
+                                                    <td>{{ $user->fullname }}</td>
 
                                                     <td>{{ $user->email }}</td>
-
-                                                    <td>{{ $user->email_verified_at }}</td>
-
-                                                    <td>{{ $user->created_at }}</td>
-
-                                                    <td>{{ $user->updated_at }}</td>
                                                     <td>
                                                         @include('admin.components.controls', [
                                                             'route' => 'users',

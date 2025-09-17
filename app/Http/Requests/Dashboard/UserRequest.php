@@ -28,7 +28,7 @@ class UserRequest extends FormRequest
         // dd(request()->all());
         return [
             'image' => $image,
-            'name' => 'required',
+            'fullname' => 'required',
             'email' => ['required','email',Rule::unique('users', 'email')->ignore($this->id)],
             'password' => 'required_without:_method|same:confirm-password',
         ];
