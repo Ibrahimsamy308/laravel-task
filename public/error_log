@@ -1,0 +1,61 @@
+[02-Aug-2025 03:21:42 America/Chicago] PHP Warning:  include(/home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/../laravel/framework/src/Illuminate/Contracts/Foundation/CachesConfiguration.php): Failed to open stream: No such file or directory in /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php on line 576
+[02-Aug-2025 03:21:42 America/Chicago] PHP Warning:  include(): Failed opening '/home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/../laravel/framework/src/Illuminate/Contracts/Foundation/CachesConfiguration.php' for inclusion (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php on line 576
+[02-Aug-2025 03:21:42 America/Chicago] PHP Fatal error:  Uncaught Error: Interface "Illuminate\Contracts\Foundation\CachesConfiguration" not found in /home3/yousabte/oilminingshah.com/coursesBack/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:32
+Stack trace:
+#0 /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php(576): include()
+#1 /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php(427): Composer\Autoload\{closure}('/home3/yousabte...')
+#2 /home3/yousabte/oilminingshah.com/coursesBack/bootstrap/app.php(18): Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#3 /home3/yousabte/oilminingshah.com/coursesBack/public/index.php(48): require_once('/home3/yousabte...')
+#4 {main}
+  thrown in /home3/yousabte/oilminingshah.com/coursesBack/vendor/laravel/framework/src/Illuminate/Foundation/Application.php on line 32
+[14-Aug-2025 09:12:14 America/Chicago] PHP Warning:  include(/home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/../laravel/framework/src/Illuminate/Contracts/Foundation/CachesConfiguration.php): Failed to open stream: No such file or directory in /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php on line 576
+[14-Aug-2025 09:12:14 America/Chicago] PHP Warning:  include(): Failed opening '/home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/../laravel/framework/src/Illuminate/Contracts/Foundation/CachesConfiguration.php' for inclusion (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php on line 576
+[14-Aug-2025 09:12:14 America/Chicago] PHP Fatal error:  Uncaught Error: Interface "Illuminate\Contracts\Foundation\CachesConfiguration" not found in /home3/yousabte/oilminingshah.com/coursesBack/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:32
+Stack trace:
+#0 /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php(576): include()
+#1 /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php(427): Composer\Autoload\{closure}('/home3/yousabte...')
+#2 /home3/yousabte/oilminingshah.com/coursesBack/bootstrap/app.php(18): Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#3 /home3/yousabte/oilminingshah.com/coursesBack/public/index.php(48): require_once('/home3/yousabte...')
+#4 {main}
+  thrown in /home3/yousabte/oilminingshah.com/coursesBack/vendor/laravel/framework/src/Illuminate/Foundation/Application.php on line 32
+[14-Aug-2025 09:14:33 America/Chicago] PHP Warning:  include(/home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/../laravel/framework/src/Illuminate/Contracts/Foundation/CachesConfiguration.php): Failed to open stream: No such file or directory in /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php on line 576
+[14-Aug-2025 09:14:33 America/Chicago] PHP Warning:  include(): Failed opening '/home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/../laravel/framework/src/Illuminate/Contracts/Foundation/CachesConfiguration.php' for inclusion (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php on line 576
+[14-Aug-2025 09:14:33 America/Chicago] PHP Fatal error:  Uncaught Error: Interface "Illuminate\Contracts\Foundation\CachesConfiguration" not found in /home3/yousabte/oilminingshah.com/coursesBack/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:32
+Stack trace:
+#0 /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php(576): include()
+#1 /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php(427): Composer\Autoload\{closure}('/home3/yousabte...')
+#2 /home3/yousabte/oilminingshah.com/coursesBack/bootstrap/app.php(18): Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#3 /home3/yousabte/oilminingshah.com/coursesBack/public/index.php(48): require_once('/home3/yousabte...')
+#4 {main}
+  thrown in /home3/yousabte/oilminingshah.com/coursesBack/vendor/laravel/framework/src/Illuminate/Foundation/Application.php on line 32
+[14-Aug-2025 09:14:47 America/Chicago] PHP Warning:  include(/home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/../laravel/framework/src/Illuminate/Contracts/Foundation/CachesConfiguration.php): Failed to open stream: No such file or directory in /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php on line 576
+[14-Aug-2025 09:14:47 America/Chicago] PHP Warning:  include(): Failed opening '/home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/../laravel/framework/src/Illuminate/Contracts/Foundation/CachesConfiguration.php' for inclusion (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php on line 576
+[14-Aug-2025 09:14:47 America/Chicago] PHP Fatal error:  Uncaught Error: Interface "Illuminate\Contracts\Foundation\CachesConfiguration" not found in /home3/yousabte/oilminingshah.com/coursesBack/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:32
+Stack trace:
+#0 /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php(576): include()
+#1 /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php(427): Composer\Autoload\{closure}('/home3/yousabte...')
+#2 /home3/yousabte/oilminingshah.com/coursesBack/bootstrap/app.php(18): Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#3 /home3/yousabte/oilminingshah.com/coursesBack/public/index.php(48): require_once('/home3/yousabte...')
+#4 {main}
+  thrown in /home3/yousabte/oilminingshah.com/coursesBack/vendor/laravel/framework/src/Illuminate/Foundation/Application.php on line 32
+[14-Aug-2025 09:15:10 America/Chicago] PHP Warning:  include(/home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/../laravel/framework/src/Illuminate/Contracts/Foundation/CachesConfiguration.php): Failed to open stream: No such file or directory in /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php on line 576
+[14-Aug-2025 09:15:10 America/Chicago] PHP Warning:  include(): Failed opening '/home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/../laravel/framework/src/Illuminate/Contracts/Foundation/CachesConfiguration.php' for inclusion (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php on line 576
+[14-Aug-2025 09:15:10 America/Chicago] PHP Fatal error:  Uncaught Error: Interface "Illuminate\Contracts\Foundation\CachesConfiguration" not found in /home3/yousabte/oilminingshah.com/coursesBack/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:32
+Stack trace:
+#0 /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php(576): include()
+#1 /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php(427): Composer\Autoload\{closure}('/home3/yousabte...')
+#2 /home3/yousabte/oilminingshah.com/coursesBack/bootstrap/app.php(18): Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#3 /home3/yousabte/oilminingshah.com/coursesBack/public/index.php(48): require_once('/home3/yousabte...')
+#4 {main}
+  thrown in /home3/yousabte/oilminingshah.com/coursesBack/vendor/laravel/framework/src/Illuminate/Foundation/Application.php on line 32
+[14-Aug-2025 09:15:13 America/Chicago] PHP Warning:  include(/home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/../laravel/framework/src/Illuminate/Contracts/Foundation/CachesConfiguration.php): Failed to open stream: No such file or directory in /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php on line 576
+[14-Aug-2025 09:15:13 America/Chicago] PHP Warning:  include(): Failed opening '/home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/../laravel/framework/src/Illuminate/Contracts/Foundation/CachesConfiguration.php' for inclusion (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php on line 576
+[14-Aug-2025 09:15:13 America/Chicago] PHP Fatal error:  Uncaught Error: Interface "Illuminate\Contracts\Foundation\CachesConfiguration" not found in /home3/yousabte/oilminingshah.com/coursesBack/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:32
+Stack trace:
+#0 /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php(576): include()
+#1 /home3/yousabte/oilminingshah.com/coursesBack/vendor/composer/ClassLoader.php(427): Composer\Autoload\{closure}('/home3/yousabte...')
+#2 /home3/yousabte/oilminingshah.com/coursesBack/bootstrap/app.php(18): Composer\Autoload\ClassLoader->loadClass('Illuminate\\Foun...')
+#3 /home3/yousabte/oilminingshah.com/coursesBack/public/index.php(48): require_once('/home3/yousabte...')
+#4 {main}
+  thrown in /home3/yousabte/oilminingshah.com/coursesBack/vendor/laravel/framework/src/Illuminate/Foundation/Application.php on line 32
+[14-Sep-2025 17:41:19 Africa/Cairo] PHP Fatal error:  Trait "App\Traits\HandlesOrders" not found in /home3/yousabte/oilminingshah.com/coursesBack/app/Http/Controllers/API/OrderController.php on line 27
