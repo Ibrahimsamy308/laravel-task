@@ -27,7 +27,7 @@
                                             <div class="card-title fw-bold">
                                                 <h5 class="font-weight-bolder text-dark">{{ __('general.email') }}: </h5> <a
                                                     href="mailto:{{ $user->email }}"
-                                                    style="margin: 0; color: inherit; font-weight: normal;">{{ $user->email }}</a>
+                                                   >{{ $user->email }}</a>
                                             </div>
                                         </div>
                                     </div>

@@ -25,11 +25,12 @@ class UserRequest extends FormRequest
     public function rules()
     {
         $image=request()->isMethod('put')?'nullable':'required';
+        $email=request()->isMethod('put')?['required','email']:['required','email',Rule::unique('users', 'email')->ignore($this->id)];
         // dd(request()->all());
         return [
             'image' => $image,
             'fullname' => 'required',
-            'email' => ['required','email',Rule::unique('users', 'email')->ignore($this->id)],
+            'email' => $email,
             'password' => 'required_without:_method|same:confirm-password',
         ];
     }
