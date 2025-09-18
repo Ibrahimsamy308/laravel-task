@@ -17,23 +17,23 @@ class CourseRequest extends FormRequest
     }
  
     public function rules()
-    {
-        //to add or remove input from request in validation class use $this->merge
-        //  $this->merge(['user_id' => auth('api')->user()->id]);
+{
+    $rules = [
+        'price'          => 'required|numeric|min:0',
+        'discount'       => 'nullable|numeric|min:0',
+        'start_date'     => 'required|date',
+        'end_date'       => 'required|date|after_or_equal:start_date',
+        'duration_hours' => 'required|numeric|min:1',
+        'level'          => 'required|string|in:beginner,intermediate,advanced',
+        'active'      => 'boolean',
+    ];
 
-        $video = $this->isMethod('put') ? 'nullable|mimes:mp4,avi,mov,wmv|max:200000' : 'required|mimes:mp4,avi,mov,wmv|max:200000';
-
-        $rules = [
-            'video' => $video,
-            'lesson_id' => 'required|integer|exists:lessons,id',
-            'duration'  => 'required|numeric|min:1',
-            'is_active' => 'required|boolean',
-        ];
-        foreach (config('translatable.locales') as $locale) {
-            $rules += [$locale . '.title' => ['required', 'string']];
-            $rules += [$locale . '.description' => ['required']];
-        }
-        return  $rules;
+    foreach (config('translatable.locales') as $locale) {
+        $rules[$locale . '.title'] = ['required', 'string'];
+        $rules[$locale . '.description'] = ['required', 'string'];
     }
+
+    return $rules;
+}
 
 }
