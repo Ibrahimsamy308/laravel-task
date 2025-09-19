@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\ExamController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\RoleController;
@@ -102,6 +103,7 @@ Route::group(
             Route::resource('fees', FeeController::class);
             Route::resource('vaccancies',VaccancyController::class);
             Route::resource('materials',MaterialController::class);
+            Route::resource('exams',ExamController::class);
 
             
             Route::get('/finished/fees', [App\Http\Controllers\Admin\FeeController::class, 'index'])->name('fees.finished');

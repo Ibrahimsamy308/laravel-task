@@ -92,38 +92,56 @@
 
                     {{-- Videos --}}
                     @canany(['video-list','video-create'])
-                    <li class="sidebar-list">
-                        <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
-                            <i class="ri-user-3-line"></i>
-                            <span>{{__('general.videos')}}</span>
-                        </a>
-                        <ul class="sidebar-submenu">
-                            @can('video-list')
-                                <li><a href="{{route('videos.index')}}">{{__('general.list')}}</a></li>
-                            @endcan
-                            @can('video-create')
-                                <li><a href="{{route('videos.create')}}">{{__('general.create')}}</a></li>
-                            @endcan
-                        </ul>
-                    </li>
+                        <li class="sidebar-list">
+                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-user-3-line"></i>
+                                <span>{{__('general.videos')}}</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                @can('video-list')
+                                    <li><a href="{{route('videos.index')}}">{{__('general.list')}}</a></li>
+                                @endcan
+                                @can('video-create')
+                                    <li><a href="{{route('videos.create')}}">{{__('general.create')}}</a></li>
+                                @endcan
+                            </ul>
+                        </li>
+                    @endcanany
+
+                    {{-- Exams --}}
+                    @canany(['exam-list','exam-create'])
+                        <li class="sidebar-list">
+                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-user-3-line"></i>
+                                <span>{{__('general.exams')}}</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                @can('exam-list')
+                                    <li><a href="{{route('exams.index')}}">{{__('general.list')}}</a></li>
+                                @endcan
+                                @can('exam-create')
+                                    <li><a href="{{route('exams.create')}}">{{__('general.create')}}</a></li>
+                                @endcan
+                            </ul>
+                        </li>
                     @endcanany
 
                     {{-- Courses --}}
                     @canany(['course-list','course-create'])
-                    <li class="sidebar-list">
-                        <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
-                            <i class="ri-user-3-line"></i>
-                            <span>{{__('general.courses')}}</span>
-                        </a>
-                        <ul class="sidebar-submenu">
-                            @can('course-list')
-                                <li><a href="{{route('courses.index')}}">{{__('general.list')}}</a></li>
-                            @endcan
-                            @can('course-create')
-                                <li><a href="{{route('courses.create')}}">{{__('general.create')}}</a></li>
-                            @endcan
-                        </ul>
-                    </li>
+                        <li class="sidebar-list">
+                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-user-3-line"></i>
+                                <span>{{__('general.courses')}}</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                @can('course-list')
+                                    <li><a href="{{route('courses.index')}}">{{__('general.list')}}</a></li>
+                                @endcan
+                                @can('course-create')
+                                    <li><a href="{{route('courses.create')}}">{{__('general.create')}}</a></li>
+                                @endcan
+                            </ul>
+                        </li>
                     @endcanany
 
                     {{-- Materials --}}

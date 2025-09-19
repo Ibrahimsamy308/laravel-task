@@ -81,6 +81,11 @@ class PermissionTableSeeder extends Seeder
            'material-create',
            'material-edit',
            'material-delete',
+
+           'exam-list',
+           'exam-create',
+           'exam-edit',
+           'exam-delete',
            
         ];
         
