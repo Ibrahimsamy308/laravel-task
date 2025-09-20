@@ -93,7 +93,11 @@ class ExamController extends Controller
     public function edit(Exam $exam)
     {
         // dd($exam);
-        return view('admin.crud.exams.edit', compact('exam'));
+        $courses=Course::latest()->get();
+        $lessons=Lesson::latest()->get();
+        $questions = json_decode($exam->questions, true);
+
+        return view('admin.crud.exams.edit', compact('exam','courses','lessons','questions'));
     }
     /**
      * Update the specified resource in storage.
@@ -106,9 +110,10 @@ class ExamController extends Controller
     {
         try {
             $data = $request->except('image','profile_avatar_remove','video');
+            $data['questions'] = json_encode($request->questions);
+            
             $exam->update($data);
-            // $exam->updateFile();
-            $exam->updateVideo();
+
             return redirect()->route('exams.index', compact('exam'))
                 ->with('success', trans('general.update_successfully'));
         } catch (Exception $e) {
@@ -126,8 +131,6 @@ class ExamController extends Controller
     {
         try {
             $exam->delete();
-            // $exam->deleteFile();
-            $exam->deleteVideo();
             return redirect()->route('exams.index')
                 ->with('success', trans('general.deleted_successfully'));
         } catch (Exception $e) {
