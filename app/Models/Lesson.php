@@ -39,6 +39,13 @@ class Lesson extends Model implements TranslatableContract
     {
         return $this->hasMany(Material::class,);
     }
+    // App\Models\Lesson.php
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class, 'course_id');
+    }
+
 
 
     

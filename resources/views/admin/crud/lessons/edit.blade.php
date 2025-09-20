@@ -67,9 +67,7 @@
                                                 <div class="col-sm-9">
                                                     <textarea rows="5"
                                                         class="summernote @error($locale . '.description') is-invalid @enderror"
-                                                        name="{{ $locale . '[description]' }}">
-                                                        {!! old($locale . '.description', $lesson->translate($locale)->description ?? '') !!}
-                                                    </textarea>
+                                                        name="{{ $locale . '[description]' }}">{{ old($locale . '.description', $lesson->translate($locale)->description ?? '') }}</textarea>
                                                     @error($locale.'.description')
                                                         <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror
@@ -146,7 +144,7 @@
 
                                 <div class="card-submit-button text-end">
                                     <button class="btn btn-primary" type="submit">
-                                        {{ __('general.update') }}
+                                        {{ __('general.submit') }}
                                     </button>
                                 </div>
 

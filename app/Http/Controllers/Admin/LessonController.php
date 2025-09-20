@@ -75,9 +75,6 @@ public function store(LessonRequest $request)
 
     return redirect()->route('lessons.index')->with('success', __('general.created_successfully'));
 }
-
-
-
     /**
      * Display the specified resource.
      *
@@ -86,7 +83,8 @@ public function store(LessonRequest $request)
      */
     public function show(lesson $lesson)
     {
-        return view('admin.crud.lessons.show', compact('lesson'));
+            $courses = Course::all();
+        return view('admin.crud.lessons.show', compact('lesson', 'courses'));
     }
 
     /**
@@ -95,29 +93,39 @@ public function store(LessonRequest $request)
      * @param  \App\Models\lesson  $lesson
      * @return \Illuminate\Http\Response
      */
-    public function edit(Lesson $lesson) // أو edit($id) مع findOrFail
+
+    
+  public function edit(Lesson $lesson)
     {
         $courses = Course::all();
         return view('admin.crud.lessons.edit', compact('lesson', 'courses'));
     }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\portfolio  $lesson
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, lesson $lesson)
+
+    public function update(LessonRequest $request, Lesson $lesson)
     {
-        try {
-            $data = $request->except('image','profile_avatar_remove');
-            $lesson->update($data);
-            return redirect()->route('lessons.index', compact('lesson'))
-                ->with('success', trans('general.update_successfully'));
-        } catch (Exception $e) {
-            dd($e->getMessage());
-            return redirect()->back()->with(['error' => __('general.something_wrong')]);
+        // كل الحقول العادية
+        $data = $request->only([
+            'course_id',
+            'video_url',
+            'duration',
+            'lessonOrder',
+            'is_free',
+        ]);
+
+        // تحديث الترجمات (title, description)
+        foreach (config('translatable.locales') as $locale) {
+            $data[$locale] = [
+                'title' => $request->input($locale . '.title'),
+                'description' => $request->input($locale . '.description'),
+            ];
         }
+
+        // اعمل update للموديل
+        $lesson->update($data);
+
+        return redirect()
+            ->route('lessons.index')
+            ->with('success', __('general.updated_successfully'));
     }
     /**
      * Remove the specified resource from storage.
