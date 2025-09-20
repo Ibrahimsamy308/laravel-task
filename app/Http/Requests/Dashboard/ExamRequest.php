@@ -21,13 +21,16 @@ class ExamRequest extends FormRequest
         //to add or remove input from request in validation class use $this->merge
         //  $this->merge(['user_id' => auth('api')->user()->id]);
 
-
-        $image = request()->isMethod('put') ? 'nullable' : 'required';
-        $video = $this->isMethod('put') ? 'nullable|mimes:mp4,avi,mov,wmv|max:200000' : 'required|mimes:mp4,avi,mov,wmv|max:200000';
-
         $rules = [
-            // 'image' =>  $image ,
-            // 'video' => $video,
+
+            'questions' => 'required|array|min:1',
+            'questions.*.question' => 'required|string',
+            'questions.*.answers' => 'required|array|min:2',
+            'questions.*.answers.*' => 'required|string',
+            'questions.*.correct' => 'required|string',
+            'course_id' => 'required|integer|exists:courses,id',
+            'lesson_id' => 'required|integer|exists:lessons,id',
+
         ];
         foreach (config('translatable.locales') as $locale) {
             // $rules += [$locale . '.title' => ['required', 'string']];

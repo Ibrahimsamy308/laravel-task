@@ -13,12 +13,6 @@
                                 <div class="right-options">
                                     <ul>
                                         <li>
-                                            <a href="javascript:void(0)">import</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">Export</a>
-                                        </li>
-                                        <li>
                                             <a class="btn btn-solid" href="{{route('exams.create')}}">{{__('general.create')}}</a>
                                         </li>
                                     </ul>
@@ -29,13 +23,10 @@
                                     <table class="table all-package theme-table table-exam" id="table_id">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
-                                                <th>{{__('general.icon')}}</th>
-
+                                                <th>#</th>                                                
+                                                <th>{{__('general.lesson')}}</th>
                                                 
-                                                <th>{{__('general.title')}}</th>
-                                                
-                                                <th>{{__('general.subtitle')}}</th>
+                                                <th>{{__('general.course')}}</th>
 
                                                 <th>@lang('general.controls')</th>
                                             </tr>
@@ -45,13 +36,9 @@
                                             @foreach ($exams as $exam)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $exam->icon }}</td>
 
-                                                    
-                                                    <td>{{ $exam->title }}</td>
-                                                    
-                                                    <td>{{ $exam->subtitle }}</td>
-                                                    
+                                                    <td>{{ $exam->lesson->title }}</td>
+                                                    <td>{{ $exam->course->title }}</td>
 
                                                     <td>
                                                         @include('admin.components.controls', [
