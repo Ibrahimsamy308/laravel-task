@@ -37,6 +37,7 @@ use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Admin\OrderProductController;
 use App\Http\Controllers\Admin\OrderController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -105,7 +106,8 @@ Route::group(
             Route::resource('materials',MaterialController::class);
             Route::resource('exams',ExamController::class);
 
-            
+            Route::get('/courses/{id}/lessons', [CourseController::class, 'getByCourse'])->name('courses.lessons');
+
             Route::get('/finished/fees', [App\Http\Controllers\Admin\FeeController::class, 'index'])->name('fees.finished');
             Route::get('/reply-message/{id}', [App\Http\Controllers\Admin\MessageController::class, 'reply'])->name('messages.reply');
             Route::get('/finished/tasks', [App\Http\Controllers\Admin\TaskController::class, 'index'])->name('tasks.finished');

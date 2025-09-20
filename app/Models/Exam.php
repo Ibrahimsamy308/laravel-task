@@ -13,13 +13,13 @@ class Exam extends Model
 {
     use HasFactory, MorphFile;
     protected $table = 'exams';
-    public $translatedAttributes = ['title','description'];
+    public $translatedAttributes = ['title'];
     protected $guarded = [];
     public $timestamps = true;
     
-    protected $casts = [
-        'questions' => 'array',
-    ];
+    // protected $casts = [
+    //     'questions' => 'array',
+    // ];
 
     public function getImageAttribute(){
         return  $this->file?asset($this->file->url): settings()->logo;

@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\ExamRequest;
+use App\Models\Course;
 use Illuminate\Support\Facades\File;
 use App\Models\Exam;
 use Illuminate\Http\Request;
 use App\Models\File as ModelsFile;
+use App\Models\Lesson;
 use Exception;
 
 class ExamController extends Controller
@@ -46,7 +48,9 @@ class ExamController extends Controller
      */
     public function create()
     {
-        return view('admin.crud.exams.create');
+        $courses=Course::latest()->get();
+        $lessons=Lesson::latest()->get();
+        return view('admin.crud.exams.create',compact('courses','lessons'));
     }
 
     /**
@@ -59,10 +63,8 @@ class ExamController extends Controller
     {
         try {
             $data = $request->except('image','profile_avatar_remove','video','profile_video_remove');
-            $exam = $this->exam->create($data);
-            // $exam->uploadFile();
-            $exam->uploadVideo();
-            
+            $data['questions'] = json_encode($request->questions);
+            $exam = $this->exam->create($data);            
             return redirect()->route('exams.index')
                 ->with('success', trans('general.created_successfully'));
         } catch (Exception $e) {
