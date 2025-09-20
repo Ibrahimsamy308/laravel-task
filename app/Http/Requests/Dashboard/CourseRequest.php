@@ -18,6 +18,9 @@ class CourseRequest extends FormRequest
  
     public function rules()
 {
+    $video = $this->isMethod(method: 'put') ? 'nullable|mimes:mp4,avi,mov,wmv|max:200000' : 'required|mimes:mp4,avi,mov,wmv|max:200000';
+
+
     $rules = [
         'price'          => 'required|numeric|min:0',
         'discount'       => 'nullable|numeric|min:0',
@@ -26,6 +29,8 @@ class CourseRequest extends FormRequest
         'duration_hours' => 'required|numeric|min:1',
         'level'          => 'required|string|in:beginner,intermediate,advanced',
         'active'      => 'boolean',
+        'video' => $video,
+        
     ];
 
     foreach (config('translatable.locales') as $locale) {

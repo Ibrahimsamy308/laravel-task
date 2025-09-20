@@ -142,7 +142,7 @@
                                         <div class="col-md-6">
                                             @include('admin.components.video', [
                                                 'label' => __('general.introVideo'),
-                                                'value' => old('video', $course->introVideo),
+                                                'value' => old('video', $course->video),
                                                 'name' => 'video',
                                                 'id' => 'kt_video_1',
                                                 'accept' => 'video/*',

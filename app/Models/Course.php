@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\MorphFile;
+use App\Traits\MorphVideo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
@@ -13,13 +14,16 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Course extends Model implements TranslatableContract
 {
-    use HasFactory, Translatable, MorphFile;
+    use HasFactory, Translatable, MorphFile,MorphVideo;
 
     protected $table = 'courses';
     public $translatedAttributes = ['title','description','curriculum'];
     protected $guarded = [];
     public $timestamps = true;
-
+     public function getVideoAttribute()
+    {
+        return $this->file ? asset($this->file->url) : asset('videos/default.mp4');
+    }
     public function getImageAttribute(){
         return  $this->file?asset($this->file->url): settings()->logo;
     }
