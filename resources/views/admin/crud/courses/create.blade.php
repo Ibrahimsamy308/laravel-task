@@ -70,102 +70,116 @@
                                 </div>
 
                                 <div class="row">
-                                    <!-- Price -->
-                                    <div class="mb-4 row align-items-center">
-                                        <label class="form-label-title col-sm-3 mb-0">{{ __('general.price') }} *</label>
-                                        <div class="col-sm-9">
-                                            <input type="number" step="0.01" name="price"
-                                                class="form-control @error('price') is-invalid @enderror"
-                                                value="{{ old('price') }}">
-                                            @error('price')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
+                                    <div class="col-6">
+                                        <!-- Price -->
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-3 mb-0">{{ __('general.price') }} *</label>
+                                            <div class="col-sm-9">
+                                                <input type="number" step="0.01" name="price"
+                                                    class="form-control @error('price') is-invalid @enderror"
+                                                    value="{{ old('price') }}">
+                                                @error('price')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <!-- Discount -->
-                                    <div class="mb-4 row align-items-center">
-                                        <label class="form-label-title col-sm-3 mb-0">{{ __('general.discount') }}</label>
-                                        <div class="col-sm-9">
-                                            <input type="number" step="0.01" name="discount"
-                                                class="form-control @error('discount') is-invalid @enderror"
-                                                value="{{ old('discount') }}">
-                                            @error('discount')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
+                                    <div class="col-6">
+                                        <!-- Discount -->
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-3 mb-0">{{ __('general.discount') }}</label>
+                                            <div class="col-sm-9">
+                                                <input type="number" step="0.01" name="discount"
+                                                    class="form-control @error('discount') is-invalid @enderror"
+                                                    value="{{ old('discount') }}">
+                                                @error('discount')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <!-- Start Date -->
-                                    <div class="mb-4 row align-items-center">
-                                        <label class="form-label-title col-sm-3 mb-0">Start Date *</label>
-                                        <div class="col-sm-9">
-                                            <input type="date" name="start_date"
-                                                class="form-control @error('start_date') is-invalid @enderror"
-                                                value="{{ old('start_date') }}">
-                                            @error('start_date')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
+                                    <div class="col-6">
+                                        <!-- Start Date -->
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-3 mb-0">Start Date *</label>
+                                            <div class="col-sm-9">
+                                                <input type="date" name="start_date"
+                                                    class="form-control @error('start_date') is-invalid @enderror"
+                                                    value="{{ old('start_date') }}">
+                                                @error('start_date')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <!-- End Date -->
-                                    <div class="mb-4 row align-items-center">
-                                        <label class="form-label-title col-sm-3 mb-0">End Date *</label>
-                                        <div class="col-sm-9">
-                                            <input type="date" name="end_date"
-                                                class="form-control @error('end_date') is-invalid @enderror"
-                                                value="{{ old('end_date') }}">
-                                            @error('end_date')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
+                                    <div class="col-6">
+                                        <!-- End Date -->
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-3 mb-0">End Date *</label>
+                                            <div class="col-sm-9">
+                                                <input type="date" name="end_date"
+                                                    class="form-control @error('end_date') is-invalid @enderror"
+                                                    value="{{ old('end_date') }}">
+                                                @error('end_date')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <!-- Active Checkbox -->
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-3 mb-0">Active</label>
+                                            <div class="col-sm-9">
+                                                <input type="checkbox" name="active" value="1"
+                                                    {{ old('active') ? 'checked' : '' }}>
+                                                @error('active')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <!-- Duration Hours -->
-                                    <div class="mb-4 row align-items-center">
-                                        <label class="form-label-title col-sm-3 mb-0">Duration (Hours) *</label>
-                                        <div class="col-sm-9">
-                                            <input type="number" name="duration_hours"
-                                                class="form-control @error('duration_hours') is-invalid @enderror"
-                                                value="{{ old('duration_hours') }}">
-                                            @error('duration_hours')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
 
-                                    <!-- Level -->
-                                    <div class="mb-4 row align-items-center">
-                                        <label class="form-label-title col-sm-3 mb-0">Level *</label>
-                                        <div class="col-sm-9">
-                                            <select name="level" class="form-control @error('level') is-invalid @enderror">
-                                                <option value="beginner" {{ old('level')=='beginner' ? 'selected' : '' }}>Beginner</option>
-                                                <option value="intermediate" {{ old('level')=='intermediate' ? 'selected' : '' }}>Intermediate</option>
-                                                <option value="advanced" {{ old('level')=='advanced' ? 'selected' : '' }}>Advanced</option>
-                                            </select>
-                                            @error('level')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
+                                    <div class="col-6">
+                                        <!-- Level -->
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-3 mb-0">Level *</label>
+                                            <div class="col-sm-9">
+                                                <select name="level" class="form-control @error('level') is-invalid @enderror">
+                                                    <option value="beginner" {{ old('level')=='beginner' ? 'selected' : '' }}>Beginner</option>
+                                                    <option value="intermediate" {{ old('level')=='intermediate' ? 'selected' : '' }}>Intermediate</option>
+                                                    <option value="advanced" {{ old('level')=='advanced' ? 'selected' : '' }}>Advanced</option>
+                                                </select>
+                                                @error('level')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <!-- Active Checkbox -->
-                                    <div class="mb-4 row align-items-center">
-                                        <label class="form-label-title col-sm-3 mb-0">Active</label>
-                                        <div class="col-sm-9">
-                                            <input type="checkbox" name="active" value="1"
-                                                {{ old('active') ? 'checked' : '' }}>
-                                            @error('active')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
+                                    <div class="col-12">
+                                        <!-- Duration Hours -->
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-3 mb-0">Duration (Hours) *</label>
+                                            <div class="col-sm-9">
+                                                <input type="number" name="duration_hours"
+                                                    class="form-control @error('duration_hours') is-invalid @enderror"
+                                                    value="{{ old('duration_hours') }}">
+                                                @error('duration_hours')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
+                                   
                                     <div class="col-md-6">
                                         @include('admin.components.video', [
                                             'label' => __('general.introVideo'),
-                                            'value' => old('introvideo'),
-                                            'name' => 'introvideo',
+                                            'value' => old('video'),
+                                            'name' => 'video',
                                             'id' => 'kt_video_1',
                                             'accept' => 'video/*',
                                             'required' => true,

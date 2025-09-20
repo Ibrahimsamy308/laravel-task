@@ -102,9 +102,9 @@
                                     <div class="mb-4 row align-items-center">
                                         <div class="col-sm-12">
                                             <label class="form-label-title mb-0">{{ __('general.introVideo') }}</label>
-                                            @if ($course->introVideo)
+                                            @if ($course->Video)
                                                 <video width="320" height="240" controls class="mt-2">
-                                                    <source src="{{ asset('storage/' . $course->introVideo) }}" type="video/mp4">
+                                                    <source src="{{ asset($course->Video) }}" type="video/mp4">
                                                 </video>
                                             @else
                                                 <p class="bg-show p-2 mt-2">-</p>
