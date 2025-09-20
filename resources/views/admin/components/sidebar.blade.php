@@ -126,6 +126,23 @@
                         </li>
                     @endcanany
 
+                     @canany(['lesson-list','lesson-create'])
+                        <li class="sidebar-list">
+                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-user-3-line"></i>
+                                <span>{{__('general.lessons')}}</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                @can('lesson-list')
+                                    <li><a href="{{route('lessons.index')}}">{{__('general.list')}}</a></li>
+                                @endcan
+                                @can('lesson-create')
+                                    <li><a href="{{route('lessons.create')}}">{{__('general.create')}}</a></li>
+                                @endcan
+                            </ul>
+                        </li>
+                    @endcanany
+
                     {{-- Courses --}}
                     @canany(['course-list','course-create'])
                         <li class="sidebar-list">

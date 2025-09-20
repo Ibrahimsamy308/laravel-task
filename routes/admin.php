@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\ExamController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\VideoController;
+use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\ProjectController;
@@ -92,6 +93,7 @@ Route::group(
             Route::resource('contacts', ContactController::class);
             Route::resource('videos', VideoController::class);
             Route::resource('courses', CourseController::class);
+            Route::resource('lessons', LessonController::class);
             Route::resource('tests', ImageController::class);
             Route::resource('roles', RoleController::class);
             Route::resource('users', UserController::class);
