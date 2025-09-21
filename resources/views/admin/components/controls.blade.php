@@ -11,7 +11,7 @@
 
         @can($role . '-edit')
             <li>
-                <a href="{{ route($route . '.edit', $module) }}" title="show">
+                <a href="{{ route($route . '.edit', $module) }}" title="edit">
                     <i class="ri-pencil-line"></i>
                 </a>
             </li>

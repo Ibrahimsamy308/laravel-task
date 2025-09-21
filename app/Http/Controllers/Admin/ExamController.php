@@ -106,7 +106,7 @@ class ExamController extends Controller
      * @param  \App\Models\portfolio  $exam
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Exam $exam)
+    public function update(ExamRequest $request, Exam $exam)
     {
         try {
             $data = $request->except('image','profile_avatar_remove','video');
@@ -114,7 +114,7 @@ class ExamController extends Controller
             
             $exam->update($data);
 
-            return redirect()->route('exams.index', compact('exam'))
+            return redirect()->route('exams.index')
                 ->with('success', trans('general.update_successfully'));
         } catch (Exception $e) {
             dd($e->getMessage());
