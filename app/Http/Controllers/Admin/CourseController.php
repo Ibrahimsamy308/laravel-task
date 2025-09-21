@@ -61,6 +61,7 @@ class CourseController extends Controller
             $data=$request->except('image','profile_avatar_remove','video','profile_video_remove');
             $course = $this->course->create($data);
             $course->uploadVideo();
+            $course->uploadFile();
             return redirect()->route('courses.index')
                 ->with('success', trans('general.created_successfully'));
         } catch (Exception $e) {
@@ -104,6 +105,7 @@ class CourseController extends Controller
             $data = $request->except('image','profile_avatar_remove','video','profile_video_remove');
             $course->update($data);
             $course->updateVideo();
+            $course->updateFile();
             return redirect()->route('courses.index', compact('course'))
                 ->with('success', trans('general.update_successfully'));
         } catch (Exception $e) {
@@ -122,6 +124,7 @@ class CourseController extends Controller
         try {
             $course->delete();
             $course->deleteVideo();
+            $course->deleteFile();
             return redirect()->route('courses.index')
                 ->with('success', trans('general.deleted_successfully'));
         } catch (Exception $e) {

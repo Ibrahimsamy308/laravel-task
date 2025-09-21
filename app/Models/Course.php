@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -20,13 +21,20 @@ class Course extends Model implements TranslatableContract
     public $translatedAttributes = ['title','description','curriculum'];
     protected $guarded = [];
     public $timestamps = true;
-     public function getVideoAttribute()
-    {
-        return $this->file ? asset($this->file->url) : asset('videos/default.mp4');
-    }
+
+    
     public function getImageAttribute(){
-        return  $this->file?asset($this->file->url): settings()->logo;
+        $image = $this->file()->where('type', 'image')->first();
+        return $image ? asset($image->url) : settings()->logo;
     }
+    
+    public function getVideoAttribute()
+    {
+        $video = $this->file()->where('type', 'video')->first();
+        return $video ? asset($video->url) : asset('videos/default.mp4');
+    }
+
+    
 
     public function admin()
     {
@@ -49,6 +57,20 @@ class Course extends Model implements TranslatableContract
         return $this->hasMany(Exam::class,);
     }
     
+    protected static function booted()
+    {
+        static::creating(function ($exam) {
+            if (Auth::check()) {
+                $exam->admin_id = Auth::id();
+            }
+        });
+
+        static::updating(function ($exam) {
+            if (Auth::check()) {
+                $exam->admin_id = Auth::id();
+            }
+        });
+    }
 
 
     

@@ -13,9 +13,8 @@ trait  MorphFile
 {
     public function file(): MorphOne
     {
-        return $this->morphOne(ModelsFile::class, 'fileable');
+        return $this->morphOne(ModelsFile::class, 'fileable')->where('type', 'image');
     }
-
     public function uploadFile()
     {
         if (request()->hasFile('image')) {
@@ -23,7 +22,7 @@ trait  MorphFile
                 $file = request()->file('image');
                 $image = request()->image->store('images');
                 $file->move('images',  $image);
-                $this->file()->create(['url' =>  $image]);
+                $this->file()->create(['url' =>  $image,  'type' => 'image']);
                 Image::make($image)
                     ->resize(2400, 1600, function ($constraint) {
                         $constraint->aspectRatio();
@@ -46,7 +45,7 @@ trait  MorphFile
                 $file = request()->file('image');
                 $image = $file ->store('images');
                 $file->move('images', $image);
-                $this->file()->create(['url' => $image]);
+                $this->file()->create(['url' => $image,  'type' => 'image']);
                 Image::make($image)
                     ->resize(2400, 1600, function ($constraint) {
                         $constraint->aspectRatio();

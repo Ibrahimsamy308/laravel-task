@@ -210,6 +210,17 @@
                                         </div>
 
                                         <div class="col-md-6">
+                                            @include('admin.components.image', [
+                                                'label' => __('general.image'),
+                                                'value' => old('image',$course->image),
+                                                'name' => 'image',
+                                                'id' => 'kt_image_1',
+                                                'accept' => 'image/*',
+                                                'required' => true,
+                                            ])
+                                        </div>
+
+                                        <div class="col-md-12">
                                             @include('admin.components.video', [
                                                 'label' => __('general.introVideo'),
                                                 'value' => old('video', $course->video),
