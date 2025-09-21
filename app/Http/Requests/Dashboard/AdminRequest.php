@@ -32,7 +32,8 @@ class AdminRequest extends FormRequest
             'name' => 'required',
             'email' => $email,
             'password' => 'required_without:_method|same:confirm-password',
-            'roles' => 'required'
+            'roles'    => 'required|string|exists:roles,name',
+
         ];
     }
 }

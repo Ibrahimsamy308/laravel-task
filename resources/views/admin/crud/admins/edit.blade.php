@@ -40,18 +40,22 @@
                                                 class="form-control @error('email') is-invalid @enderror"
                                                 value="{{ old('email', $admin->email) }}" name="email"> </div>
                                     </div>
-                                    <div class="mb-4 row align-items-center"> <label
-                                            class="col-sm-3 col-form-label form-label-title">{{ __('general.select') }}</label>
-                                        <div class="col-sm-9"> <select class="js-example-basic-single w-100" name="roles"
-                                                id="role">
+
+                                    <div class="mb-4 row align-items-center"> 
+                                        <label class="col-sm-3 col-form-label form-label-title">{{ __('general.select') }}</label>
+                                        <div class="col-sm-9"> 
+                                            <select class="js-example-basic-single w-100" name="roles" id="role" required>
                                                 <option value="">{{ __('general.select') }}</option>
                                                 @foreach ($roles as $role)
-                                                    <option value="{{ $role->id }}"
-                                                        @selected($admin->type == $role->name)>
-                                                        {{ $role->name }} </option>
+                                                    <option value="{{ $role->name }}" 
+                                                        {{ old('roles', $admin->roles->first()?->name) == $role->name ? 'selected' : '' }}>
+                                                        {{ $role->name }}
+                                                    </option>
                                                 @endforeach
-                                            </select> </div>
+                                            </select> 
+                                        </div>
                                     </div>
+                                    
 
                                     <!-- Normal title input -->
                                     <div class="mb-4 row align-items-center"> 
