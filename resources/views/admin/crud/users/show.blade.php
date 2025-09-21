@@ -5,9 +5,6 @@
 
         <!-- New user Add Start -->
         <div class="container-fluid">
-
-
-
             <div class="row theme-form ">
                 <div class="col-12">
                     <div class="row">
@@ -21,7 +18,7 @@
                                     <div class="mb-4 row align-items-center">
                                         <div class="col-sm-6"> <label
                                                 class="form-label-title mb-0">{{ __('general.name') }}</label>
-                                            <p class="bg-show p-2 mt-2">{{ $user->name }}</p>
+                                            <p class="bg-show p-2 mt-2">{{ $user->fullname }}</p>
                                         </div>
                                     </div>
 
@@ -30,33 +27,17 @@
                                             <div class="card-title fw-bold">
                                                 <h5 class="font-weight-bolder text-dark">{{ __('general.email') }}: </h5> <a
                                                     href="mailto:{{ $user->email }}"
-                                                    style="margin: 0; color: inherit; font-weight: normal;">{{ $user->email }}</a>
+                                                   >{{ $user->email }}</a>
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- normal input -->
-                                    <div class="mb-4 row align-items-center">
-                                        <div class="col-sm-6"> <label
-                                                class="form-label-title mb-0">{{ __('general.email_verified_at') }}</label>
-                                            <p class="bg-show p-2 mt-2">{{ $user->email_verified_at }}</p>
-                                        </div>
-                                    </div>
-
-                                    <!-- normal input -->
-                                    <div class="mb-4 row align-items-center">
-                                        <div class="col-sm-6"> <label
-                                                class="form-label-title mb-0">{{ __('general.created_at') }}</label>
-                                            <p class="bg-show p-2 mt-2">{{ $user->created_at }}</p>
-                                        </div>
-                                    </div>
-
-                                    <!-- normal input -->
-                                    <div class="mb-4 row align-items-center">
-                                        <div class="col-sm-6"> <label
-                                                class="form-label-title mb-0">{{ __('general.updated_at') }}</label>
-                                            <p class="bg-show p-2 mt-2">{{ $user->updated_at }}</p>
-                                        </div>
+                                    
+                                    <div class="mb-4  align-items-center">
+                                            <label
+                                                class="form-label-title mb-0">{{ __('general.phone') }}</label>
+                                            <p class="bg-show p-2 mt-2">{{ $user->phone }}</p>
                                     </div>
 
                                     <!-- normal input -->

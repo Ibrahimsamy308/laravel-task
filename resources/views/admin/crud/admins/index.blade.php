@@ -29,6 +29,7 @@
                                                 <th>{{ __('general.name') }}</th>
 
                                                 <th>{{ __('general.email') }}</th>
+                                                <th>{{ __('general.role') }}</th>
 
                                                 <th>{{ __('general.phone') }}</th>
 
@@ -49,6 +50,9 @@
                                                     </td>
                                                     <td>{{ $admin->name }}</td>
                                                     <td>{{ $admin->email }}</td>
+                                                    <td>
+                                                        <span class="badge bg-primary">{{ $admin->roles->first()?->name ?? '-'  }}</span>
+                                                    </td>
                                                     <td>{{ $admin->phone }}</td>
 
                                                                                                                                            <td>

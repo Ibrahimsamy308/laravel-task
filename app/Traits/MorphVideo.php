@@ -11,7 +11,7 @@ trait MorphVideo
 {
     public function video(): MorphOne
     {
-        return $this->morphOne(ModelsFile::class, 'fileable');
+        return $this->morphOne(ModelsFile::class, 'fileable')->where('type', 'video');
     }
 
     public function uploadVideo()
@@ -28,7 +28,8 @@ trait MorphVideo
 
                 // تخزين الرابط في DB
                 $this->video()->create([
-                    'url' => 'videos/' . $videoName
+                    'url' => 'videos/' . $videoName,
+                    'type' => 'video'
                 ]);
 
             } catch (Exception $e) {
@@ -50,7 +51,9 @@ trait MorphVideo
                 $file->move(public_path('videos'), $videoName);
 
                 $this->video()->create([
-                    'url' => 'videos/' . $videoName
+                    'url' => 'videos/' . $videoName,
+                    'type' => 'video'
+
                 ]);
 
             } catch (Exception $e) {

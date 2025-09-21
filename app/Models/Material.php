@@ -48,6 +48,12 @@ class Material extends Model implements TranslatableContract
             : [asset('materials/default.pdf')];
     }
 
+    public function lesson()
+    {
+        return $this->belongsTo(Lesson::class, 'lesson_id');
+    }
+
+
 
     
 }

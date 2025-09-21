@@ -40,29 +40,63 @@
                                                 class="form-control @error('email') is-invalid @enderror"
                                                 value="{{ old('email', $admin->email) }}" name="email"> </div>
                                     </div>
-                                    <div class="mb-4 row align-items-center"> <label
-                                            class="col-sm-3 col-form-label form-label-title">{{ __('general.select') }}</label>
-                                        <div class="col-sm-9"> <select class="js-example-basic-single w-100" name="role_id"
-                                                id="role">
+
+                                    <div class="mb-4 row align-items-center"> 
+                                        <label class="col-sm-3 col-form-label form-label-title">{{ __('general.select') }}</label>
+                                        <div class="col-sm-9"> 
+                                            <select class="js-example-basic-single w-100" name="roles" id="role" required>
                                                 <option value="">{{ __('general.select') }}</option>
                                                 @foreach ($roles as $role)
-                                                    <option value="{{ $role->id }}"
-                                                        @selected($admin->type == $role->name)>
-                                                        {{ $role->name }} </option>
+                                                    <option value="{{ $role->name }}" 
+                                                        {{ old('roles', $admin->roles->first()?->name) == $role->name ? 'selected' : '' }}>
+                                                        {{ $role->name }}
+                                                    </option>
                                                 @endforeach
-                                            </select> </div>
+                                            </select> 
+                                        </div>
+                                    </div>
+                                    
+
+                                    <!-- Normal title input -->
+                                    <div class="mb-4 row align-items-center"> 
+                                        <label class="form-label-title col-sm-3 mb-0">{{ __('general.phone') }} <span
+                                            class="text-danger"> * </span></label>
+                                        <div class="col-sm-9"> <input type="phone" placeholder="{{ __('general.phone') }}"
+                                                class="form-control @error('phone') is-invalid @enderror"
+                                                value="{{ old('phone',$admin->phone) }}" name="phone"> 
+                                        </div>
                                     </div>
 
-
-
-                                    {{-- Checkbox Input --}} <div class="mb-4 row align-items-center">
-                                        <div class="col-md-9">
-                                            <div class="form-check user-checkbox ps-0"> <input @checked(old('dark', $admin->dark))
-                                                    class="checkbox_animated check-it" type="checkbox" id="dark"
-                                                    name="dark" value="1"> <label
-                                                    class="form-label-title col-md-6 mb-0">{{ __('general.dark') }} <span
-                                                        class="text-danger"> * </span></label> </div>
+                                    <!-- Normal title input -->
+                                    <div class="mb-4 row align-items-center"> 
+                                        <label class="form-label-title col-sm-3 mb-0">{{ __('general.password') }} <span
+                                            class="text-danger"> * </span></label>
+                                        <div class="col-sm-9"> <input type="password" placeholder="{{ __('general.password') }}"
+                                                class="form-control @error('password') is-invalid @enderror"
+                                                value="{{ old('password') }}" name="password"> 
                                         </div>
+                                    </div>
+
+                                    <!-- Normal title input -->
+                                    <div class="mb-4 row align-items-center"> 
+                                        <label class="form-label-title col-sm-3 mb-0">{{ __('general.confirm-password') }} <span
+                                            class="text-danger"> * </span></label>
+                                        <div class="col-sm-9"> <input type="password" placeholder="{{ __('general.confirm-password') }}"
+                                                class="form-control @error('confirm-password') is-invalid @enderror"
+                                                value="{{ old('confirm-password') }}" name="confirm-password"> 
+                                        </div>
+                                    </div>
+                                                                       
+                                    {{-- Image Input --}} 
+                                    <div class="row">
+                                        <div class="col-md-6"> @include('admin.components.image', [
+                                            'label' => __('general.image'),
+                                            'value' => old('image',$admin->image),
+                                            'name' => 'image',
+                                            'id' => 'kt_image_3',
+                                            'accept' => 'image/*',
+                                            'required' => true,
+                                        ]) </div>
                                     </div>
 
                                 </div>

@@ -26,13 +26,17 @@ class AdminRequest extends FormRequest
     {
         $image=request()->isMethod('put')?'nullable':'required';
         $email=request()->isMethod('put')?['required','email']:['required','email',Rule::unique('admins', 'email')->ignore($this->id)];
-        // dd(request()->all());
+        $phone= request()->isMethod('put')? ['required', 'digits:11', Rule::unique('admins', 'phone')->ignore($this->id)]: ['required', 'digits:11', Rule::unique('admins', 'phone')];
+           
+         // dd(request()->all());
         return [
             'image' => $image,
             'name' => 'required',
+            'phone' => $phone,
             'email' => $email,
             'password' => 'required_without:_method|same:confirm-password',
-            'roles' => 'required'
+            'roles'    => 'required|string|exists:roles,name',
+
         ];
     }
 }

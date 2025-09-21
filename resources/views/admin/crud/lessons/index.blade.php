@@ -9,48 +9,39 @@
                     <div class="card card-table">
                         <div class="card-body">
                             <div class="title-header option-title d-sm-flex d-block">
-                                <h5>{{'general.users'}}</h5>
+                                <h5>{{'general.lessons'}}</h5>
                                 <div class="right-options">
                                     <ul>
+                                     
                                         <li>
-                                            <a class="btn btn-solid" href="{{route('users.create')}}">{{__('general.create')}}</a>
+                                            <a class="btn btn-solid" href="{{route('lessons.create')}}">{{__('general.create')}}</a>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <div>
                                 <div class="table-responsive">
-                                    <table class="table all-package theme-table table-user" id="table_id">
+                                    <table class="table all-package theme-table table-lesson" id="table_id">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>@lang('general.image')</th>
-                                                <th>{{__('general.name')}}</th>
-
-                                                <th>{{__('general.email')}}</th>
+                                                <th>{{__('general.title')}}</th>
+                                                <th>{{__('general.duration')}}</th>
                                                 <th>@lang('general.controls')</th>
                                             </tr>
                                         </thead>
 
                                         <tbody>
-                                            @foreach ($data as $user)
+                                            @foreach ($lessons as $lesson)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>
-                                                        <div class="table-image">
-                                                            <img src="{{ $user->image }}"
-                                                                class="img-fluid" alt="">
-                                                        </div>
-                                                    </td>
-
-                                                    <td>{{ $user->fullname }}</td>
-
-                                                    <td>{{ $user->email }}</td>
-                                                    <td>
+                                                    <td>{{ $lesson->title }}</td>
+                                                    <td>{{ $lesson->duration }}</td>
+<td>
                                                         @include('admin.components.controls', [
-                                                            'route' => 'users',
-                                                            'role' => 'user',
-                                                            'module' => $user,
+                                                            'route' => 'lessons',
+                                                            'role' => 'lesson',
+                                                            'module' => $lesson,
                                                         ])
                                                     </td>
                                                 </tr>

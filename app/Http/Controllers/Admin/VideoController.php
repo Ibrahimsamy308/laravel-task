@@ -89,7 +89,8 @@ class VideoController extends Controller
     public function edit(Video $video)
     {
         //    dd($video->title);
-        return view('admin.crud.videos.edit', compact('video'));
+        $lessons=Lesson::latest()->get();
+        return view('admin.crud.videos.edit', compact('video','lessons'));
     }
     /**
      * Update the specified resource in storage.
@@ -101,8 +102,9 @@ class VideoController extends Controller
     public function update(Request $request, Video $video)
     {
         try {
-            $data = $request->except('image','profile_avatar_remove');
+            $data = $request->except('image','profile_avatar_remove','video','profile_video_remove');
             $video->update($data);
+            $video->updateVideo();
             return redirect()->route('videos.index', compact('video'))
                 ->with('success', trans('general.update_successfully'));
         } catch (Exception $e) {
@@ -120,6 +122,7 @@ class VideoController extends Controller
     {
         try {
             $video->delete();
+            $video->deleteVideo();
             return redirect()->route('videos.index')
                 ->with('success', trans('general.deleted_successfully'));
         } catch (Exception $e) {

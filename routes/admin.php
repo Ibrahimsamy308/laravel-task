@@ -22,8 +22,10 @@ use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\ExamController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\VideoController;
+use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\ProjectController;
@@ -36,6 +38,7 @@ use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Admin\OrderProductController;
 use App\Http\Controllers\Admin\OrderController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -91,6 +94,7 @@ Route::group(
             Route::resource('contacts', ContactController::class);
             Route::resource('videos', VideoController::class);
             Route::resource('courses', CourseController::class);
+            Route::resource('lessons', LessonController::class);
             Route::resource('tests', ImageController::class);
             Route::resource('roles', RoleController::class);
             Route::resource('users', UserController::class);
@@ -102,8 +106,10 @@ Route::group(
             Route::resource('fees', FeeController::class);
             Route::resource('vaccancies',VaccancyController::class);
             Route::resource('materials',MaterialController::class);
+            Route::resource('exams',ExamController::class);
 
-            
+            Route::get('/courses/{id}/lessons', [CourseController::class, 'getByCourse'])->name('courses.lessons');
+
             Route::get('/finished/fees', [App\Http\Controllers\Admin\FeeController::class, 'index'])->name('fees.finished');
             Route::get('/reply-message/{id}', [App\Http\Controllers\Admin\MessageController::class, 'reply'])->name('messages.reply');
             Route::get('/finished/tasks', [App\Http\Controllers\Admin\TaskController::class, 'index'])->name('tasks.finished');
