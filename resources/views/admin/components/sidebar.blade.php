@@ -179,7 +179,7 @@
                     </li>
                     @endcanany
 
-                    {{-- Contacts --}}
+                    {{-- Contacts 
                     @canany(['contact-list','contact-create'])
                     <li class="sidebar-list">
                         <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
@@ -195,9 +195,9 @@
                             @endcan
                         </ul>
                     </li>
-                    @endcanany
+                    @endcanany--}}
 
-                    {{-- Messages --}}
+                    {{-- Messages 
                     @canany(['message-list','message-reply'])
                     <li class="sidebar-list">
                         <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
@@ -213,9 +213,9 @@
                             @endcan
                         </ul>
                     </li>
-                    @endcanany
+                    @endcanany--}}
 
-                    {{-- Newsletters --}}
+                    {{-- Newsletters 
                     @canany(['newsletter-list','newsletter-reply'])
                     <li class="sidebar-list">
                         <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
@@ -231,7 +231,7 @@
                             @endcan
                         </ul>
                     </li>
-                    @endcanany
+                    @endcanany--}}
 
                 </ul>
             </div>
