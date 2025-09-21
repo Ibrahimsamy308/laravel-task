@@ -20,7 +20,8 @@ class Category extends Model implements TranslatableContract
     public $timestamps = true;
 
     public function getImageAttribute(){
-        return  $this->file? asset($this->file->url): settings()->logo;
+        $image = $this->file()->where('type', 'image')->first();
+        return $image ? asset($image->url) : settings()->logo;
     }
 
 //    public function getVideoAttribute()
@@ -30,9 +31,8 @@ class Category extends Model implements TranslatableContract
 
     public function getVideoAttribute()
     {
-        return $this->file
-            ? asset($this->file->url)   
-            : asset('videos/default.mp4');
+        $video = $this->file()->where('type', 'video')->first();
+        return $video ? asset($video->url) : asset('videos/default.mp4');
     }
 
 
