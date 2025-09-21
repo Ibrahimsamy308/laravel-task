@@ -103,7 +103,7 @@
                                     <div class="col-6">
                                         <!-- Start Date -->
                                         <div class="mb-4 row align-items-center">
-                                            <label class="form-label-title col-sm-3 mb-0">Start Date *</label>
+                                            <label class="form-label-title col-sm-3 mb-0">{{ __('general.start_date') }}</label>
                                             <div class="col-sm-9">
                                                 <input type="date" name="start_date"
                                                     class="form-control @error('start_date') is-invalid @enderror"
@@ -118,7 +118,7 @@
                                     <div class="col-6">
                                         <!-- End Date -->
                                         <div class="mb-4 row align-items-center">
-                                            <label class="form-label-title col-sm-3 mb-0">End Date *</label>
+                                            <label class="form-label-title col-sm-3 mb-0">{{ __('general.end_date') }}</label>
                                             <div class="col-sm-9">
                                                 <input type="date" name="end_date"
                                                     class="form-control @error('end_date') is-invalid @enderror"
@@ -132,24 +132,27 @@
                                     <div class="col-6">
                                         <!-- Active Checkbox -->
                                         <div class="mb-4 row align-items-center">
-                                            <label class="form-label-title col-sm-3 mb-0">Active</label>
+                                            <label class="form-label-title col-sm-3 mb-0">{{ __('general.active') }}</label>
                                             <div class="col-sm-9">
                                                 <input type="checkbox" name="active" value="1"
                                                     {{ old('active') ? 'checked' : '' }}>
                                                 @error('active')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
+                                                <label for="active" class="form-check-label">
+                                                        {{ __('general.active') }}
+                                                    </label>
                                             </div>
+                                             
                                         </div>
                                     </div>
-
-
                                     <div class="col-6">
                                         <!-- Level -->
                                         <div class="mb-4 row align-items-center">
-                                            <label class="form-label-title col-sm-3 mb-0">Level *</label>
+                                            <label class="form-label-title col-sm-3 mb-0">{{ __('general.level') }}</label>
                                             <div class="col-sm-9">
                                                 <select name="level" class="form-control @error('level') is-invalid @enderror">
+                                                    <option value="" selected disabled>Select</option>
                                                     <option value="beginner" {{ old('level')=='beginner' ? 'selected' : '' }}>Beginner</option>
                                                     <option value="intermediate" {{ old('level')=='intermediate' ? 'selected' : '' }}>Intermediate</option>
                                                     <option value="advanced" {{ old('level')=='advanced' ? 'selected' : '' }}>Advanced</option>
@@ -160,6 +163,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-12">
                                         <!-- Duration Hours -->
                                         <div class="mb-4 row align-items-center">

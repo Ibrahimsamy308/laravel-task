@@ -62,14 +62,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Video URL -->
-                                    <div class="mb-4 row align-items-center">
-                                        <div class="col-sm-12">
-                                            <label class="form-label-title mb-0">{{ __('general.video_url') }}</label>
-                                            <p class="bg-show p-2 mt-2">{{ $lesson->video_url ?? '-' }}</p>
-                                        </div>
-                                    </div>
-
                                     <!-- Duration -->
                                     <div class="mb-4 row align-items-center">
                                         <div class="col-sm-12">
@@ -101,6 +93,22 @@
                                         <div class="col-sm-12">
                                             <label class="form-label-title mb-0">{{ __('general.created_at') }}</label>
                                             <p class="bg-show p-2 mt-2">{{ $lesson->created_at }}</p>
+                                        </div>
+                                    </div>
+
+                                     <div class="col-12">
+                                        <!-- Intro Video -->
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-3 mb-0">{{ __('general.introVideo') }}</label>
+                                            <div class="col-sm-9">
+                                                @if ($lesson->Video)
+                                                    <video width="320" height="240" controls class="mt-2">
+                                                        <source src="{{ asset($lesson->Video) }}" type="video/mp4">
+                                                    </video>
+                                                @else
+                                                    <p class="bg-show p-2 mt-2">-</p>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

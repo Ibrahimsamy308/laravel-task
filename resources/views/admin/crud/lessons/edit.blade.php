@@ -140,6 +140,18 @@
                                             </label>
                                         </div>
                                     </div>
+
+
+                                     <div class="col-md-6">
+                                            @include('admin.components.video', [
+                                                'label' => __('general.introVideo'),
+                                                'value' => old('video', $lesson->video),
+                                                'name' => 'video',
+                                                'id' => 'kt_video_1',
+                                                'accept' => 'video/*',
+                                                'required' => false,
+                                            ])
+                                        </div>
                                 </div>
 
                                 <div class="card-submit-button text-end">

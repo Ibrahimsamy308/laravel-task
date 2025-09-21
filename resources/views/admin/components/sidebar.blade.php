@@ -179,24 +179,6 @@
                     </li>
                     @endcanany
 
-                    {{-- Categories --}}
-                    @canany(['category-list','category-create'])
-                    <li class="sidebar-list">
-                        <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
-                            <i class="ri-list-check-2"></i>
-                            <span>{{__('general.catgeories')}}</span>
-                        </a>
-                        <ul class="sidebar-submenu">
-                            @can('category-list')
-                                <li><a href="{{route('categories.index')}}">{{__('general.list')}}</a></li>
-                            @endcan
-                            @can('category-create')
-                                <li><a href="{{route('categories.create')}}">{{__('general.create')}}</a></li>
-                            @endcan
-                        </ul>
-                    </li>
-                    @endcanany
-
                     {{-- Contacts --}}
                     @canany(['contact-list','contact-create'])
                     <li class="sidebar-list">

@@ -57,21 +57,25 @@ public function create()
      */
 
 public function store(LessonRequest $request)
-{
-    $data = $request->validated();
+{    
+    $data=$request->except('image','profile_avatar_remove','video','profile_video_remove');
 
+    $data = $request->validated();
     $lesson = new Lesson();
     $lesson->course_id   = $data['course_id'] ?? null;
     $lesson->duration    = $data['duration'];
     $lesson->lessonOrder = $data['lessonOrder'] ?? 0;
     $lesson->is_free = $request->boolean('is_free');
 
+
+    
     foreach (config('translatable.locales') as $locale) {
         $lesson->translateOrNew($locale)->title = $data[$locale]['title'];
         $lesson->translateOrNew($locale)->description = $data[$locale]['description'];
     }
 
     $lesson->save();
+    $lesson->uploadVideo();
 
     return redirect()->route('lessons.index')->with('success', __('general.created_successfully'));
 }
@@ -83,7 +87,7 @@ public function store(LessonRequest $request)
      */
     public function show(lesson $lesson)
     {
-            $courses = Course::all();
+        $courses = Course::all();
         return view('admin.crud.lessons.show', compact('lesson', 'courses'));
     }
 
@@ -103,30 +107,16 @@ public function store(LessonRequest $request)
 
     public function update(LessonRequest $request, Lesson $lesson)
     {
-        // كل الحقول العادية
-        $data = $request->only([
-            'course_id',
-            'video_url',
-            'duration',
-            'lessonOrder',
-            'is_free',
-        ]);
-
-        // تحديث الترجمات (title, description)
-        foreach (config('translatable.locales') as $locale) {
-            $data[$locale] = [
-                'title' => $request->input($locale . '.title'),
-                'description' => $request->input($locale . '.description'),
-            ];
-        }
-
-        // اعمل update للموديل
-        $lesson->update($data);
-
-        return redirect()
-            ->route('lessons.index')
-            ->with('success', __('general.updated_successfully'));
-    }
+  try {
+            $data = $request->except('image','profile_avatar_remove','video','profile_video_remove');
+            $lesson->update($data);
+            $lesson->updateVideo();
+            return redirect()->route('lesso$lesson.index', compact('course'))
+                ->with('success', trans('general.update_successfully'));
+        } catch (Exception $e) {
+            dd($e->getMessage());
+            return redirect()->back()->with(['error' => __('general.something_wrong')]);
+        }}
     /**
      * Remove the specified resource from storage.
      *

@@ -30,6 +30,7 @@ class UserRequest extends FormRequest
         return [
             'image' => $image,
             'fullname' => 'required',
+            'phone' => 'required|numeric',
             'email' => $email,
             'password' => 'required_without:_method|same:confirm-password',
         ];
