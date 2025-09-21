@@ -34,27 +34,11 @@
                                                 id="pills-{{ $locale }}" role="tabpanel">
                                                 <!-- normal input -->
                                                 <div class="mb-4 row align-items-center">
-                                                    <div class="col-sm-6"> <label
+                                                    <div class="col-sm-12"> <label
                                                             class="form-label-title mb-0">{{ __('general.title') }}</label>
                                                         <p class="bg-show p-2 mt-2">
                                                             {{ $material->translate($locale)->title }}</p>
                                                     </div>
-                                                </div>
-
-                                                <!-- normal input -->
-                                                <div class="mb-4 row align-items-center">
-                                                    <div class="col-sm-6"> <label
-                                                            class="form-label-title mb-0">{{ __('general.subtitle') }}</label>
-                                                        <p class="bg-show p-2 mt-2">
-                                                            {{ $material->translate($locale)->subtitle }}</p>
-                                                    </div>
-                                                </div>
-
-                                                <!-- normal input -->
-                                                <div class="mb-4 row align-items-center">
-                                                    <div class="col-sm-6"> <label
-                                                            class="form-label-title mb-0">{{ __('general.description') }}</label>
-                                                        {!! $material->translate($locale)->description !!} </div>
                                                 </div>
 
                                             </div>
@@ -63,25 +47,31 @@
                                     <!-- normal input -->
                                     <div class="mb-4 row align-items-center">
                                         <div class="col-sm-6"> <label
-                                                class="form-label-title mb-0">{{ __('general.icon') }}</label>
-                                            <p class="bg-show p-2 mt-2">{{ $material->icon }}</p>
-                                        </div>
-                                    </div>
-                                    <!-- normal input -->
-                                    <div class="mb-4 row align-items-center">
-                                        <div class="col-sm-6"> <label
-                                                class="form-label-title mb-0">{{ __('general.created_at') }}</label>
-                                            <p class="bg-show p-2 mt-2">{{ $material->created_at }}</p>
+                                                class="form-label-title mb-0">{{ __('general.lesson') }}</label>
+                                            <p class="bg-show p-2 mt-2">{{ $material->lesson->title }}</p>
                                         </div>
                                     </div>
 
-                                    <!-- normal input -->
                                     <div class="mb-4 row align-items-center">
-                                        <div class="col-sm-6"> <label
-                                                class="form-label-title mb-0">{{ __('general.updated_at') }}</label>
-                                            <p class="bg-show p-2 mt-2">{{ $material->updated_at }}</p>
+                                        <label class="form-label-title col-sm-3 mb-0">{{ __('general.materials') }}</label>
+                                        <div class="col-sm-9">
+                                            @if (!empty($material->materials_urls) && count($material->materials_urls) > 0)
+                                                <ul class="list-group">
+                                                    @foreach ($material->materials_urls as $file)
+                                                        <li class="list-group-item">
+                                                            <a href="{{ asset($file->url ?? $file) }}" target="_blank">
+                                                                {{ basename($file->url ?? $file) }}
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            @else
+                                                <p class="bg-show p-2 mt-2 text-muted">{{ __('general.no_files') }}</p>
+                                            @endif
                                         </div>
                                     </div>
+                                    
+
                                 </div>
                             </div>
                         </div>
