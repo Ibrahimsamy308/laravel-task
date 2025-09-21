@@ -53,6 +53,18 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                             <!-- curriculum -->
+                                            <div class="mb-4 row align-items-center">
+                                                <label class="form-label-title col-sm-3 mb-0">
+                                                    {{ __('general.curriculum') }}
+                                                </label>
+                                                <div class="col-sm-9">
+                                                    <div class="bg-show p-2 mt-2">
+                                                        {!! $course->translate($locale)->curriculum ?? '-' !!}
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     @endforeach
                                 </div>
@@ -103,6 +115,16 @@
                                     </div>
 
                                     <div class="col-6">
+                                        <!-- Level -->
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-3 mb-0">{{ __('general.language') }}</label>
+                                            <div class="col-sm-9">
+                                                <p class="bg-show p-2 mt-2">{{ __('general.'.$course->language) }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
                                         <!-- Start Date -->
                                         <div class="mb-4 row align-items-center">
                                             <label class="form-label-title col-sm-3 mb-0">{{ __('general.start_date') }}</label>
@@ -122,7 +144,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <!-- Duration Hours -->
                                         <div class="mb-4 row align-items-center">
                                             <label class="form-label-title col-sm-3 mb-0">{{ __('general.duration_hours') }}</label>
@@ -150,10 +172,6 @@
 
                                 </div> <!-- row end -->
                             </div>
-                        </div>
-
-                        <div class="card-submit-button">
-                            <a href="{{ route('courses.index') }}" class="btn btn-animation">{{ __('general.back') }}</a>
                         </div>
 
                     </div>

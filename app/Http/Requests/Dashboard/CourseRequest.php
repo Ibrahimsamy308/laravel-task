@@ -28,6 +28,7 @@ class CourseRequest extends FormRequest
         'end_date'       => 'required|date|after_or_equal:start_date',
         'duration_hours' => 'required|numeric|min:1',
         'level'          => 'required|string|in:beginner,intermediate,advanced',
+        'language'          => 'required|string|in:ar,en',
         'active'      => 'boolean',
         'video' => $video,
         

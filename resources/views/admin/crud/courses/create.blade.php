@@ -65,6 +65,21 @@
                                                     @enderror
                                                 </div>
                                             </div>
+
+                                            <!-- curriculum -->
+                                            <div class="mb-4 row align-items-center">
+                                                <label class="form-label-title col-sm-3 mb-0">
+                                                    @lang('general.curriculum') - @lang('general.' . $locale)
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-sm-9">
+                                                    <textarea name="{{ $locale . '[curriculum]' }}"
+                                                        class="form-control summernote @error($locale.'.curriculum') is-invalid @enderror">{{ old($locale.'.curriculum') }}</textarea>
+                                                    @error($locale.'.description')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
                                         </div>
                                     @endforeach
                                 </div>
@@ -146,17 +161,17 @@
                                              
                                         </div>
                                     </div>
-                                    <div class="col-6">
-                                        <!-- Level -->
-                                        <div class="mb-4 row align-items-center">
-                                            <label class="form-label-title col-sm-3 mb-0">{{ __('general.level') }}</label>
-                                            <div class="col-sm-9">
-                                                <select name="level" class="form-control @error('level') is-invalid @enderror">
-                                                    <option value="" selected disabled>Select</option>
+
+                                    <div class="col-md-6 mb-4">
+                                        <div class="mb-4 align-items-center"> <label
+                                                class="col-sm-3 col-form-label form-label-title">{{ __('general.level') }}</label>
+                                            <div class="col-sm-9"> <select class="js-example-basic-single w-100" name="level"
+                                                    id="level">
+                                                    <option value="">{{ __('general.select') }}</option>
                                                     <option value="beginner" {{ old('level')=='beginner' ? 'selected' : '' }}>Beginner</option>
                                                     <option value="intermediate" {{ old('level')=='intermediate' ? 'selected' : '' }}>Intermediate</option>
                                                     <option value="advanced" {{ old('level')=='advanced' ? 'selected' : '' }}>Advanced</option>
-                                                </select>
+                                                </select> 
                                                 @error('level')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
@@ -164,10 +179,26 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12">
+                                    <div class="col-md-6 mb-4">
+                                        <div class="mb-4 align-items-center"> <label
+                                                class="col-sm-3 col-form-label form-label-title">{{ __('general.language') }}</label>
+                                            <div class="col-sm-9"> <select class="js-example-basic-single w-100" name="language"
+                                                    id="language">
+                                                    <option value="">{{ __('general.select') }}</option>
+                                                    <option value="ar" {{ old('language')=='ar' ? 'selected' : '' }}>{{ __('general.ar') }}</option>
+                                                    <option value="en" {{ old('language')=='en' ? 'selected' : '' }}>{{ __('general.en') }}</option>
+                                                </select> 
+                                                @error('language')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
                                         <!-- Duration Hours -->
                                         <div class="mb-4 row align-items-center">
-                                            <label class="form-label-title col-sm-3 mb-0">Duration (Hours) *</label>
+                                            <label class="form-label-title col-sm-3 mb-0">Duration(Hours)</label>
                                             <div class="col-sm-9">
                                                 <input type="number" name="duration_hours"
                                                     class="form-control @error('duration_hours') is-invalid @enderror"
