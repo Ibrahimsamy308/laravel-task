@@ -17,8 +17,8 @@ class Partner extends Model implements TranslatableContract
     public $translatedAttributes = ['title'];
     public $timestamps = true;
 
-    public function getImageAttribute()
-    {
-        return  $this->file?asset($this->file->url): settings()->logo;
+    public function getImageAttribute(){
+        $image = $this->file()->where('type', 'image')->first();
+        return $image ? asset($image->url) : settings()->logo;
     }
 }
