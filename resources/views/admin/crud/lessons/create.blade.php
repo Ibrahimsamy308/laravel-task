@@ -83,15 +83,18 @@
                                 <div class="row">
                                     <!-- Course -->
                                     <div class="col-md-6 mb-4">
-                                        <label for="course_id" class="form-label-title">
-                                            {{ __('general.course') }}
-                                        </label>
-                                        <select name="course_id" id="course_id" class="form-control">
-                                            <option value="">{{ __('general.choose_course') }}</option>
-                                            @foreach($courses as $course)
-                                                <option value="{{ $course->id }}">{{ $course->title }}</option>
-                                            @endforeach
-                                        </select>
+                                        <div class="mb-4 align-items-center"> <label
+                                                class="col-sm-3 col-form-label form-label-title">{{ __('general.courses') }}</label>
+                                            <div class="col-sm-9"> <select class="js-example-basic-single w-100" name="course_id"
+                                                    id="course">
+                                                    <option value="">{{ __('general.select') }}</option>
+                                                    @foreach ($courses as $course)
+                                                        <option value="{{ $course->id }}"
+                                                            {{ old('course_id') == $course->id ? 'selected' : '' }}>
+                                                            {{ $course->title }} </option>
+                                                    @endforeach
+                                                </select> </div>
+                                        </div>
                                     </div>
 
                                     <!-- Duration -->

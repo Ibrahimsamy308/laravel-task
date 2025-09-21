@@ -99,19 +99,18 @@ public function store(LessonRequest $request)
      */
 
     
-  public function edit(Lesson $lesson)
+    public function edit(Lesson $lesson)
     {
         $courses = Course::all();
         return view('admin.crud.lessons.edit', compact('lesson', 'courses'));
     }
 
-    public function update(LessonRequest $request, Lesson $lesson)
-    {
-  try {
+    public function update(LessonRequest $request, Lesson $lesson){
+        try {
             $data = $request->except('image','profile_avatar_remove','video','profile_video_remove');
             $lesson->update($data);
             $lesson->updateVideo();
-            return redirect()->route('lesso$lesson.index', compact('course'))
+            return redirect()->route('lessons.index')
                 ->with('success', trans('general.update_successfully'));
         } catch (Exception $e) {
             dd($e->getMessage());

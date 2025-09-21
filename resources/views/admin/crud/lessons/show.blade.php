@@ -88,14 +88,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Created At -->
-                                    <div class="mb-4 row align-items-center">
-                                        <div class="col-sm-12">
-                                            <label class="form-label-title mb-0">{{ __('general.created_at') }}</label>
-                                            <p class="bg-show p-2 mt-2">{{ $lesson->created_at }}</p>
-                                        </div>
-                                    </div>
-
+                                 
                                      <div class="col-12">
                                         <!-- Intro Video -->
                                         <div class="mb-4 row align-items-center">
