@@ -87,6 +87,7 @@ class PermissionTableSeeder extends Seeder
            'exam-edit',
            'exam-delete',
            
+           'userExam-list',
         ];
         
         Permission::where('guard_name', 'admin')

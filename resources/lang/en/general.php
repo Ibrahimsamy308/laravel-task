@@ -431,4 +431,14 @@ return [
     'password_changed' => 'Password Changed',
     'exam' => 'Exam',
     
+
+    // New keys added on 2025-09-22 15:59:19
+    'userExams'        => 'User Exams',
+    'score'            => 'Score',
+    'userAnswer'       => 'User Answer',
+    'view'             => 'View',
+    'userCourses'      => 'User Courses',
+    'video_title'      => 'Video Title',
+    'not_watched_yet'  => 'Not Watched Yet',
+    
 ];

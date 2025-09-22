@@ -38,6 +38,7 @@ use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Admin\OrderProductController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\UserExamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,6 +108,7 @@ Route::group(
             Route::resource('vaccancies',VaccancyController::class);
             Route::resource('materials',MaterialController::class);
             Route::resource('exams',ExamController::class);
+            Route::resource('userExams',UserExamController::class);
 
             Route::get('/courses/{id}/lessons', [CourseController::class, 'getByCourse'])->name('courses.lessons');
 

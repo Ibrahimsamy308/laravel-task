@@ -411,4 +411,14 @@ return [
     'password_changed' => 'تم تغيير كلمة المرور',
     'exam' => 'الامتحان',
     
+
+    // New keys added on 2025-09-22 15:59:19
+    'userExams'        => 'امتحانات المستخدم',
+    'score'            => 'الدرجة',
+    'userAnswer'       => 'إجابة المستخدم',
+    'view'             => 'عرض',
+    'userCourses'      => 'كورسات المستخدم',
+    'video_title'      => 'عنوان الفيديو',
+    'not_watched_yet'  => 'لم يتم المشاهدة بعد',
+    
 ];
