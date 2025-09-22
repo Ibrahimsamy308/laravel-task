@@ -32,7 +32,9 @@ class Video extends Model implements TranslatableContract
 
     public function users()
     {
-        return $this->belongsToMany(User::class,);
+        return $this->belongsToMany(User::class, 'uservideos')
+        ->withPivot('watched_at') 
+        ->withTimestamps();
     }
 
     public function lesson()
