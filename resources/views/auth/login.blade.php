@@ -32,6 +32,8 @@
 
 <body class="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
 
+
+
     <!-- login section start -->
     <section class="log-in-section section-b-space" style="background-image:url({{ settings()->image }});">
         <div class="container w-100">
@@ -42,12 +44,11 @@
                 <div class="col-xl-5 col-lg-6">
                     <div class="log-in-box">
                         <div class="log-in-title">
-                            <h3>Welcome To Ramadaan Learning</h3>
+                            <h3>Welcome To Fastkart</h3>
                             <h4>Log In Your Account</h4>
                         </div>
 
                         <div class="input-box">
-
                             @isset($route)
                                 <form class="row g-4" method="POST" action="{{ route($route) }}">
                                 @else
@@ -97,10 +98,9 @@
                     </div>
                 </div>
 
-
                 <!-- Logo Section -->
-                <div class="col-xl-4 col-lg-5 text-center ms-auto">
-                    <a href="" class="logo-login">
+                <div class="col-xl-4 col-lg-5 text-center ms-auto d-none d-lg-block">
+                    <a href="" class="logo-login"> 
                         <img src="{{ settings()->logo }}" class="img-fluid logo" alt="Logo">
                     </a>
                 </div>
