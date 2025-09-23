@@ -8,6 +8,7 @@ use App\Models\Message;
 use App\Models\Counter;
 use App\Models\Newsletter;
 use App\Models\Contact;
+use App\Models\Course;
 use App\Models\Gallery;
 use App\Models\Image;
 use App\Models\Project;
@@ -83,13 +84,7 @@ function failedResponse($data = [], $message = "error", $status = 400)
 
 function itemsCount($model)
 {
-    if(auth()->user()->type=='admin'){
-        $tasks=count(Task::where('status',0)->get()->unique('title'));
-        $finishedTAsks=count(Task::where('status',1)->get()->unique('title'));
-    }else{
-        $tasks=count(Task::where('status',0)->where('employee_id',auth()->user()->id)->get()->unique('title'));
-        $finishedTAsks=count(Task::where('status',1)->where('employee_id',auth()->user()->id)->get()->unique('title'));
-    }
+   
     $items = [
         "faqs" => count(Faq::get()),
         "messages" => count(Message::get()),
@@ -100,8 +95,6 @@ function itemsCount($model)
         "images" => count(Image::get()),
         "pages" => count(Page::get()),
         "projects" => count(Project::get()),
-        "tasks" => $tasks,
-        "finishedTasks" => $finishedTAsks,
         "teams" => count(Team::get()),
         "fees" => count(Fee::get()),
         "finishedFees" => count(Fee::get()),
@@ -119,6 +112,8 @@ function itemsCount($model)
         "videos" => count(Video::get()),
         "roles" => count(Role::get()),
         "categories" => count(Category::get()),
+        "instructors" => count(Admin::where('type','instructor')->get()),
+        "courses" => count(Course::get()),
     ];
 
 
@@ -130,6 +125,14 @@ function services()
     $services = Service::latest()->take(6)->get();
 
     return $services;
+}
+
+
+function courses()
+{
+    $courses = Course::latest()->take(14)->get();
+
+    return $courses;
 }
 function rest($project)
 {
