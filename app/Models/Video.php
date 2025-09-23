@@ -8,6 +8,8 @@ use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use App\Traits\MorphVideo;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class Video extends Model implements TranslatableContract
 {
@@ -28,6 +30,28 @@ class Video extends Model implements TranslatableContract
         $video = $this->file()->where('type', 'video')->first();
         return $video ? asset($video->url) : asset('videos/default.mp4');
     }
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            if (auth()->check()) {
+                $model->createdBy_id = auth()->id();
+            }
+        });
+
+        static::updating(function ($model) {
+            if (auth()->check()) {
+                $model->createdBy_id = auth()->id();
+            }
+        });
+        static::addGlobalScope('user_scope', function (Builder $builder) {
+            if (Auth::check() && Auth::user()->type !== 'admin') {
+                $builder->where('createdBy_id', Auth::id());
+            }
+        });
+
+
+    }
+
 
 
     public function users()

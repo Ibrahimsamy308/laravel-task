@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -50,6 +52,29 @@ class Lesson extends Model implements TranslatableContract
     {
         return $this->belongsTo(Course::class, 'course_id');
     }
+
+     protected static function booted()
+    {
+        static::creating(function ($model) {
+            if (auth()->check()) {
+                $model->createdBy_id = auth()->id();
+            }
+        });
+
+        static::updating(function ($model) {
+            if (auth()->check()) {
+                $model->createdBy_id = auth()->id();
+            }
+        });
+        static::addGlobalScope('user_scope', function (Builder $builder) {
+            if (Auth::check() && Auth::user()->type !== 'admin') {
+                $builder->where('createdBy_id', Auth::id());
+            }
+        });
+
+
+    }
+
 
 
 
