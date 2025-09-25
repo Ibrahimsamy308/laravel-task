@@ -142,6 +142,7 @@ Route::group(
             Route::get('/dark-toggle', 'App\Http\Controllers\Admin\SettingController@toggleDarkMode')->name('dark.toggle');
             Route::put('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('update.profile');
             Route::get('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'edit'])->name('edit.profile');
+
         });
     });
 }

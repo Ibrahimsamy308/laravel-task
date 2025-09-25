@@ -421,4 +421,20 @@ return [
     'video_title'      => 'عنوان الفيديو',
     'not_watched_yet'  => 'لم يتم المشاهدة بعد',
     
+
+    // New keys added on 2025-09-25 14:57:14
+    'students' => 'الطلاب',
+    'instructors' => 'المدرسون',
+    'topCourses' => 'أفضل الكورسات',
+    'sortBy' => 'ترتيب حسب',
+    'highestPrice' => 'الأعلى سعراً',
+    'lowestPrice' => 'الأقل سعراً',
+    'mostLessons' => 'أكثر دروس',
+    'mostStudents' => 'أكثر طلاب',
+    'no_courses_found' => 'لا توجد كورسات',
+    'recentExams' => 'الامتحانات الأخيرة',
+    'newest' => 'الأحدث',
+    'oldest' => 'الأقدم',
+    'date' => 'التاريخ',
+    'avgScore' => 'المتوسط',
 ];

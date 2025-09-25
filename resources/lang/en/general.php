@@ -441,4 +441,20 @@ return [
     'video_title'      => 'Video Title',
     'not_watched_yet'  => 'Not Watched Yet',
     
+
+    // New keys added on 2025-09-25 14:57:14
+    'students' => 'Students',
+    'instructors' => 'Instructors',
+    'topCourses' => 'Top Courses',
+    'sortBy' => 'Sort By',
+    'highestPrice' => 'Highest Price',
+    'lowestPrice' => 'Lowest Price',
+    'mostLessons' => 'Most Lessons',
+    'mostStudents' => 'Most Students',
+    'no_courses_found' => 'No courses found',
+    'recentExams' => 'Recent Exams',
+    'newest' => 'Newest',
+    'oldest' => 'Oldest',
+    'date' => 'Date',
+    'avgScore' => 'Avg Score',
 ];

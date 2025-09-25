@@ -29,7 +29,8 @@ use Illuminate\Support\Facades\File;
 use Jackiedo\Cart\Facades\Cart;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\JsonResponse;
-
+use App\Models\Exam;
+use Illuminate\Support\Facades\DB;
 
 const Message_Mail = "app@gmail.com";
 
@@ -143,6 +144,95 @@ function rest($project)
     }
     return $project->cost-$totalFee;
 }
+
+if (! function_exists('getCoursesBySort')) {
+    function getCoursesBySort($sortBy = 'price_desc', $limit = 5)
+    {
+        $query = Course::query();
+
+        switch ($sortBy) {
+            case 'price_asc':
+                $query->orderBy('price', 'asc');
+                break;
+
+            case 'price_desc':
+                $query->orderBy('price', 'desc');
+                break;
+
+            case 'most_lessons':
+                $query->withCount('lessons')->orderBy('lessons_count', 'desc');
+                break;
+
+            case 'most_students':
+                $query->withCount('students')->orderBy('students_count', 'desc');
+                break;
+
+            default:
+                $query->latest(); // الافتراضي بالـ created_at
+        }
+
+        return $query->take($limit)->get();
+    }
+}
+
+// if (! function_exists('getRecentExamStats')) {
+//     function getRecentExamStats($limit = 5)
+//     {
+//         // نجيب آخر امتحانات
+//         $exams = Exam::with(['users' => function ($q) {
+//                 $q->withPivot('score');
+//             }])
+//             ->latest()
+//             ->take($limit)
+//             ->get();
+
+//         // نجهز الإحصائيات
+//         return $exams->map(function ($exam) {
+//             $users = $exam->users;
+
+//             $totalStudents = $users->count();
+//             $averageScore = $users->avg(fn($u) => $u->pivot->score);
+
+//             // top student في نفس الامتحان
+//             $mostActive = DB::table('userexams')
+//                 ->select('user_id', DB::raw('COUNT(*) as total'))
+//                 ->where('exam_id', $exam->id)
+//                 ->groupBy('user_id')
+//                 ->orderByDesc('total')
+//                 ->first();
+
+//             return [
+//                 'exam_title'      => $exam->title,
+//                 'exam_date'       => $exam->created_at->format('Y-m-d'),
+//                 'students_count'  => $totalStudents,
+//                 'average_score'   => round($averageScore, 2),
+//                 'top_user'        => $mostActive ? User::find($mostActive->user_id)?->name : null,
+//                 'top_user_count'  => $mostActive?->total ?? 0,
+//             ];
+//         });
+//     }
+// }
+
+function getSortedExams()
+{
+    $sort = request('sort', 'new'); // default = new
+    $query = Exam::withCount('users')->with('users');
+
+    switch ($sort) {
+        case 'old':
+            $query->orderBy('created_at', 'asc');
+            break;
+        case 'most_students':
+            $query->orderBy('users_count', 'desc');
+            break;
+        default: // new
+            $query->orderBy('created_at', 'desc');
+            break;
+    }
+
+    return $query->take(7)->get();
+}
+
 
 function taskEmployees($title){
     $employee_ids=Task::where('title',$title)->pluck('employee_id');

@@ -112,209 +112,114 @@
                         </div>
                         <!-- chart card section End -->
 
+                        <!-- Best Selling Courses Start -->
 
-                        <!-- Earning chart star-->
-                        <div class="col-xl-6">
-                            <div class="card o-hidden card-hover">
-                                <div class="card-header border-0 pb-1">
-                                    <div class="card-header-title">
-                                        <h4>Revenue Report</h4>
-                                    </div>
-                                </div>
-                                <div class="card-body p-0">
-                                    <div id="report-chart"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Earning chart  end-->
+                        @php
+                            $sortBy = request()->get('sort', 'price_desc');
+                            $courses = getCoursesBySort($sortBy);
+                        @endphp
 
-
-                        <!-- Best Selling Product Start -->
                         <div class="col-xl-6 col-md-12">
                             <div class="card o-hidden card-hover">
                                 <div class="card-header card-header-top card-header--2 px-0 pt-0">
                                     <div class="card-header-title">
-                                        <h4>Best Selling Product</h4>
+                                        <h4>{{ __('general.topCourses') }}</h4>
                                     </div>
 
                                     <div class="best-selling-box d-sm-flex d-none">
-                                        <span>Short By:</span>
+                                        <span>{{ __('general.sortBy') }}:</span>
                                         <div class="dropdown">
                                             <button class="btn p-0 dropdown-toggle" type="button"
                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                data-bs-auto-close="true">Today</button>
+                                                data-bs-auto-close="true">
+                                                {{ ucfirst(str_replace('_', ' ', $sortBy)) }}
+                                            </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                <li><a class="dropdown-item" href="?sort=price_desc">{{ __('general.highestPrice') }}</a></li>
+                                                <li><a class="dropdown-item" href="?sort=price_asc">{{ __('general.lowestPrice') }}</a></li>
+                                                <li><a class="dropdown-item" href="?sort=most_lessons">{{ __('general.mostLessons') }}</a></li>
+                                                <li><a class="dropdown-item" href="?sort=most_students">{{ __('general.mostStudents') }}</a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="card-body p-0">
-                                    <div>
-                                        <div class="table-responsive">
-                                            <table class="best-selling-table w-image
-                                            w-image
-                                            w-image table border-0">
-                                                <tbody>
+                                    <div class="table-responsive">
+                                        <table class="best-selling-table w-image table border-0">
+                                            <tbody>
+                                                @foreach($courses as $course)
                                                     <tr>
                                                         <td>
                                                             <div class="best-product-box">
                                                                 <div class="product-image">
-                                                                    <img src="{{asset("admin/assets/images/product/1.png")}}"
-                                                                        class="img-fluid" alt="Product">
+                                                                    <img src="{{ $course->image ? asset($course->image) : settings()->logo }}"
+                                                                        class="img-fluid" alt="{{ $course->title }}">
                                                                 </div>
                                                                 <div class="product-name">
-                                                                    <h5>Aata Buscuit</h5>
-                                                                    <h6>26-08-2022</h6>
+                                                                    <h5>{{ $course->title }}</h5>
+                                                                    <h6>{{ $course->created_at->format('d-m-Y') }}</h6>
                                                                 </div>
                                                             </div>
                                                         </td>
 
                                                         <td>
                                                             <div class="product-detail-box">
-                                                                <h6>Price</h6>
-                                                                <h5>$29.00</h5>
+                                                                <h6>{{ __('general.price') }}</h6>
+                                                                <h5>${{ $course->price }}</h5>
                                                             </div>
                                                         </td>
 
                                                         <td>
                                                             <div class="product-detail-box">
-                                                                <h6>Orders</h6>
-                                                                <h5>62</h5>
+                                                                <h6>{{ __('general.lessons') }}</h6>
+                                                                <h5>{{ $course->lessons_count ?? $course->lessons()->count() }}</h5>
                                                             </div>
                                                         </td>
 
                                                         <td>
                                                             <div class="product-detail-box">
-                                                                <h6>Stock</h6>
-                                                                <h5>510</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Amount</h6>
-                                                                <h5>$1,798</h5>
+                                                                <h6>{{ __('general.students') }}</h6>
+                                                                <h5>{{ $course->students_count ?? $course->students()->count() }}</h5>
                                                             </div>
                                                         </td>
                                                     </tr>
+                                                @endforeach
 
+                                                @if($courses->isEmpty())
                                                     <tr>
-                                                        <td>
-                                                            <div class="best-product-box">
-                                                                <div class="product-image">
-                                                                    <img src="{{asset("admin/assets/images/product/2.png")}}"
-                                                                        class="img-fluid" alt="Product">
-                                                                </div>
-                                                                <div class="product-name">
-                                                                    <h5>Aata Buscuit</h5>
-                                                                    <h6>26-08-2022</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Price</h6>
-                                                                <h5>$29.00</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Orders</h6>
-                                                                <h5>62</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Stock</h6>
-                                                                <h5>510</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Amount</h6>
-                                                                <h5>$1,798</h5>
-                                                            </div>
-                                                        </td>
+                                                        <td colspan="4" class="text-center">{{ __('general.no_courses_found') }}</td>
                                                     </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                            <div class="best-product-box">
-                                                                <div class="product-image">
-                                                                    <img src="{{asset("admin/assets/images/product/3.png")}}"
-                                                                        class="img-fluid" alt="Product">
-                                                                </div>
-                                                                <div class="product-name">
-                                                                    <h5>Aata Buscuit</h5>
-                                                                    <h6>26-08-2022</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Price</h6>
-                                                                <h5>$29.00</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Orders</h6>
-                                                                <h5>62</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Stock</h6>
-                                                                <h5>510</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Amount</h6>
-                                                                <h5>$1,798</h5>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                @endif
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Best Selling Product End -->
+                        </div>                 
+
+                        <!-- Best Selling Courses End -->
 
 
                         <!-- Recent orders start-->
+
                         <div class="col-xl-6">
                             <div class="card o-hidden card-hover">
                                 <div class="card-header card-header-top card-header--2 px-0 pt-0">
                                     <div class="card-header-title">
-                                        <h4>Recent Orders</h4>
+                                        <h4>{{ __('general.recentExams') }}</h4>
                                     </div>
 
                                     <div class="best-selling-box d-sm-flex d-none">
-                                        <span>Short By:</span>
+                                        <span>{{ __('general.sortBy') }}:</span>
                                         <div class="dropdown">
                                             <button class="btn p-0 dropdown-toggle" type="button"
-                                                id="dropdownMenuButton2" data-bs-toggle="dropdown"
-                                                data-bs-auto-close="true">Today</button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                id="dropdownMenuExams" data-bs-toggle="dropdown"
+                                                data-bs-auto-close="true">{{ __('general.newest') }}</button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuExams">
+                                                <li><a class="dropdown-item exam-sort" data-sort="new" href="?sort=new">{{ __('general.newest') }}</a></li>
+                                                <li><a class="dropdown-item exam-sort" data-sort="old" href="?sort=old">{{ __('general.oldest') }}</a></li>
+                                                <li><a class="dropdown-item exam-sort" data-sort="most_students" href="?sort=most_students">{{ __('general.mostStudents') }}</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -324,165 +229,42 @@
                                     <div>
                                         <div class="table-responsive">
                                             <table class="best-selling-table table border-0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="best-product-box">
-                                                                <div class="product-name">
-                                                                    <h5>Aata Buscuit</h5>
-                                                                    <h6>#64548</h6>
+                                                <tbody id="exam-table-body">
+                                                    @foreach(getSortedExams() as $exam)
+                                                        <tr>
+                                                            <td>
+                                                                <div class="best-product-box">
+                                                                    <div class="product-name">
+                                                                        <h5>{{ $exam->title }}</h5>
+                                                                        <h6>#{{ $exam->id }}</h6>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </td>
+                                                            </td>
 
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Date Placed</h6>
-                                                                <h5>5/1/22</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Price</h6>
-                                                                <h5>$250.00</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Order Status</h6>
-                                                                <h5>Completed</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Payment</h6>
-                                                                <h5 class="text-danger">Unpaid</h5>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                            <div class="best-product-box">
-                                                                <div class="product-name">
-                                                                    <h5>Aata Buscuit</h5>
-                                                                    <h6>26-08-2022</h6>
+                                                            <td>
+                                                                <div class="product-detail-box">
+                                                                    <h6>{{ __('general.date') }}</h6>
+                                                                    <h5>{{ $exam->created_at->format('d-m-Y') }}</h5>
                                                                 </div>
-                                                            </div>
-                                                        </td>
+                                                            </td>
 
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Date Placed</h6>
-                                                                <h5>5/1/22</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Price</h6>
-                                                                <h5>$250.00</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Order Status</h6>
-                                                                <h5>Completed</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Payment</h6>
-                                                                <h5 class="theme-color">Paid</h5>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                            <div class="best-product-box">
-                                                                <div class="product-name">
-                                                                    <h5>Aata Buscuit</h5>
-                                                                    <h6>26-08-2022</h6>
+                                                            <td>
+                                                                <div class="product-detail-box">
+                                                                    <h6>{{ __('general.students') }}</h6>
+                                                                    <h5>{{ $exam->users_count }}</h5>
                                                                 </div>
-                                                            </div>
-                                                        </td>
+                                                            </td>
 
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Date Placed</h6>
-                                                                <h5>5/1/22</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Price</h6>
-                                                                <h5>$250.00</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Order Status</h6>
-                                                                <h5>Completed</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Payment</h6>
-                                                                <h5 class="theme-color">Paid</h5>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                            <div class="best-product-box">
-                                                                <div class="product-name">
-                                                                    <h5>Aata Buscuit</h5>
-                                                                    <h6>26-08-2022</h6>
+                                                            <td>
+                                                                <div class="product-detail-box">
+                                                                    <h6>{{ __('general.avgScore') }}</h6>
+                                                                    <h5>
+                                                                        {{ round($exam->users->avg(fn($u) => $u->pivot->score), 2) ?? 0 }}
+                                                                    </h5>
                                                                 </div>
-                                                            </div>
-                                                        </td>
-
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Date Placed</h6>
-                                                                <h5>5/1/22</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Price</h6>
-                                                                <h5>$250.00</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Order Status</h6>
-                                                                <h5>Completed</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Payment</h6>
-                                                                <h5 class="theme-color">Paid</h5>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
@@ -490,204 +272,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Recent orders end-->
-
-                        <!-- Earning chart star-->
-                        <div class="col-xl-6">
-                            <div class="card o-hidden card-hover">
-                                <div class="card-header border-0 mb-0">
-                                    <div class="card-header-title">
-                                        <h4>Earning</h4>
-                                    </div>
-                                </div>
-                                <div class="card-body p-0">
-                                    <div id="bar-chart-earning"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Earning chart end-->
-
-
-                        <!-- Transactions start-->
-                        <div class="col-xxl-4 col-md-6">
-                            <div class="card o-hidden card-hover">
-                                <div class="card-header border-0">
-                                    <div class="card-header-title">
-                                        <h4>Transactions</h4>
-                                    </div>
-                                </div>
-
-                                <div class="card-body pt-0">
-                                    <div>
-                                        <div class="table-responsive">
-                                            <table class="user-table transactions-table table border-0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="transactions-icon">
-                                                                <i class="ri-shield-line"></i>
-                                                            </div>
-                                                            <div class="transactions-name">
-                                                                <h6>Wallets</h6>
-                                                                <p>Starbucks</p>
-                                                            </div>
-                                                        </td>
-
-                                                        <td class="lost">-$74</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-color-1">
-                                                            <div class="transactions-icon">
-                                                                <i class="ri-check-line"></i>
-                                                            </div>
-                                                            <div class="transactions-name">
-                                                                <h6>Bank Transfer</h6>
-                                                                <p>Add Money</p>
-                                                            </div>
-                                                        </td>
-
-                                                        <td class="success">+$125</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-color-2">
-                                                            <div class="transactions-icon">
-                                                                <i class="ri-exchange-dollar-line"></i>
-                                                            </div>
-                                                            <div class="transactions-name">
-                                                                <h6>Paypal</h6>
-                                                                <p>Add Money</p>
-                                                            </div>
-                                                        </td>
-
-                                                        <td class="lost">-$50</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-color-3">
-                                                            <div class="transactions-icon">
-                                                                <i class="ri-bank-card-line"></i>
-                                                            </div>
-                                                            <div class="transactions-name">
-                                                                <h6>Mastercard</h6>
-                                                                <p>Ordered Food</p>
-                                                            </div>
-                                                        </td>
-
-                                                        <td class="lost">-$40</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-color-4 pb-0">
-                                                            <div class="transactions-icon">
-                                                                <i class="ri-bar-chart-grouped-line"></i>
-                                                            </div>
-                                                            <div class="transactions-name">
-                                                                <h6>Transfer</h6>
-                                                                <p>Refund</p>
-                                                            </div>
-                                                        </td>
-
-                                                        <td class="success pb-0">+$90</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Transactions end-->
-
-                        <!-- visitors chart start-->
-                        <div class="col-xxl-4 col-md-6">
-                            <div class="h-100">
-                                <div class="card o-hidden card-hover">
-                                    <div class="card-header border-0">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="card-header-title">
-                                                <h4>Visitors</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body pt-0">
-                                        <div class="pie-chart">
-                                            <div id="pie-chart-visitors"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- visitors chart end-->
-
-
-                        <!-- To Do List start-->
-                        <div class="col-xxl-4 col-md-6">
-                            <div class="card o-hidden card-hover">
-                                <div class="card-header border-0">
-                                    <div class="card-header-title">
-                                        <h4>To Do List</h4>
-                                    </div>
-                                </div>
-
-                                <div class="card-body pt-0">
-                                    <ul class="to-do-list">
-                                        <li class="to-do-item">
-                                            <div class="form-check user-checkbox">
-                                                <input class="checkbox_animated check-it" type="checkbox" value=""
-                                                    id="flexCheckDefault">
-                                            </div>
-                                            <div class="to-do-list-name">
-                                                <strong>Pick up kids from school</strong>
-                                                <p>8 Hours</p>
-                                            </div>
-                                        </li>
-                                        <li class="to-do-item">
-                                            <div class="form-check user-checkbox">
-                                                <input class="checkbox_animated check-it" type="checkbox" value=""
-                                                    id="flexCheckDefault1">
-                                            </div>
-                                            <div class="to-do-list-name">
-                                                <strong>Prepare or presentation.</strong>
-                                                <p>8 Hours</p>
-                                            </div>
-                                        </li>
-                                        <li class="to-do-item">
-                                            <div class="form-check user-checkbox">
-                                                <input class="checkbox_animated check-it" type="checkbox" value=""
-                                                    id="flexCheckDefault2">
-                                            </div>
-                                            <div class="to-do-list-name">
-                                                <strong>Create invoice</strong>
-                                                <p>8 Hours</p>
-                                            </div>
-                                        </li>
-                                        <li class="to-do-item">
-                                            <div class="form-check user-checkbox">
-                                                <input class="checkbox_animated check-it" type="checkbox" value=""
-                                                    id="flexCheckDefault3">
-                                            </div>
-                                            <div class="to-do-list-name">
-                                                <strong>Meeting with Alisa</strong>
-                                                <p>8 Hours</p>
-                                            </div>
-                                        </li>
-
-                                        <li class="to-do-item">
-                                            <form class="row g-2">
-                                                <div class="col-8">
-                                                    <input type="text" class="form-control" id="name"
-                                                        placeholder="Enter Task Name">
-                                                </div>
-                                                <div class="col-4">
-                                                    <button type="submit" class="btn btn-primary w-100 h-100">Add
-                                                        task</button>
-                                                </div>
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- To Do List end-->
-
 
                     </div>
                 </div>
