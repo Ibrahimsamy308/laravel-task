@@ -96,8 +96,14 @@
                                         @foreach (courses() as $course)
                                             <div>
                                                 <div class="dashboard-category">
-                                                    <a href="javascript:void(0)" class="category-image">
-                                                        <img src="{{asset($course->image)}}" class="img-fluid" alt="">
+                                                    {{-- <a href="javascript:void(0)" class="category-image">
+                                                        <img src="{{asset($course->image)}}" class="img-fluid no-filter"  alt="">
+                                                    </a> --}}
+                                                    <a href="javascript:void(0)" class="">
+                                                        <img src="{{ asset($course->image) }}" 
+                                                             class="img-fluid rounded-circle" 
+                                                             alt="{{ $course->title }}" 
+                                                             width="100" height="100">
                                                     </a>
                                                     <a href="javascript:void(0)" class="category-name">
                                                         <h6>{{ $course->title }}</h6>
