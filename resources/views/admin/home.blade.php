@@ -154,8 +154,10 @@
                                                             <div class="best-product-box">
                                                                 <div class="product-image">
                                                                     <img src="{{ $course->image ? asset($course->image) : settings()->logo }}"
-                                                                        class="img-fluid" alt="{{ $course->title }}">
+                                                                         class="img-fluid" alt="{{ $course->title }}"
+                                                                         style="filter: none !important;">
                                                                 </div>
+                                                                
                                                                 <div class="product-name">
                                                                     <h5>{{ $course->title }}</h5>
                                                                     <h6>{{ $course->created_at->format('d-m-Y') }}</h6>
