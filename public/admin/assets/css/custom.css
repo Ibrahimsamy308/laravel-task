@@ -154,3 +154,9 @@ body.dark-only .btn.btn-white {
     transition: 0.5s;
 }
 
+.category-image img,
+    .no-filter {
+        filter: none !important;
+        -webkit-filter: none !important;
+    }
+

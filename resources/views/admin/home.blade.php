@@ -100,7 +100,7 @@
                                                         <img src="{{asset($course->image)}}" class="img-fluid no-filter"  alt="">
                                                     </a> --}}
 
-                                                     <a href="javascript:void(0)" class="">
+                                                    <a href="javascript:void(0)" class="category-image">
                                                         <img src="{{asset($course->image)}}" class="img-fluid no-filter"  alt="">
                                                     </a>
                                                     
