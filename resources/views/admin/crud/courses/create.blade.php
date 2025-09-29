@@ -85,6 +85,26 @@
                                 </div>
 
                                 <div class="row">
+
+                                    @if(Auth::user()->type == 'admin')
+                                        <div class="col-md-6 mb-4">
+                                            <div class="mb-4 align-items-center">
+                                                <label class="col-sm-6 col-form-label form-label-title">{{ __('general.instructors') }}</label>
+                                                <div class="col-sm-9">
+                                                    <select class="js-example-basic-single w-100" name="admin_id" id="admin_id">
+                                                        <option value="">{{ __('general.select') }}</option>
+                                                        @foreach ($instructors as $instructor)
+                                                            <option value="{{ $instructor->id }}" {{ old('admin_id') == $instructor->id ? 'selected' : '' }}>
+                                                                {{ $instructor->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                
+
                                     <div class="col-6">
                                         <!-- Price -->
                                         <div class="mb-4 row align-items-center">
@@ -198,7 +218,7 @@
                                     <div class="col-6">
                                         <!-- Duration Hours -->
                                         <div class="mb-4 row align-items-center">
-                                            <label class="form-label-title col-sm-3 mb-0">Duration(Hours)</label>
+                                            <label class="form-label-title col-sm-3 mb-0">{{ __('general.duration_hours') }}</label>
                                             <div class="col-sm-9">
                                                 <input type="number" name="duration_hours"
                                                     class="form-control @error('duration_hours') is-invalid @enderror"

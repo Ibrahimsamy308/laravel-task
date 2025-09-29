@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CourseRequest extends FormRequest
 {
@@ -33,6 +34,11 @@ class CourseRequest extends FormRequest
         'video' => $video,
         
     ];
+
+            
+    if (Auth::user()->type === 'admin') {
+        $rules['admin_id'] = 'required|exists:admins,id';
+    }
 
     foreach (config('translatable.locales') as $locale) {
         $rules[$locale . '.title'] = ['required', 'string'];

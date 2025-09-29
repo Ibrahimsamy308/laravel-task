@@ -6,6 +6,7 @@ use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\CourseRequest;
+use App\Models\Admin;
 use App\Models\Lesson;
 use Exception;
 
@@ -46,7 +47,8 @@ class CourseController extends Controller
     public function create()
     {
         $lessons=Lesson::latest()->get();
-        return view('admin.crud.courses.create',compact('lessons'));
+        $instructors = Admin::where('type', '!=', 'admin')->latest()->get();
+        return view('admin.crud.courses.create',compact('lessons','instructors'));
     }
 
     /**
@@ -90,7 +92,9 @@ class CourseController extends Controller
     public function edit(Course $course)
     {
         //    dd($course->title);
-        return view('admin.crud.courses.edit', compact('course'));
+        $instructors = Admin::where('type', '!=', 'admin')->latest()->get();
+
+        return view('admin.crud.courses.edit', compact('course','instructors'));
     }
     /**
      * Update the specified resource in storage.

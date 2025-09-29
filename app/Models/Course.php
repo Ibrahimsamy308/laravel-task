@@ -62,13 +62,13 @@ class Course extends Model implements TranslatableContract
     protected static function booted()
     {
         static::creating(function ($model) {
-            if (Auth::check()) {
+            if (Auth::check() && Auth::user()->type != 'admin') {
                 $model->admin_id = Auth::id();
             }
         });
 
         static::updating(function ($model) {
-            if (Auth::check()) {
+            if (Auth::check() && Auth::user()->type != 'admin') {
                 $model->admin_id = Auth::id();
             }
         });
