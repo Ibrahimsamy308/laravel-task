@@ -9,9 +9,6 @@
             <div class="back-btn">
                 <i class="fa fa-angle-left"></i>
             </div>
-            <div class="toggle-sidebar">
-                <i class="ri-apps-line status_toggle middle sidebar-toggle"></i>
-            </div>
         </div>
         <div class="logo-icon-wrapper">
             <a href="{{route('dashboard')}}">
