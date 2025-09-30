@@ -38,7 +38,7 @@ class CourseResource extends JsonResource
             'students_count' => $this->students()->count(),
             'lessons_count' => $this->lessons()->count(),
             'exam_count' => $this->exams()->count(),
-            // 'lessons' => LessonResource::collection($this->lessons),
+            'lessons' => LessonResource::collection($this->lessons),
             
             'is_registered' => $user 
             ? $user->courses()->where('course_id', $this->id)->exists()
