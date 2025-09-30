@@ -14,6 +14,7 @@ class UserResource extends JsonResource
      */
     public function toArray(Request $request): array
     {  
+        dd($this->courses);
         return [
             "id" => $this->id,
             "image" => $this->image,
@@ -22,7 +23,9 @@ class UserResource extends JsonResource
             "phone" => $this->phone,
             'points'=>$this->points,
             "cart" => $this->cart,
-            "courses" => CourseResource::collection($this->courses),
+
+           
+            // "courses" => CourseResource::collection(),
         ];
     }
 }
