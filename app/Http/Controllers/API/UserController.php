@@ -18,8 +18,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\JsonResponse;
-
-
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -33,7 +32,8 @@ class UserController extends Controller
 
     public function userProfile() {
         $user =User::with('courses')->find(Auth::user()->id);
-        dd( $user->courses()->get());
+        dd(DB::table('userCourses')->where('user_id', 35)->get());
+
         return new UserResource($user);        
     }
     
