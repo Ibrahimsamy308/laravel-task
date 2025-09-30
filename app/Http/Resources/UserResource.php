@@ -22,7 +22,7 @@ class UserResource extends JsonResource
             "phone" => $this->phone,
             'points'=>$this->points,
             "cart" => $this->cart,
-            "courses" => CourseResource::collection($this->courses),
+            'courses' => CourseResource::collection($this->whenLoaded('courses')),
         ];
     }
 }
