@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -22,7 +23,11 @@ class UserResource extends JsonResource
             "phone" => $this->phone,
             'points'=>$this->points,
             "cart" => $this->cart,
-            'courses' => CourseResource::collection($this->courses),
+            'courses'  => CourseResource::collection(
+                Course::whereHas('users', function ($q) {
+                    $q->where('users.id', $this->id);
+                })->get()
+            ),
         ];
     }
 }
