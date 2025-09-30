@@ -24,9 +24,8 @@ class UserResource extends JsonResource
             "phone" => $this->phone,
             'points'=>$this->points,
             "cart" => $this->cart,
-            'courses'  => CourseResource::collection(
-                DB::table('courses')
-                    ->join('userCourses', 'courses.id', '=', 'userCourses.course_id')
+            'courses' => CourseResource::collection(
+                Course::join('userCourses', 'courses.id', '=', 'userCourses.course_id')
                     ->where('userCourses.user_id', $this->id)
                     ->select('courses.*')
                     ->get()
