@@ -25,9 +25,9 @@ class LessonResource extends JsonResource
             "lessonOrder" => $this->lessonOrder,
             "is_free" => $this->is_free,
             "video_url"=> $this->video,
-            "exams" =>  ExamResource::collection($this->exams),
-            "videos" =>  VideoResource::collection($this->videos),
-            "materials" =>  MaterialResource::collection($this->materials),
+            // "exams" =>  ExamResource::collection($this->exams),
+            // "videos" =>  VideoResource::collection($this->videos),
+            // "materials" =>  MaterialResource::collection($this->materials),
         ];
     }
 }
