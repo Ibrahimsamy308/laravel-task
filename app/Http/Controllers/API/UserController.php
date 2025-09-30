@@ -31,9 +31,9 @@ class UserController extends Controller
 
 
     public function userProfile() {
-        dd(User::with('courses')->find(35)->toArray());
-
         $user = User::with('courses')->find(Auth::id());
+        dd(DB::table('userCourses')->where('user_id', 35)->get());
+
         return new UserResource($user);        
     }
     
