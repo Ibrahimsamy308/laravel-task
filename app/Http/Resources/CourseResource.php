@@ -16,7 +16,7 @@ class CourseResource extends JsonResource
     public function toArray($request)
     {
         $user = Auth::guard('api')->user();
-        dd(  $user);
+      
         return [
             "id" => $this->id,
             "image" => $this->image,
@@ -40,9 +40,9 @@ class CourseResource extends JsonResource
             'exam_count' => $this->exams()->count(),
             'lessons' => LessonResource::collection($this->lessons),
             
-            'is_registered' => $user 
-            ? $user->courses()->where('course_id', $this->id)->exists()
-            : false,
+            // 'is_registered' => $user 
+            // ? $user->courses()->where('course_id', $this->id)->exists()
+            // : false,
 
         ];
     }
