@@ -24,7 +24,6 @@ class UserResource extends JsonResource
                     ->where('user_id', $this->id);
             })
             ->get();
-            dd($courses);
         return [
             "id" => $this->id,
             "image" => $this->image,
