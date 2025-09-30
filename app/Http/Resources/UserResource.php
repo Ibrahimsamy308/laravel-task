@@ -16,6 +16,7 @@ class UserResource extends JsonResource
      */
     public function toArray(Request $request): array
     {  
+        dd(DB::table('userCourses')->where('user_id', $this->id)->get());
         return [
             "id" => $this->id,
             "image" => $this->image,
