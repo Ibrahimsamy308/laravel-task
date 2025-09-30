@@ -32,8 +32,8 @@ class UserController extends Controller
 
 
     public function userProfile() {
-        $user = auth('api')->user();
-        $user->load('courses');
+        $user = Auth::user()->load('courses');
+        dd( $user->courses);
         return response()->json(new UserResource($user));
     }
     
