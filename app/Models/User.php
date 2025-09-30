@@ -93,7 +93,7 @@ class User extends Authenticatable
     }
     public function exams()
     {
-        return $this->belongsToMany(Exam::class,'userExams')
+        return $this->belongsToMany(Exam::class,'userExams','user_id', 'course_id')
         ->withPivot(['id','score', 'answers']); 
     }
 

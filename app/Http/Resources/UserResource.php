@@ -23,11 +23,8 @@ class UserResource extends JsonResource
             "phone" => $this->phone,
             'points'=>$this->points,
             "cart" => $this->cart,
-            'courses'  => CourseResource::collection(
-                Course::whereHas('users', function ($q) {
-                    $q->where('users.id', $this->id);
-                })->get()
-            ),
+            'courses'  => CourseResource::collection($this->courses),
+
         ];
     }
 }
