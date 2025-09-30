@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\DB;
+
+
 
 class UserController extends Controller
 {
@@ -31,10 +32,8 @@ class UserController extends Controller
 
 
     public function userProfile() {
-        $user = User::with('courses')->find(Auth::id());
-        return new UserResource($user);        
+        return response()->json(new UserResource(auth('api')->user()));
     }
-    
 
     public function update(UserRequest $request)
     {

@@ -94,18 +94,18 @@ class User extends Authenticatable
             'userCourses',   // اسم جدول الربط (بالضبط زي ما في DB)
             'user_id',       // مفتاح اليوزر في جدول الربط
             'course_id'      // مفتاح الكورس في جدول الربط
-        );
+        )->withoutGlobalScope('user_scope');
     }
     
     public function exams()
     {
         return $this->belongsToMany(Exam::class,'userExams')
-        ->withPivot(['id','score', 'answers']); 
+        ->withPivot(['id','score', 'answers'])->withoutGlobalScope('user_scope'); 
     }
 
     public function videos()
     {
-        return $this->belongsToMany(Video::class,'userVideos');
+        return $this->belongsToMany(Video::class,'userVideos')->withoutGlobalScope('user_scope');
     }
 
 }
