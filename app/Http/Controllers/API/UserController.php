@@ -32,7 +32,7 @@ class UserController extends Controller
 
 
     public function userProfile() {
-        $user = Auth::user()->load('courses');
+        $user =User::find(Auth::user()->id);
         return new UserResource($user);        
     }
     
