@@ -16,7 +16,7 @@ class CourseResource extends JsonResource
     public function toArray($request)
     {
         $user = Auth::guard('api')->user();
-        
+        dd(  $user);
         return [
             "id" => $this->id,
             "image" => $this->image,
