@@ -17,13 +17,10 @@ class UserResource extends JsonResource
     public function toArray(Request $request): array
     {  
         // dd(DB::table('userCourses')->where('user_id', $this->id)->get());
-        $courses = DB::table('courses')
-            ->whereIn('id', function ($query) {
-                $query->select('course_id')
-                    ->from('userCourses')
-                    ->where('user_id', $this->id);
-            })
-            ->get();
+        $courses = Course::join('userCourses', 'courses.id', '=', 'userCourses.course_id')
+        ->where('userCourses.user_id', $this->id)
+        ->select('courses.*', 'userCourses.created_at as pivot_created_at')
+        ->get();
         return [
             "id" => $this->id,
             "image" => $this->image,
