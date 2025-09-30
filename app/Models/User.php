@@ -89,8 +89,14 @@ class User extends Authenticatable
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class,'userCourses','user_id', 'course_id');
+        return $this->belongsToMany(
+            Course::class,   // الموديل المرتبط
+            'userCourses',   // اسم جدول الربط (بالضبط زي ما في DB)
+            'user_id',       // مفتاح اليوزر في جدول الربط
+            'course_id'      // مفتاح الكورس في جدول الربط
+        );
     }
+    
     public function exams()
     {
         return $this->belongsToMany(Exam::class,'userExams')
