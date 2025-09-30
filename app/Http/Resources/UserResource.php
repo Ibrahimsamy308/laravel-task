@@ -17,6 +17,14 @@ class UserResource extends JsonResource
     public function toArray(Request $request): array
     {  
         // dd(DB::table('userCourses')->where('user_id', $this->id)->get());
+        $courses = DB::table('courses')
+            ->whereIn('id', function ($query) {
+                $query->select('course_id')
+                    ->from('userCourses')
+                    ->where('user_id', $this->id);
+            })
+            ->get();
+            dd($courses);
         return [
             "id" => $this->id,
             "image" => $this->image,
@@ -26,13 +34,7 @@ class UserResource extends JsonResource
             'points'=>$this->points,
             "cart" => $this->cart,
             'courses' => CourseResource::collection(
-             DB::table('courses')
-                ->whereIn('id', function($q) {
-                    $q->select('course_id')
-                    ->from('userCourses')
-                    ->where('user_id', $this->id);
-                })
-                ->get(),
+                DB::table('userCourses')->where('user_id', $this->id)->get(),
             ),
         ];
     }
