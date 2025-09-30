@@ -26,10 +26,13 @@ class UserResource extends JsonResource
             'points'=>$this->points,
             "cart" => $this->cart,
             'courses' => CourseResource::collection(
-                Course::join('userCourses', 'courses.id', '=', 'userCourses.course_id')
-                    ->where('userCourses.user_id', $this->id)
-                    ->select('courses.*')
-                    ->get()
+             DB::table('courses')
+                ->whereIn('id', function($q) {
+                    $q->select('course_id')
+                    ->from('userCourses')
+                    ->where('user_id', $this->id);
+                })
+                ->get(),
             ),
         ];
     }
