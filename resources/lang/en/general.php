@@ -13,7 +13,15 @@ return [
     |
     */
 
-
+'welcome_to' => 'Welcome to',
+    'login_your_account' => 'Log in to your account',
+    'email_address' => 'Email Address',
+    'password' => 'Password',
+    'remember_me' => 'Remember Me',
+    'forgot_password' => 'Forgot Password?',
+    'login' => 'Log In',
+    'no_account' => "Don't have an account?",
+    'create_account' => 'Create an Account',
 'Users' => 'Users',
 'Orders' => 'Orders',
 'Settings' => 'Settings',

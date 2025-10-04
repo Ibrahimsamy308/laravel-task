@@ -12,8 +12,15 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-
-    "delete_item" => "حذف العنصر",  
+'welcome_to' => 'مرحبًا بك في',
+    'login_your_account' => 'قم بتسجيل الدخول إلى حسابك',
+    'email_address' => 'البريد الإلكتروني',
+    'password' => 'كلمة المرور',
+    'remember_me' => 'تذكرني',
+    'forgot_password' => 'نسيت كلمة المرور؟',
+    'login' => 'تسجيل الدخول',
+    'no_account' => 'ليس لديك حساب؟',
+    'create_account' => 'إنشاء حساب جديد',
 
 "show_all" => "عرض الكل",  
 

@@ -44,8 +44,8 @@
                 <div class="col-xl-5 col-lg-6">
                     <div class="log-in-box">
                         <div class="log-in-title">
-                            <h3>Welcome To {{ settings()->title }} </h3>
-                            <h4>Log In Your Account</h4>
+                        <h3>{{ __('general.welcome_to') }} {{ settings()->title }}</h3>
+                        <h4>{{ __('general.login_your_account') }}</h4>
                         </div>
 
                         <div class="input-box">
@@ -58,16 +58,16 @@
                                     <div class="col-12">
                                         <div class="form-floating theme-form-floating log-in-form">
                                             <input type="email" class="form-control" id="email"
-                                                placeholder="Email Address" name="email">
-                                            <label for="email">Email Address</label>
+                                                 placeholder="{{ __('general.email_address') }}" name="email">
+                                            <label for="email">{{ __('general.email_address') }}</label>
                                         </div>
                                     </div>
 
                                     <div class="col-12">
                                         <div class="form-floating theme-form-floating log-in-form position-relative">
                                             <input type="password" class="form-control" id="password"
-                                                placeholder="Password" name="password">
-                                            <label for="password">Password</label>
+                                                placeholder="{{ __('general.password') }}" name="password">
+                                    <label for="password">{{ __('general.password') }}</label>
                                             <!-- Eye Icon -->
                                             <span class="password-toggle-icon position-absolute"
                                                 style="right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
@@ -82,16 +82,17 @@
                                             <div class="form-check ps-0 m-0 remember-box">
                                                 <input class="checkbox_animated check-box" type="checkbox"
                                                     id="flexCheckDefault">
-                                                <label class="form-check-label" for="flexCheckDefault">Remember
-                                                    me</label>
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                            {{ __('general.remember_me') }}
+                                        </label>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-animation w-100 justify-content-center">
-                                            Log In
-                                        </button>
+                                    {{ __('general.login') }}
+                                </button>
                                     </div>
                                 </form>
                         </div>
