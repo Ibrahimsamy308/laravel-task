@@ -44,7 +44,7 @@
                 <div class="col-xl-5 col-lg-6">
                     <div class="log-in-box">
                         <div class="log-in-title">
-                            <h3>Welcome To Fastkart</h3>
+                            <h3>Welcome To Ramadaan Learning </h3>
                             <h4>Log In Your Account</h4>
                         </div>
 
