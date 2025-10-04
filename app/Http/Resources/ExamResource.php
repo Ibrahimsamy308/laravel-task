@@ -34,7 +34,7 @@ class ExamResource extends JsonResource
             "title" => isset($this->lesson->title)? $this->lesson->title:'' . ' - ' . __('general.exam'),
             "course_id" => $this->course_id,
             "lesson_id" => $this->lesson_id,
-            "questions" => $this->questions,
+            "questions" => json_decode($this->questions),
             "userExam" => $userExam ? [
                 "answers" => $userExam->answers,     
                 "score" => $userExam->score,
