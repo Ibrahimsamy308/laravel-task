@@ -25,10 +25,10 @@ class AdminRequest extends FormRequest
     public function rules()
     {
         $image=request()->isMethod('put')?'nullable':'required';
-        $email=request()->isMethod('put')?['required','email']:['required','email',Rule::unique('admins', 'email')->ignore($this->id)];
-        $phone= request()->isMethod('put')? ['required', 'digits:11', Rule::unique('admins', 'phone')->ignore($this->id)]: ['required', 'digits:11', Rule::unique('admins', 'phone')];
-           
-         // dd(request()->all());
+        $email=request()->isMethod('put')?['required','email',Rule::unique('admins', 'email')->ignore($this->route('admin'))]:['required','email',Rule::unique('admins', 'email')];
+        $phone= request()->isMethod('put')? ['required', 'digits:11', Rule::unique('admins', 'phone')->ignore($this->route('admin'))]: ['required', 'digits:11', Rule::unique('admins', 'phone')];
+          
+        // dd($this->route('admin'));
         return [
             'image' => $image,
             'name' => 'required',
