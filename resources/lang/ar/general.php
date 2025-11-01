@@ -444,4 +444,13 @@ return [
     'oldest' => 'الأقدم',
     'date' => 'التاريخ',
     'avgScore' => 'المتوسط',
+
+    // New keys added on 2025-11-01 15:45:49
+    'delete_item' => '',
+    'vendors' => '',
+    'expenses' => '',
+    'category' => '',
+    'createdBy' => '',
+    'vendor' => '',
+    'contact_info' => '',
 ];

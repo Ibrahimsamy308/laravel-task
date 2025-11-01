@@ -465,4 +465,12 @@ return [
     'oldest' => 'Oldest',
     'date' => 'Date',
     'avgScore' => 'Avg Score',
+
+    // New keys added on 2025-11-01 15:45:49
+    'vendors' => '',
+    'expenses' => '',
+    'category' => '',
+    'createdBy' => '',
+    'vendor' => '',
+    'contact_info' => '',
 ];

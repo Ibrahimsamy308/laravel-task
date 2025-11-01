@@ -8,7 +8,7 @@ use Illuminate\Filesystem\Filesystem;
 class SyncGeneralTranslations extends Command
 {
     protected $signature = 'translations:sync-general';
-    protected $description = 'Sync general translations for en, ar, fr locales';
+    protected $description = 'Sync general translations for en, ar locales';
 
     protected $locales = ['en', 'ar'];
     protected $translationFile = 'general.php';
