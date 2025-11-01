@@ -466,11 +466,10 @@ return [
     'date' => 'Date',
     'avgScore' => 'Avg Score',
 
-    // New keys added on 2025-11-01 15:45:49
-    'vendors' => '',
-    'expenses' => '',
-    'category' => '',
-    'createdBy' => '',
-    'vendor' => '',
-    'contact_info' => '',
+    'vendors' => 'Vendors',
+    'expenses' => 'Expenses',
+    'category' => 'Category',
+    'createdBy' => 'Created By',
+    'vendor' => 'Vendor',
+    'contact_info' => 'Contact Info',
 ];
