@@ -1,5 +1,5 @@
 ```bash
-# 💰 Expense Management System
+# 💰 Laravel Task
 
 A Laravel-based Dashboard and API project for managing **Vendors**, **Categories**, and **Expenses** with authentication, roles, and reports.
 
