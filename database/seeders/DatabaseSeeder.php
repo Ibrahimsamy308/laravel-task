@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Setting;
+use App\Models\Vendor;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,6 +23,8 @@ class DatabaseSeeder extends Seeder
             CreateAdminUserSeeder::class,
             SettingSeeder::class,
             CategorySeeder::class,
+            VendorSeeder::class,
+            ExpenseSeeder::class,
         ]);
         
     }

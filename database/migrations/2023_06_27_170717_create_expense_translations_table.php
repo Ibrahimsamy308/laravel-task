@@ -19,7 +19,7 @@ class CreateExpenseTranslationsTable extends Migration
             $table->unsignedBigInteger('expense_id');
             $table->string('locale')->index();
             $table->unique(['expense_id', 'locale']);
-            $table->foreign('expense_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('expense_id')->references('id')->on('expenses')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

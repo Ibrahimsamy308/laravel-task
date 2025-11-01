@@ -13,11 +13,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 
-class Category extends Model implements TranslatableContract
+class Expense extends Model implements TranslatableContract
 {
     use HasFactory, Translatable, MorphFile, MorphVideo,SoftDeletes;
-    protected $table = 'categories';
-    public $translatedAttributes = ['title'];
+    protected $table = 'expenses';
+    public $translatedAttributes = ['description'];
     protected $guarded = [];
     public $timestamps = true;
 
