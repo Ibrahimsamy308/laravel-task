@@ -35,7 +35,7 @@
 
 
     <!-- login section start -->
-    <section class="log-in-section section-b-space" style="background-image:url({{ settings()->image }});">
+    <section class="log-in-section section-b-space" style="background-image:url({{ asset(settings()->loginImage) }});">
         <div class="container w-100">
             <div class="row align-items-center">
 

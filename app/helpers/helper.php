@@ -2,8 +2,10 @@
 
 use App\Models\Admin;
 use App\Models\Category;
+use App\Models\Expense;
 use App\Models\Setting;
 use App\Models\User;
+use App\Models\Vendor;
 use Illuminate\Support\Facades\File;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\JsonResponse;
@@ -64,12 +66,21 @@ function itemsCount($model)
         "admins" => count(Admin::get()),
         "roles" => count(Role::get()),
         "categories" => count(Category::get()),
+        "vendors" => count(Vendor::get()),
+        "expenses" => count(Expense::get()),
     ];
 
 
     return $items[$model];
 }
 
+
+function vendors()
+{
+    $vendors = Vendor::latest()->take(14)->get();
+
+    return $vendors;
+}
 
 
     if (!function_exists('validationFailedResponse')) {

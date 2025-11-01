@@ -10,8 +10,8 @@
                                 <div class="custome-1-bg b-r-4 card-body">
                                     <div class="media align-items-center static-top-widget">
                                         <div class="media-body p-0">
-                                            <span class="m-0">{{ __('general.students') }}</span>
-                                            <h4 class="mb-0 counter">{{ '' }}
+                                            <span class="m-0">{{ __('general.admins') }}</span>
+                                            <h4 class="mb-0 counter">{{ itemsCount('admins') }}
                                                 <span class="badge badge-light-primary grow">
                                                     <i data-feather="trending-up"></i>8.5%</span>
                                             </h4>
@@ -29,8 +29,8 @@
                                 <div class="custome-2-bg b-r-4 card-body">
                                     <div class="media static-top-widget">
                                         <div class="media-body p-0">
-                                            <span class="m-0">{{ __('general.instructors') }}</span>
-                                            <h4 class="mb-0 counter">{{ '' }}
+                                            <span class="m-0">{{ __('general.vendors') }}</span>
+                                            <h4 class="mb-0 counter">{{ itemsCount('vendors') }}
                                                 <span class="badge badge-light-danger grow">
                                                     <i data-feather="trending-down"></i>8.5%</span>
                                             </h4>
@@ -48,8 +48,8 @@
                                 <div class="custome-3-bg b-r-4 card-body">
                                     <div class="media static-top-widget">
                                         <div class="media-body p-0">
-                                            <span class="m-0">{{ __('general.courses') }}</span>
-                                            <h4 class="mb-0 counter">{{ '' }}
+                                            <span class="m-0">{{ __('general.categories') }}</span>
+                                            <h4 class="mb-0 counter">{{ itemsCount('categories') }}
                                                 <a href="add-new-product.html" class="badge badge-light-secondary grow">
                                                     ADD NEW</a>
                                             </h4>
@@ -68,8 +68,8 @@
                                 <div class="custome-4-bg b-r-4 card-body">
                                     <div class="media static-top-widget">
                                         <div class="media-body p-0">
-                                            <span class="m-0">{{ __('general.videos') }}</span>
-                                            <h4 class="mb-0 counter">{{ '' }}
+                                            <span class="m-0">{{ __('general.expenses') }}</span>
+                                            <h4 class="mb-0 counter">{{ itemsCount('expenses') }}
                                                 <span class="badge badge-light-success grow">
                                                     <i data-feather="trending-down"></i>8.5%</span>
                                             </h4>
@@ -87,27 +87,27 @@
                             <div class="card o-hidden card-hover">
                                 <div class="card-header border-0 pb-1">
                                     <div class="card-header-title p-0">
-                                        <h4>{{ __('general.courses') }}</h4>
+                                        <h4>{{ __('general.vendors') }}</h4>
                                     </div>
                                 </div>
                                 <div class="card-body p-0">
                                     <div class="category-slider no-arrow">
 
-                                        {{-- @foreach (courses() as $course)
+                                        @foreach (vendors() as $vendor)
                                             <div>
                                                 <div class="dashboard-category">
                                                 
 
                                                     <a href="javascript:void(0)" class="category-image">
-                                                        <img src="{{asset($course->image)}}" class="img-fluid no-filter"  alt="">
+                                                        <img src="{{asset($vendor->image)}}" class="img-fluid no-filter"  alt="">
                                                     </a>
                                                     
                                                     <a href="javascript:void(0)" class="category-name">
-                                                        <h6>{{ $course->title }}</h6>
+                                                        <h6>{{ $vendor->title }}</h6>
                                                     </a>
                                                 </div>
                                             </div>
-                                        @endforeach --}}
+                                        @endforeach
                                         
                                     </div>
                                 </div>

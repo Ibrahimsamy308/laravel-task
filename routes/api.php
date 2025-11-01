@@ -4,6 +4,7 @@
 use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\ExpenseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
@@ -31,8 +32,9 @@ Route::group(['middleware' => ['apiLocalization','cors']], function () {
     Route::get('/vendors', [VendorController::class, 'index']);
     Route::get('/vendor/{id}', [VendorController::class, 'show']);
 
-    Route::get('/instructors', [AdminController::class, 'index']);
-    Route::get('/instructor/{id}', [AdminController::class, 'show']);
+    Route::get('/expenses', [ExpenseController::class, 'index']);
+    Route::get('/expense/{id}', [ExpenseController::class, 'show']);
+
 
     Route::get('/users', [UserController::class, 'index']);
     Route::get('/user/{id}', [UserController::class, 'show']);

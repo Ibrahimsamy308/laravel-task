@@ -9,9 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
-
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 class Expense extends Model implements TranslatableContract
 {
@@ -25,4 +24,43 @@ class Expense extends Model implements TranslatableContract
         $image = $this->file()->where('type', 'image')->first();
         return $image ? asset($image->url) : settings()->logo;
     }    
+
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            if (Auth::check() ) {
+                $model->createdBy_id = Auth::id();
+            }
+        });
+
+        static::updating(function ($model) {
+            if (Auth::check() ) {
+                $model->createdBy_id = Auth::id();
+            }
+        });
+        static::addGlobalScope('user_scope', function (Builder $builder) {
+            if (Auth::check() && Auth::user()->type !== 'admin') {
+                $builder->where('createdBy_id', Auth::id());
+            }
+        });
+    }
+
+
+    public function createdBy()
+    {
+        return $this->belongsTo(Admin::class, 'createdBy_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
+
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class, 'vendor_id');
+    }
+
+    
 }
