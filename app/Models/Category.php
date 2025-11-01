@@ -24,11 +24,6 @@ class Category extends Model implements TranslatableContract
         return $image ? asset($image->url) : settings()->logo;
     }
 
-//    public function getVideoAttribute()
-//     {
-//         return $this->video ? asset($this->video->url) : asset('videos/default.mp4');
-//     }
-
     public function getVideoAttribute()
     {
         $video = $this->file()->where('type', 'video')->first();
@@ -36,16 +31,6 @@ class Category extends Model implements TranslatableContract
     }
 
 
-
-
-
-   public function products(){
-    return $this->hasMany(Product::class);
-   }
-
-   public function subcategories(){
-    return $this->hasMany(Subcategory::class);
-   }
 
     
 }

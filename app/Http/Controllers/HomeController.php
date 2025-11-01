@@ -53,22 +53,7 @@ class HomeController extends Controller
     public function index()
     {
         try {
-
-
-
             return redirect()->route('admin.login-view');
-            // $services = $this->service->get();
-            // $testimonials = $this->testimonial->get();
-            // $processes = $this->process->take(9)->latest()->get();
-            // $teams = $this->team->latest()->get();
-            // $counters = $this->counter->get();
-            // $portfolios = $this->portfolio->get();
-            // $faqs=$this->faq->get();
-            // // $settings=$this->settings->get();
-            // $teams=$this->teams->get();
-            // $partners=$this->partners->get();
-
-            // return view('front.index', compact('testimonials', 'services', 'processes', 'portfolios', 'teams', 'counters','faqs','teams','partners'));
         } catch (Exception $e) {
             dd($e->getMessage());
             return redirect()->back()->with(['error' => __('general.something_wrong')]);

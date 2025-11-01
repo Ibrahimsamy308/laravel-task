@@ -88,6 +88,9 @@
                                         <select name="questions[0][correct]" class="form-select correct-select" required>
                                             <option value="">{{ __('general.select_correct_answer') }}</option>
                                         </select>
+
+                                        <label class="fw-bold text-dark">{{ __('general.upload_video') }}:</label>
+                                        <input type="file" name="questions[0][video]" accept="video/*" class="form-control mb-2">
                                     </div>
                                 </div>                                
 
@@ -114,7 +117,7 @@
 @push('scripts')
 <script>
     let qIndex = 1;
-
+    
     // Add Question
     document.getElementById('add-question').addEventListener('click', function() {
         let wrapper = document.getElementById('questions-wrapper');
@@ -124,20 +127,21 @@
                 class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2 remove-question">
                 <i class="fa fa-trash"></i>
             </button>
-
+    
             <h6 class="fw-bold mb-3 text-dark">
                 <i class="fa-solid fa-circle-question me-2"></i>
                 {{ __('general.question') }}
             </h6>
-
+    
             <input type="text" name="questions[${qIndex}][question]"
-                class="form-control mb-3" placeholder="{{ __('general.enter_question') }}" required>
-
+                class="form-control mb-3"
+                placeholder="{{ __('general.enter_question') }}" required>
+    
             <div class="answers-wrapper">
                 <div class="answer-item d-flex mb-2">
-                    <input type="text" name="questions[${qIndex}][answers][]" 
-                        class="form-control me-2 answer-input" 
-                        placeholder="{{ __('general.answer_option') }}" 
+                    <input type="text" name="questions[${qIndex}][answers][]"
+                        class="form-control me-2 answer-input"
+                        placeholder="{{ __('general.answer_option') }}"
                         oninput="updateCorrectOptions(this)" required>
                     <button type="button"
                         class="btn btn-outline-danger btn-sm remove-answer">
@@ -145,22 +149,25 @@
                     </button>
                 </div>
             </div>
-
+    
             <button type="button"
                 class="btn btn-outline-success btn-sm add-answer mb-3">
                 <i class="fa fa-plus"></i> {{ __('general.addAnswer') }}
             </button>
-
+    
             <label class="fw-bold text-dark">{{ __('general.correct_answer') }}:</label>
-            <select name="questions[${qIndex}][correct]" class="form-select correct-select" required>
+            <select name="questions[${qIndex}][correct]" class="form-select correct-select mb-3" required>
                 <option value="">{{ __('general.select_correct_answer') }}</option>
             </select>
+    
+            <label class="fw-bold text-dark">{{ __('general.upload_video') }}:</label>
+            <input type="file" name="questions[${qIndex}][video]" accept="video/*" class="form-control mb-2">
         </div>
         `;
         wrapper.insertAdjacentHTML('beforeend', html);
         qIndex++;
     });
-
+    
     // Delegate buttons
     document.addEventListener('click', function(e) {
         // Add Answer
@@ -170,9 +177,9 @@
             let wrapper = parent.querySelector('.answers-wrapper');
             wrapper.insertAdjacentHTML('beforeend', `
                 <div class="answer-item d-flex mb-2">
-                    <input type="text" name="questions[${idx}][answers][]" 
-                        class="form-control me-2 answer-input" 
-                        placeholder="{{ __('general.answer_option') }}" 
+                    <input type="text" name="questions[${idx}][answers][]"
+                        class="form-control me-2 answer-input"
+                        placeholder="{{ __('general.answer_option') }}"
                         oninput="updateCorrectOptions(this)" required>
                     <button type="button"
                         class="btn btn-outline-danger btn-sm remove-answer">
@@ -182,33 +189,33 @@
             `);
             refreshCorrectOptions(parent);
         }
-
+    
         // Remove Answer
         if(e.target.closest('.remove-answer')) {
             let parent = e.target.closest('.question-item');
             e.target.closest('.answer-item').remove();
             refreshCorrectOptions(parent);
         }
-
+    
         // Remove Question
         if(e.target.closest('.remove-question')) {
             e.target.closest('.question-item').remove();
         }
     });
-
-    // تحديث الـ correct select بناءً على الإجابات
+    
+    // تحديث correct select
     function updateCorrectOptions(input) {
         let parent = input.closest('.question-item');
         refreshCorrectOptions(parent);
     }
-
+    
     function refreshCorrectOptions(questionDiv) {
         let answers = questionDiv.querySelectorAll('.answer-input');
         let select = questionDiv.querySelector('.correct-select');
         let current = select.value;
-
+    
         select.innerHTML = `<option value="">${@json(__('general.select_correct_answer'))}</option>`;
-
+    
         answers.forEach(ans => {
             if(ans.value.trim() !== "") {
                 let opt = document.createElement('option');
@@ -219,6 +226,6 @@
             }
         });
     }
-</script>
+    </script>
 
 @endpush

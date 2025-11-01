@@ -76,19 +76,6 @@
                                         </div>
                                     </div>
 
-
-                                    <div class="col-12">
-                                        <div class="forgot-box">
-                                            <div class="form-check ps-0 m-0 remember-box">
-                                                <input class="checkbox_animated check-box" type="checkbox"
-                                                    id="flexCheckDefault">
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                            {{ __('general.remember_me') }}
-                                        </label>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-animation w-100 justify-content-center">
                                     {{ __('general.login') }}
