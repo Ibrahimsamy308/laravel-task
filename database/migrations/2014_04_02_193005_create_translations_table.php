@@ -21,6 +21,7 @@ class CreateTranslationsTable extends Migration {
             $table->string('group');
             $table->text('key');
             $table->text('value')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
 	}

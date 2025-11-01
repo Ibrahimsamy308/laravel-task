@@ -22,7 +22,6 @@ class SettingSeeder extends Seeder
                 'address' => 'Online Platform - Serving Students Worldwide',
                 'description' => "Ramadaan Learning is an online educational platform dedicated to delivering high-quality learning content across various fields. Our structured courses and modern teaching methods help learners grow and enhance their skills.",
                 'meta_data' => 'Ramadaan Learning - Educational Platform, Skill Development, Online Learning',
-                'policy' => 'Ramadaan Learning - Your Trusted Educational Companion',
             ],                   
             'ar' => [
                 'appointment' => '24/7',
@@ -31,7 +30,6 @@ class SettingSeeder extends Seeder
                 'address' => 'منصة تعليمية عبر الإنترنت - نخدم الطلاب في جميع أنحاء العالم',
                 'description' => "رمضان ليرنينج هي منصة تعليمية إلكترونية تهدف إلى تقديم محتوى تعليمي متميز في مختلف المجالات، من خلال دورات منظمة وأساليب حديثة تساعد على تطوير المهارات والمعرفة.",
                 'meta_data' => 'رمضان ليرنينج - منصة تعليمية، تطوير مهارات، تعلم عبر الإنترنت',
-                'policy' => 'رمضان ليرنينج - رفيقك التعليمي الموثوق',
             ],
             
             

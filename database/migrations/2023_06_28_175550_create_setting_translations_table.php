@@ -21,11 +21,12 @@ class CreateSettingTranslationsTable extends Migration
             $table->text('appointment')->nullable();
             $table->text('copyright')->nullable();
             $table->text('meta_data')->nullable();
-            $table->text('policy')->nullable();
             $table->unsignedBigInteger('setting_id');
             $table->string('locale')->index();
             $table->unique(['setting_id', 'locale']);
             $table->foreign('setting_id')->references('id')->on('settings')->onDelete('cascade');
+            $table->softDeletes();
+
             $table->timestamps();
         });
     }

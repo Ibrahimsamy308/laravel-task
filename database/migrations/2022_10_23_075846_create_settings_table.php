@@ -21,11 +21,7 @@ class CreateSettingsTable extends Migration
             $table->string('breadcrumb')->nullable();
             $table->text('map')->nullable();
             $table->string('image')->nullable();
-            $table->text('latitude')->nullable();
-            $table->text('longitude')->nullable();
-            $table->text('nutritionDefault')->nullable();
-            $table->double('shipping')->nullable();
-            $table->double('taxes')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
