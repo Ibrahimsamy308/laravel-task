@@ -24,11 +24,6 @@ class PermissionTableSeeder extends Seeder
            'user-create',
            'user-edit',
            'user-delete',
-          
-           'image-list',
-           'image-create',
-           'image-edit',          
-           'image-delete',
             
            'category-list',
            'category-create',
@@ -41,53 +36,16 @@ class PermissionTableSeeder extends Seeder
            'admin-create',
            'admin-edit',
            'admin-delete',
-           
-           'message-list',
-           'message-delete',
-           'message-reply',
-           
-           'newsletter-list',
-           'newsletter-delete',
-           'newsletter-reply',
 
+           'vendor-list',
+           'vendor-create',
+           'vendor-edit',
+           'vendor-delete',
 
-           'newsletter-list',
-           'newsletter-delete',
-
-           'message-list',
-           'message-delete',
-
-           'contact-list',
-           'contact-create',
-           'contact-edit',
-           'contact-delete',
-
-           'video-list',
-           'video-create',
-           'video-edit',
-           'video-delete',
-           
-           'lesson-list',
-           'lesson-create',
-           'lesson-edit',
-           'lesson-delete',
-           
-           'course-list',
-           'course-create',
-           'course-edit',
-           'course-delete',
-
-           'material-list',
-           'material-create',
-           'material-edit',
-           'material-delete',
-
-           'exam-list',
-           'exam-create',
-           'exam-edit',
-           'exam-delete',
-           
-           'userExam-list',
+           'expense-list',
+           'expense-create',
+           'expense-edit',
+           'expense-delete',
         ];
         
         Permission::where('guard_name', 'admin')
