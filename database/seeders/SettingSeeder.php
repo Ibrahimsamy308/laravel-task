@@ -17,7 +17,7 @@ class SettingSeeder extends Seeder
         Setting::create([
             'en' => [
                 'appointment' => 'Available: 24/7',
-                'copyright' => 'Copyright © Ramadaan Learning 2025. All rights reserved.',
+                'copyright' => 'Copyright © Ibrahim samy 2025. All rights reserved.',
                 'title' => 'Ramadaan Learning',
                 'address' => 'Online Platform - Serving Students Worldwide',
                 'description' => "Ramadaan Learning is an online educational platform dedicated to delivering high-quality learning content across various fields. Our structured courses and modern teaching methods help learners grow and enhance their skills.",

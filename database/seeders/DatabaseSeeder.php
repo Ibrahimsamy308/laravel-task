@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Setting;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
           
             PermissionTableSeeder::class,
             CreateAdminUserSeeder::class,
+            SettingSeeder::class,
             CategorySeeder::class,
         ]);
         

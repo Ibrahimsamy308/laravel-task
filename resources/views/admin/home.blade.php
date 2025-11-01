@@ -11,7 +11,7 @@
                                     <div class="media align-items-center static-top-widget">
                                         <div class="media-body p-0">
                                             <span class="m-0">{{ __('general.students') }}</span>
-                                            <h4 class="mb-0 counter">{{ itemsCount('users') }}
+                                            <h4 class="mb-0 counter">{{ '' }}
                                                 <span class="badge badge-light-primary grow">
                                                     <i data-feather="trending-up"></i>8.5%</span>
                                             </h4>
@@ -30,7 +30,7 @@
                                     <div class="media static-top-widget">
                                         <div class="media-body p-0">
                                             <span class="m-0">{{ __('general.instructors') }}</span>
-                                            <h4 class="mb-0 counter">{{ itemsCount('instructors') }}
+                                            <h4 class="mb-0 counter">{{ '' }}
                                                 <span class="badge badge-light-danger grow">
                                                     <i data-feather="trending-down"></i>8.5%</span>
                                             </h4>
@@ -49,7 +49,7 @@
                                     <div class="media static-top-widget">
                                         <div class="media-body p-0">
                                             <span class="m-0">{{ __('general.courses') }}</span>
-                                            <h4 class="mb-0 counter">{{ itemsCount('courses') }}
+                                            <h4 class="mb-0 counter">{{ '' }}
                                                 <a href="add-new-product.html" class="badge badge-light-secondary grow">
                                                     ADD NEW</a>
                                             </h4>
@@ -69,7 +69,7 @@
                                     <div class="media static-top-widget">
                                         <div class="media-body p-0">
                                             <span class="m-0">{{ __('general.videos') }}</span>
-                                            <h4 class="mb-0 counter">{{ itemsCount('videos') }}
+                                            <h4 class="mb-0 counter">{{ '' }}
                                                 <span class="badge badge-light-success grow">
                                                     <i data-feather="trending-down"></i>8.5%</span>
                                             </h4>
@@ -93,12 +93,10 @@
                                 <div class="card-body p-0">
                                     <div class="category-slider no-arrow">
 
-                                        @foreach (courses() as $course)
+                                        {{-- @foreach (courses() as $course)
                                             <div>
                                                 <div class="dashboard-category">
-                                                    {{-- <a href="javascript:void(0)" class="category-image">
-                                                        <img src="{{asset($course->image)}}" class="img-fluid no-filter"  alt="">
-                                                    </a> --}}
+                                                
 
                                                     <a href="javascript:void(0)" class="category-image">
                                                         <img src="{{asset($course->image)}}" class="img-fluid no-filter"  alt="">
@@ -109,7 +107,7 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                        @endforeach
+                                        @endforeach --}}
                                         
                                     </div>
                                 </div>
@@ -119,12 +117,12 @@
 
                         <!-- Best Selling Courses Start -->
 
-                        @php
+                        {{-- @php
                             $sortBy = request()->get('sort', 'price_desc');
                             $courses = getCoursesBySort($sortBy);
-                        @endphp
+                        @endphp --}}
 
-                        <div class="col-xl-6 col-md-12">
+                        {{-- <div class="col-xl-6 col-md-12">
                             <div class="card o-hidden card-hover">
                                 <div class="card-header card-header-top card-header--2 px-0 pt-0">
                                     <div class="card-header-title">
@@ -203,82 +201,12 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>                 
+                        </div>                  --}}
 
                         <!-- Best Selling Courses End -->
 
 
                         <!-- Recent orders start-->
-
-                        <div class="col-xl-6">
-                            <div class="card o-hidden card-hover">
-                                <div class="card-header card-header-top card-header--2 px-0 pt-0">
-                                    <div class="card-header-title">
-                                        <h4>{{ __('general.recentExams') }}</h4>
-                                    </div>
-
-                                    <div class="best-selling-box d-sm-flex d-none">
-                                        <span>{{ __('general.sortBy') }}:</span>
-                                        <div class="dropdown">
-                                            <button class="btn p-0 dropdown-toggle" type="button"
-                                                id="dropdownMenuExams" data-bs-toggle="dropdown"
-                                                data-bs-auto-close="true">{{ __('general.newest') }}</button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuExams">
-                                                <li><a class="dropdown-item exam-sort" data-sort="new" href="?sort=new">{{ __('general.newest') }}</a></li>
-                                                <li><a class="dropdown-item exam-sort" data-sort="old" href="?sort=old">{{ __('general.oldest') }}</a></li>
-                                                <li><a class="dropdown-item exam-sort" data-sort="most_students" href="?sort=most_students">{{ __('general.mostStudents') }}</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card-body p-0">
-                                    <div>
-                                        <div class="table-responsive">
-                                            <table class="best-selling-table table border-0">
-                                                <tbody id="exam-table-body">
-                                                    @foreach(getSortedExams() as $exam)
-                                                        <tr>
-                                                            <td>
-                                                                <div class="best-product-box">
-                                                                    <div class="product-name">
-                                                                        <h5>{{ $exam->title }}</h5>
-                                                                        <h6>#{{ $exam->id }}</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-
-                                                            <td>
-                                                                <div class="product-detail-box">
-                                                                    <h6>{{ __('general.date') }}</h6>
-                                                                    <h5>{{ $exam->created_at->format('d-m-Y') }}</h5>
-                                                                </div>
-                                                            </td>
-
-                                                            <td>
-                                                                <div class="product-detail-box">
-                                                                    <h6>{{ __('general.students') }}</h6>
-                                                                    <h5>{{ $exam->users_count }}</h5>
-                                                                </div>
-                                                            </td>
-
-                                                            <td>
-                                                                <div class="product-detail-box">
-                                                                    <h6>{{ __('general.avgScore') }}</h6>
-                                                                    <h5>
-                                                                        {{ round($exam->users->avg(fn($u) => $u->pivot->score), 2) ?? 0 }}
-                                                                    </h5>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
