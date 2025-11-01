@@ -15,7 +15,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="title-header option-title">
-                                        <h5>{{ __('general.show') }} {{ __('general.products') }}</h5>
+                                        <h5>{{ __('general.show') }} {{ __('general.categories') }}</h5>
                                     </div>
                                     <ul class="nav nav-pills mb-3 d-flex" id="pills-tab" role="tablist">
                                         @foreach (config('translatable.locales') as $key => $locale)
@@ -34,54 +34,49 @@
                                                 id="pills-{{ $locale }}" role="tabpanel">
                                                 <!-- normal input -->
                                                 <div class="mb-4 row align-items-center">
-                                                    <div class="col-sm-6"> <label
+                                                    <div class="col-sm-12"> <label
                                                             class="form-label-title mb-0">{{ __('general.title') }}</label>
                                                         <p class="bg-show p-2 mt-2">
                                                             {{ $category->translate($locale)->title }}</p>
                                                     </div>
                                                 </div>
 
-                                                <!-- normal input -->
-                                                <div class="mb-4 row align-items-center">
-                                                    <div class="col-sm-6"> <label
-                                                            class="form-label-title mb-0">{{ __('general.subtitle') }}</label>
-                                                        <p class="bg-show p-2 mt-2">
-                                                            {{ $category->translate($locale)->subtitle }}</p>
-                                                    </div>
-                                                </div>
-
-                                                <!-- normal input -->
-                                                <div class="mb-4 row align-items-center">
-                                                    <div class="col-sm-6"> <label
-                                                            class="form-label-title mb-0">{{ __('general.description') }}</label>
-                                                        {!! $category->translate($locale)->description !!} </div>
-                                                </div>
+                                               
 
                                             </div>
                                         @endforeach
                                     </div>
-                                    <!-- normal input -->
+                                    <!-- Is Active -->
                                     <div class="mb-4 row align-items-center">
-                                        <div class="col-sm-6"> <label
-                                                class="form-label-title mb-0">{{ __('general.icon') }}</label>
-                                            <p class="bg-show p-2 mt-2">{{ $category->icon }}</p>
+                                    <label class="form-label-title col-sm-3 mb-0">
+                                        {{ __('general.is_active') }}
+                                    </label>
+                                    <div class="col-sm-12">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input"
+                                                type="checkbox"
+                                                id="is_active"
+                                                name="is_active"
+                                                value="1"
+                                                {{ old('is_active', $category->is_active) ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="is_active">
+                                                {{ __('general.active') }}
+                                            </label>
                                         </div>
                                     </div>
-                                    <!-- normal input -->
-                                    <div class="mb-4 row align-items-center">
-                                        <div class="col-sm-6"> <label
-                                                class="form-label-title mb-0">{{ __('general.created_at') }}</label>
-                                            <p class="bg-show p-2 mt-2">{{ $category->created_at }}</p>
-                                        </div>
-                                    </div>
+                                </div>
 
-                                    <!-- normal input -->
-                                    <div class="mb-4 row align-items-center">
-                                        <div class="col-sm-6"> <label
-                                                class="form-label-title mb-0">{{ __('general.updated_at') }}</label>
-                                            <p class="bg-show p-2 mt-2">{{ $category->updated_at }}</p>
-                                        </div>
-                                    </div>
+
+                                <div class="col-sm-12"> 
+                                    <label
+                                        class="form-label-title mb-0">{{ __('general.image :') }}
+                                    </label> 
+                                    <img
+                                        class="bg-show p-2 mt-2" width="250" height="250"
+                                        src="{{ $category->image }}" alt=""> 
+                                </div>
+
+                                  
                                 </div>
                             </div>
                         </div>

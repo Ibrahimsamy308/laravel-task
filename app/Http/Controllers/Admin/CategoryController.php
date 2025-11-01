@@ -59,9 +59,9 @@ class CategoryController extends Controller
     {
         try {
             $data = $request->except('image','profile_avatar_remove','video','profile_video_remove');
+            $data['is_active'] = $request->has('is_active') ? 1 : 0;
             $category = $this->category->create($data);
-            // $category->uploadFile();
-            $category->uploadVideo();
+            $category->uploadFile();
             
             return redirect()->route('categories.index')
                 ->with('success', trans('general.created_successfully'));
@@ -104,9 +104,9 @@ class CategoryController extends Controller
     {
         try {
             $data = $request->except('image','profile_avatar_remove','video');
+            $data['is_active'] = $request->has('is_active') ? 1 : 0;
             $category->update($data);
-            // $category->updateFile();
-            $category->updateVideo();
+            $category->updateFile();
             return redirect()->route('categories.index', compact('category'))
                 ->with('success', trans('general.update_successfully'));
         } catch (Exception $e) {
@@ -124,8 +124,7 @@ class CategoryController extends Controller
     {
         try {
             $category->delete();
-            // $category->deleteFile();
-            $category->deleteVideo();
+            $category->deleteFile();
             return redirect()->route('categories.index')
                 ->with('success', trans('general.deleted_successfully'));
         } catch (Exception $e) {

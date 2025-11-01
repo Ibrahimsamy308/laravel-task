@@ -54,27 +54,39 @@
                                         @endforeach
                                     </div>
 
+
+
                                     {{-- Image Input --}}
                                     <div class="row">
-                                        {{-- <div class="col-md-6"> @include('admin.components.image', [
+
+                                        <!-- Is Active -->
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-3 mb-0">
+                                                {{ __('general.is_active') }}
+                                            </label>
+                                            <div class="col-sm-9">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input"
+                                                        type="checkbox"
+                                                        id="is_active"
+                                                        name="is_active"
+                                                        value="1"
+                                                        {{ old('is_active', $category->is_active) ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="is_active">
+                                                        {{ __('general.active') }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6"> @include('admin.components.image', [
                                             'label' => __('general.image'),
                                             'value' => old('image', $category->image),
                                             'name' => 'image',
                                             'id' => 'kt_image_3',
                                             'accept' => 'image/*',
                                             'required' => true,
-                                        ]) </div> --}}
+                                        ]) </div>
 
-                                        <div class="col-md-6">
-                                            @include('admin.components.video', [
-                                                'label' => __('general.video'),
-                                                'value' => old('video',$category->video),
-                                                'name' => 'video',
-                                                'id' => 'kt_video_1',
-                                                'accept' => 'video/*',
-                                                'required' => true,
-                                            ])
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="card-submit-button">

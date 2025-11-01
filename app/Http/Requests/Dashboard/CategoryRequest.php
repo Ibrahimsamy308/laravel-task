@@ -23,11 +23,9 @@ class CategoryRequest extends FormRequest
 
 
         $image = request()->isMethod('put') ? 'nullable' : 'required';
-        $video = $this->isMethod(method: 'put') ? 'nullable|mimes:mp4,avi,mov,wmv|max:200000' : 'required|mimes:mp4,avi,mov,wmv|max:200000';
 
         $rules = [
-            // 'image' =>  $image ,
-            'video' => $video,
+            'image' =>  $image ,
         ];
         foreach (config('translatable.locales') as $locale) {
             $rules += [$locale . '.title' => ['required', 'string']];
