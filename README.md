@@ -37,8 +37,8 @@ A Laravel-based Dashboard and API project for managing **Vendors**, **Categories
 
 1. **Clone the repository**
 
-    ```bash
-     git clone https://github.com/your-username/expense-management-system.git
+
+     git clone https://github.com/Ibrahimsamy308/laravel-task.git
      cd expense-management-system
      composer install
      cp .env.example .env
@@ -46,6 +46,9 @@ A Laravel-based Dashboard and API project for managing **Vendors**, **Categories
      php artisan migrate --seed
      php artisan passport:install
      php artisan serve
+
+     dashboard: http://localhost:8000/en/dashboard
+     api: http://localhost:8000/api
 
 
      TEST credentials
