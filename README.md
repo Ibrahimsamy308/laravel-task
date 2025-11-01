@@ -39,7 +39,7 @@ A Laravel-based Dashboard and API project for managing **Vendors**, **Categories
 
 
      git clone https://github.com/Ibrahimsamy308/laravel-task.git
-     cd expense-management-system
+     cd laravel-task
      composer install
      cp .env.example .env
      php artisan key:generate
