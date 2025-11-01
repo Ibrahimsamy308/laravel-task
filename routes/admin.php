@@ -52,6 +52,8 @@ Route::group(
             Route::resource('roles', RoleController::class);
             Route::resource('users', UserController::class);
             Route::resource('admins', AdminController::class);
+            Route::resource('vendors', VendorController::class);
+            Route::resource('expenses', ExpenseController::class);
             
             Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
          

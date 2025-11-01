@@ -87,6 +87,61 @@
                         </li>
                     @endcanany
 
+
+                    {{-- Category --}}
+                    @canany(['category-list','category-create'])
+                        <li class="sidebar-list">
+                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-user-3-line"></i>
+                                <span>{{__('general.categories')}}</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                @can('category-list')
+                                    <li><a href="{{route('categories.index')}}">{{__('general.list')}}</a></li>
+                                @endcan
+                                @can('category-create')
+                                    <li><a href="{{route('categories.create')}}">{{__('general.create')}}</a></li>
+                                @endcan
+                            </ul>
+                        </li>
+                    @endcanany
+
+                    {{-- Vendors --}}
+                    @canany(['vendor-list','vendor-create'])
+                        <li class="sidebar-list">
+                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-user-3-line"></i>
+                                <span>{{__('general.vendors')}}</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                @can('vendor-list')
+                                    <li><a href="{{route('vendors.index')}}">{{__('general.list')}}</a></li>
+                                @endcan
+                                @can('vendor-create')
+                                    <li><a href="{{route('vendors.create')}}">{{__('general.create')}}</a></li>
+                                @endcan
+                            </ul>
+                        </li>
+                    @endcanany
+
+                    {{-- Expenses --}}
+                    @canany(['expense-list','expense-create'])
+                        <li class="sidebar-list">
+                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-user-3-line"></i>
+                                <span>{{__('general.expenses')}}</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                @can('expense-list')
+                                    <li><a href="{{route('expenses.index')}}">{{__('general.list')}}</a></li>
+                                @endcan
+                                @can('expense-create')
+                                    <li><a href="{{route('expenses.create')}}">{{__('general.create')}}</a></li>
+                                @endcan
+                            </ul>
+                        </li>
+                    @endcanany
+
                 </ul>
             </div>
 

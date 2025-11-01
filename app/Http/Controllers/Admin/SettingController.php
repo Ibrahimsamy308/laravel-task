@@ -67,6 +67,20 @@ class SettingController extends Controller
                     })
                     ->save($data['white_logo']);
             }
+
+            if ($request->hasFile('loginImage')){
+                File::delete($setting->loginImage);
+                $file2 = $request->file('loginImage');
+                $data['loginImage'] = $request->loginImage->store('images');
+                $file2->move('images', $data['loginImage']);
+                                Image::make($data['loginImage'])
+                    ->resize(2400, 1600, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    })
+                    ->save($data['loginImage']);
+            }
+            
             if ($request->hasFile('image')){
                 File::delete($setting->image);
                 $file2 = $request->file('image');
