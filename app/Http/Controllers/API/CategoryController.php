@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\CategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\home\ProductResource as HomeProductResource;
 use App\Http\Resources\ProductResource;
@@ -41,6 +42,84 @@ class CategoryController extends Controller
         } catch (Exception $e) {
 
             return failedResponse($e->getMessage());
+        }
+    }
+
+    public function store(CategoryRequest $request)
+    {
+        try {
+            $data = $request->except(['image', 'profile_avatar_remove', 'video', 'profile_video_remove']);
+            $data['is_active'] = $request->has('is_active') ? 1 : 0;
+
+            $category = $this->category->create($data);
+            $category->uploadFile();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Category created successfully',
+                'data' => $category
+            ], 201);
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * PUT /api/categories/{id}
+     */
+    public function update(Request $request, Category $category)
+    {
+        try {
+            $data = $request->except(['image',]);
+            $data['is_active'] = $request->has('is_active') ? 1 : 0;
+
+            $category->update($data);
+            $category->updateFile();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Category updated successfully',
+                'data' => $category
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * DELETE /api/categories/{id}
+     */
+    public function destroy(Category $category)
+    {
+        try {
+            if ($category->expenses()->exists()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Cannot delete category with linked expenses.'
+                ], 403);
+            }
+
+            $category->deleteFile();
+            $category->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Category deleted successfully'
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong',
+                'error' => $e->getMessage()
+            ], 500);
         }
     }
 }

@@ -69,25 +69,6 @@
                         </li>
                     @endcanany
 
-                    {{-- Users --}}
-                    @canany(['user-list','user-create'])
-                        <li class="sidebar-list">
-                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
-                                <i class="ri-user-3-line"></i>
-                                <span>{{__('general.users')}}</span>
-                            </a>
-                            <ul class="sidebar-submenu">
-                                @can('user-list')
-                                    <li><a href="{{route('users.index')}}">{{__('general.list')}}</a></li>
-                                @endcan
-                                @can('user-create')
-                                    <li><a href="{{route('users.create')}}">{{__('general.create')}}</a></li>
-                                @endcan
-                            </ul>
-                        </li>
-                    @endcanany
-
-
                     {{-- Category --}}
                     @canany(['category-list','category-create'])
                         <li class="sidebar-list">

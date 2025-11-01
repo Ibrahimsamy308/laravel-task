@@ -21,50 +21,54 @@ use App\Http\Controllers\API\VendorController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['apiLocalization', 'cors']], function () {
+    Route::post('auth/login', [AuthController::class, 'login']);
+    Route::post('auth/register', [AuthController::class, 'register']);
+
 });
 
-Route::group(['middleware' => ['apiLocalization','cors']], function () {
-    Route::get('/categories', [CategoryController::class, 'index']);
-    Route::get('/category/{id}', [CategoryController::class, 'show']);
+Route::middleware(['auth:sanctum', 'apiLocalization', 'cors'])->group(function () {
 
-    Route::get('/vendors', [VendorController::class, 'index']);
-    Route::get('/vendor/{id}', [VendorController::class, 'show']);
-
-    Route::get('/expenses', [ExpenseController::class, 'index']);
-    Route::get('/expense/{id}', [ExpenseController::class, 'show']);
-
-
-    Route::get('/users', [UserController::class, 'index']);
-    Route::get('/user/{id}', [UserController::class, 'show']);
-
-    Route::post('user-block', [UserController::class, 'customerBlock']);
-});
+    // ===== COMMON USER ROUTES =====
+    Route::get('auth/user-profile', [UserController::class, 'userProfile']);
+    Route::post('auth/logout', [AuthController::class, 'logout']);
+    Route::post('auth/refresh', [AuthController::class, 'refresh']);
+    Route::post('auth/profile/update', [UserController::class, 'update']);
+    Route::post('auth/change-password', [UserController::class, 'changePassword']);
 
 
+    // ===== ADMIN ONLY =====
+    Route::middleware('role:admin')->group(function () {
+        // Vendors
+        Route::get('/vendors', [VendorController::class, 'index']);
+        Route::get('/vendor/{id}', [VendorController::class, 'show']);
+        Route::post('/vendor/store', [VendorController::class, 'store']);
+        Route::post('/vendor/{id}', [VendorController::class, 'update']);
+        Route::delete('/vendor/{id}', [VendorController::class, 'destroy']);
 
+        // Categories
+        Route::get('/categories', [CategoryController::class, 'index']);
+        Route::get('/category/{id}', [CategoryController::class, 'show']);
+        Route::post('/category/store', [CategoryController::class, 'store']);
+        Route::post('/category/{id}', [CategoryController::class, 'update']);
+        Route::delete('/category/{id}', [CategoryController::class, 'destroy']);
 
+        // Expenses (admin full access)
+        Route::get('/expenses', [ExpenseController::class, 'index']);
+        Route::get('/expense/{id}', [ExpenseController::class, 'show']);
+        Route::post('/expense/store', [ExpenseController::class, 'store']);
+        Route::post('/expense/{id}', [ExpenseController::class, 'update']);
+        Route::delete('/expense/{id}', [ExpenseController::class, 'destroy']);
 
+        // Summary report
+        Route::get('expenses/summary', [ExpenseController::class, 'summary']);
+    });
 
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'auth'
-], function ($router) {
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::post('/social-login', [AuthController::class, 'socialLogin']);
-    Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/verify/otp', [AuthController::class, 'verifyOtp']);
-    Route::post('/logout', [AuthController::class, 'logout']);
-    Route::post('/refresh', [AuthController::class, 'refresh']);
-    Route::post('/logout', [AuthController::class, 'logout']);
-    Route::get('/user-profile', [UserController::class, 'userProfile']);
-    Route::post('/profile/update', [UserController::class, 'update']);
-    Route::post('/change-password', [UserController::class, 'changePassword']);
-    //save lang
-    Route::post('update-lang', [UserController::class, 'updateLang']);
-    Route::post('update-fcmToken', [UserController::class, 'updateFCMToken']);
-
-    Route::get('/customer/transactions', [UserController::class, 'transactions']);
-
+    // ===== STAFF ONLY =====
+    Route::middleware('role:staff')->group(function () {
+        // Staff can only view and create expenses
+        Route::get('/expenses', [ExpenseController::class, 'index']);
+        Route::get('/expense/{id}', [ExpenseController::class, 'show']);
+        Route::post('/expense/store', [ExpenseController::class, 'store']);
+    });
 });

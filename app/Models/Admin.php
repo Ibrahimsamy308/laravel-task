@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Model;
@@ -23,21 +23,14 @@ class Admin extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $guard = 'admin';
     protected $fillable = [
         'name',
         'email',
         'password',
         'phone',
         'type',
-        'active',
-        'bio',
-        'specialization',
-        'experience',
-        'facebook',
-        'instagram',
-        'twitter',
-        'linkedin',
-        'whatsapp',
+
     ];
 
     /**
