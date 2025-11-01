@@ -1,3 +1,4 @@
+```bash
 # 💰 Expense Management System
 
 A Laravel-based Dashboard and API project for managing **Vendors**, **Categories**, and **Expenses** with authentication, roles, and reports.
@@ -58,4 +59,4 @@ A Laravel-based Dashboard and API project for managing **Vendors**, **Categories
          user: staff@gmail.com
          password: 123456789
      }
-    ```
+
