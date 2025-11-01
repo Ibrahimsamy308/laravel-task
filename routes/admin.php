@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\VendorController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;

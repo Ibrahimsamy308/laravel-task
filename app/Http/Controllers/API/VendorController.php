@@ -3,29 +3,29 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CategoryResource;
+use App\Http\Resources\VendorResource;
 use App\Http\Resources\home\ProductResource as HomeProductResource;
 use App\Http\Resources\ProductResource;
-use App\Http\Resources\SubcategoryResource;
-use App\Models\Category;
-use App\Models\Subcategory;
+use App\Http\Resources\SubvendorResource;
+use App\Models\Vendor;
+use App\Models\Subvendor;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 
-class CategoryController extends Controller
+class VendorController extends Controller
 {
-    private $category;
-    public function __construct(Category $category)
+    private $vendor;
+    public function __construct(Vendor $vendor)
     {
-        $this->category = $category;
+        $this->vendor = $vendor;
     }
 
     public function index()
     {
         try {
-            $data['categories'] = CategoryResource::collection($this->category->latest()->get());
+            $data['vendors'] = VendorResource::collection($this->vendor->latest()->get());
             return successResponse($data);
         } catch (Exception $e) {
 
@@ -36,7 +36,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         try {
-            $data['category'] = new CategoryResource($this->category->findorfail($id));
+            $data['vendor'] = new VendorResource($this->vendor->findorfail($id));
             return successResponse($data);
         } catch (Exception $e) {
 

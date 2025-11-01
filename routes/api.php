@@ -7,6 +7,8 @@ use App\Http\Controllers\API\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\VendorController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,17 +27,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['apiLocalization','cors']], function () {
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::get('/category/{id}', [CategoryController::class, 'show']);
-    Route::get('/categoryProducts', [CategoryController::class, 'categoryProducts']);
-    Route::get('/categorySubcategories', [CategoryController::class, 'categorySubcategories']);
 
-   
+    Route::get('/vendors', [VendorController::class, 'index']);
+    Route::get('/vendor/{id}', [VendorController::class, 'show']);
+
     Route::get('/instructors', [AdminController::class, 'index']);
     Route::get('/instructor/{id}', [AdminController::class, 'show']);
 
-    Route::get('/customers', [UserController::class, 'index']);
-    Route::get('/customer/{id}', [UserController::class, 'show']);
+    Route::get('/users', [UserController::class, 'index']);
+    Route::get('/user/{id}', [UserController::class, 'show']);
 
-    Route::post('customer-block', [UserController::class, 'customerBlock']);
+    Route::post('user-block', [UserController::class, 'customerBlock']);
 });
 
 
