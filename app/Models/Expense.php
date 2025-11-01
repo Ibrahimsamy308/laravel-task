@@ -38,11 +38,7 @@ class Expense extends Model implements TranslatableContract
                 $model->createdBy_id = Auth::id();
             }
         });
-        static::addGlobalScope('user_scope', function (Builder $builder) {
-            if (Auth::check() && Auth::user()->type !== 'admin') {
-                $builder->where('createdBy_id', Auth::id());
-            }
-        });
+
     }
 
 

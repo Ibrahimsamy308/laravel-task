@@ -76,9 +76,10 @@ class VendorController extends Controller
     /**
      * PUT /api/vendors/{id}
      */
-    public function update(Request $request, Vendor $vendor)
+    public function update(Request $request, $id)
     {
         try {
+            $vendor= Vendor::find($id);
             $data = $request->except(['image', 'profile_avatar_remove', 'video']);
             $data['is_active'] = $request->boolean('is_active');
 
@@ -106,9 +107,10 @@ class VendorController extends Controller
     /**
      * DELETE /api/vendors/{id}
      */
-    public function destroy(Vendor $vendor)
+    public function destroy($id)
     {
         try {
+            $vendor=Vendor::find($id);
             $vendor->deleteFile();
             $vendor->delete();
 

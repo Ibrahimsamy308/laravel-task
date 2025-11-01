@@ -24,5 +24,11 @@ class Category extends Model implements TranslatableContract
     public function getImageAttribute(){
         $image = $this->file()->where('type', 'image')->first();
         return $image ? asset($image->url) : settings()->logo;
-    }    
+    }   
+    
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class,);
+    }
+    
 }

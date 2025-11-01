@@ -27,10 +27,8 @@ class CategoryRequest extends FormRequest
      */
     public function rules(): array
     {
-        $image = $this->isMethod('put') ? 'nullable' : 'required|image|mimes:jpeg,png,jpg,webp|max:2048';
 
         $rules = [
-            'image' => $image,
             'is_active' => 'nullable|boolean',
         ];
 

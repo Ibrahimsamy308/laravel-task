@@ -27,7 +27,7 @@ Route::group(['middleware' => ['apiLocalization', 'cors']], function () {
 
 });
 
-Route::middleware(['auth:sanctum', 'apiLocalization', 'cors'])->group(function () {
+Route::middleware(['auth:api', 'apiLocalization', 'cors'])->group(function () {
 
     // ===== COMMON USER ROUTES =====
     Route::get('auth/user-profile', [UserController::class, 'userProfile']);
@@ -38,7 +38,7 @@ Route::middleware(['auth:sanctum', 'apiLocalization', 'cors'])->group(function (
 
 
     // ===== ADMIN ONLY =====
-    Route::middleware('role:admin')->group(function () {
+    Route::middleware('apiRole:admin')->group(function () {
         // Vendors
         Route::get('/vendors', [VendorController::class, 'index']);
         Route::get('/vendor/{id}', [VendorController::class, 'show']);
@@ -64,11 +64,10 @@ Route::middleware(['auth:sanctum', 'apiLocalization', 'cors'])->group(function (
         Route::get('expenses/summary', [ExpenseController::class, 'summary']);
     });
 
-    // ===== STAFF ONLY =====
-    Route::middleware('role:staff')->group(function () {
-        // Staff can only view and create expenses
+    Route::middleware(['auth:api', 'apiRole:staff'])->group(function () {
         Route::get('/expenses', [ExpenseController::class, 'index']);
         Route::get('/expense/{id}', [ExpenseController::class, 'show']);
         Route::post('/expense/store', [ExpenseController::class, 'store']);
     });
+    
 });

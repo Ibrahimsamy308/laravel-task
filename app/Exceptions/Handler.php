@@ -5,6 +5,8 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Auth\AuthenticationException;
 use Throwable;
+use Illuminate\Auth\Access\AuthorizationException;
+
 
 class Handler extends ExceptionHandler
 {
@@ -60,5 +62,16 @@ class Handler extends ExceptionHandler
         }
         
         return redirect()->guest(route('admin.login'));
+    }
+
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof AuthorizationException) {
+            return response()->json([
+                'error' => $exception->getMessage() // "User does not have the right roles"
+            ], 403);
+        }
+    
+        return parent::render($request, $exception);
     }
 }

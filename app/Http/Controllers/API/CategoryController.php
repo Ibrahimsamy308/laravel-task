@@ -47,12 +47,14 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request)
     {
-        try {
+        try { 
             $data = $request->except(['image', 'profile_avatar_remove', 'video', 'profile_video_remove']);
             $data['is_active'] = $request->has('is_active') ? 1 : 0;
 
             $category = $this->category->create($data);
-            $category->uploadFile();
+            if ($request->hasFile('image')){
+                $category->uploadFile();
+            }
 
             return response()->json([
                 'status' => true,
@@ -71,19 +73,24 @@ class CategoryController extends Controller
     /**
      * PUT /api/categories/{id}
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, $id)
     {
         try {
-            $data = $request->except(['image',]);
+
+           $category=Category::find($id);
+            $data = $request->except(['image','profile_avatar_remove']);
             $data['is_active'] = $request->has('is_active') ? 1 : 0;
 
             $category->update($data);
-            $category->updateFile();
+            if ($request->hasFile('image')){
+                
+                $category->updateFile();
+            }
 
             return response()->json([
                 'status' => true,
                 'message' => 'Category updated successfully',
-                'data' => $category
+                'data' => new CategoryResource($category)
             ], 200);
         } catch (Exception $e) {
             return response()->json([
@@ -97,9 +104,12 @@ class CategoryController extends Controller
     /**
      * DELETE /api/categories/{id}
      */
-    public function destroy(Category $category)
+    public function destroy( $id)
     {
         try {
+
+            $category=Category::find($id);
+
             if ($category->expenses()->exists()) {
                 return response()->json([
                     'status' => false,

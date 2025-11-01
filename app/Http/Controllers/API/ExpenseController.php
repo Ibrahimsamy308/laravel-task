@@ -26,6 +26,11 @@ class ExpenseController extends Controller
     public function index()
     {
         try {
+            $query = $this->expense->newQuery();
+    
+            if (auth()->user()->type !== 'admin') {
+                $query->where('createdBy_id', auth()->id());
+            }
             $data['expenses'] = ExpenseResource::collection($this->expense->latest()->get());
             return successResponse($data);
         } catch (Exception $e) {
@@ -37,6 +42,13 @@ class ExpenseController extends Controller
     public function show($id)
     {
         try {
+            $query = $this->expense->newQuery();
+
+            if (auth()->user()->type !== 'admin') {
+                $query->where('createdBy_id', auth()->id());
+            }
+    
+            $expense = $query->findOrFail($id);
             $data['expense'] = new ExpenseResource($this->expense->findorfail($id));
             return successResponse($data);
         } catch (Exception $e) {
@@ -58,7 +70,7 @@ class ExpenseController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Expense created successfully',
-                'data' => $expense
+                'data' =>new ExpenseResource( $expense)
             ], 201);
         } catch (Exception $e) {
             return response()->json([
@@ -72,9 +84,10 @@ class ExpenseController extends Controller
     /**
      * PUT /api/expenses/{id}
      */
-    public function update(Request $request, Expense $expense)
+    public function update(Request $request, $id)
     {
         try {
+            $expense=Expense::find($id);
             $data = $request->except(['image', 'profile_avatar_remove', 'video']);
             $expense->update($data);
 
@@ -123,25 +136,26 @@ class ExpenseController extends Controller
     {
         try {
             $summary = Expense::selectRaw('MONTH(created_at) as month, category_id, SUM(amount) as total')
-            ->groupBy('month', 'category_id')
-            ->with('category.translations') 
-            ->get()
-            ->map(function ($item) {
-                $item->category_name = $item->category
-                    ? $item->category->getTranslation('title', app()->getLocale())
-                    : null;
-        
-                unset($item->category);
-                return $item;
-            });
-        
-        
+                ->groupBy('month', 'category_id')
+                ->with('category.translations')
+                ->get()
+                ->map(function ($item) {
+                    return [
+                        'month' => $item->month,
+                        'category_id' => $item->category_id,
+                        'total' => $item->total,
+                        'category_name' => $item->category
+                            ? optional($item->category->translate(app()->getLocale()))->title
+                            : null,
+                    ];
+                });
+    
             return response()->json([
                 'status' => true,
                 'message' => 'Summary report retrieved successfully',
                 'data' => $summary,
             ], 200);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return response()->json([
                 'status' => false,
                 'message' => 'Something went wrong',
@@ -149,4 +163,5 @@ class ExpenseController extends Controller
             ], 500);
         }
     }
+    
 }

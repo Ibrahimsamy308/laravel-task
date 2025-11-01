@@ -29,7 +29,7 @@ class VendorRequest extends FormRequest
     {
         $image = $this->isMethod('put') 
             ? 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048' 
-            : 'required|image|mimes:jpeg,png,jpg,webp|max:2048';
+            : 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048';
 
         $rules = [
             'image' => $image,
