@@ -10,12 +10,14 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use App\Notifications\ResetPassword;
 use Laravel\Passport\HasApiTokens;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable,MorphFile,HasApiTokens;
+    use HasFactory, Notifiable,MorphFile,HasApiTokens,SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -55,53 +57,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new ResetPassword($token));
-    }
-
-
     public function getImageAttribute(){
         return  $this->file?asset($this->file->url): settings()->logo;
    }
-    public function orders(){
-        return  $this->hasMany(Order::class);
-   }
-
-    public function transactions(){
-        return  $this->hasMany(Transaction::class);
-    }
-
-   public function addresses(){
-    return  $this->hasMany(Address::class);
-    }
-
-    /**
-     * get favourite products
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function favorites()
-    {
-        return $this->belongsToMany(Product::class, 'favorites', 'user_id', 'product_id');
-    }
-
-
-    public function courses()
-    {
-        return $this->belongsToMany(Course::class,'userCourses','user_id','course_id'      
-        )->withoutGlobalScope('user_scope');
-    }
     
-    public function exams()
-    {
-        return $this->belongsToMany(Exam::class,'userExams')
-        ->withPivot(['id','score', 'answers'])->withoutGlobalScope('user_scope'); 
-    }
-
-    public function videos()
-    {
-        return $this->belongsToMany(Video::class,'userVideos')->withoutGlobalScope('user_scope');
-    }
-
 }

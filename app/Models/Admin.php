@@ -11,10 +11,12 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Admin extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, MorphFile;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, MorphFile,SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

@@ -14,42 +14,29 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $title_en = [
-            'Fresh Flowers',
-            'Artificial Flowers',
-            'Flower Bouquets',
-            'Wedding Flowers',
-            'Birthday Flowers',
-            'Anniversary Flowers',
-            'Valentine\'s Day Flowers',
-            'Indoor Plants',
-            'Outdoor Plants',
-            'Floral Accessories'
+            'Office Supplies',
+            'Utilities',
+            'Travel Expenses',
+            'Employee Salaries',
+            'Maintenance',
+            'Marketing',
+            'Software Subscriptions',
+            'Transportation',
+            'Rent',
+            'Miscellaneous',
         ];
-        
-        $title_fr = [
-            'Fleurs fraîches',
-            'Fleurs artificielles',
-            'Bouquets de fleurs',
-            'Fleurs de mariage',
-            'Fleurs d\'anniversaire',
-            'Fleurs de célébration',
-            'Fleurs de la Saint-Valentin',
-            'Plantes d\'intérieur',
-            'Plantes d\'extérieur',
-            'Accessoires floraux'
-        ];
-        
+
         $title_ar = [
-            'زهور طبيعية',
-            'زهور صناعية',
-            'باقات زهور',
-            'زهور الزفاف',
-            'زهور أعياد الميلاد',
-            'زهور المناسبات',
-            'زهور عيد الحب',
-            'نباتات داخلية',
-            'نباتات خارجية',
-            'إكسسوارات زهور'
+            'مستلزمات المكتب',
+            'المرافق (كهرباء، مياه، إنترنت)',
+            'مصاريف السفر',
+            'رواتب الموظفين',
+            'الصيانة',
+            'التسويق',
+            'اشتراكات البرامج',
+            'النقل والمواصلات',
+            'الإيجار',
+            'مصروفات متنوعة',
         ];
                     
         for ($i = 0; $i < count($title_ar); $i++) {
@@ -60,9 +47,12 @@ class CategorySeeder extends Seeder
                 ],
                 'en' => [
                     'title' => $title_en[$i],
-                ]
+                ],
+                
+                'is_active' => (bool)rand(0, 1),
+
             ]);
-            // $category->file()->create(["url"=>$images[$i]]);
+            
         }
     }
 }

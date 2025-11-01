@@ -8,12 +8,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 
 
 class Category extends Model implements TranslatableContract
 {
-    use HasFactory, Translatable, MorphFile, MorphVideo;
+    use HasFactory, Translatable, MorphFile, MorphVideo,SoftDeletes;
     protected $table = 'categories';
     public $translatedAttributes = ['title'];
     protected $guarded = [];
